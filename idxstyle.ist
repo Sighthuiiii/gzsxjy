@@ -1,0 +1,14 @@
+headings_flag 0
+
+item_0 "\n \\item \\small "
+item_x1 "\\subitem "
+
+delim_0 " \\hfill "
+delim_1 " \\hfill "
+delim_2 " \\hfill "
+
+% 页码颜色设置
+page_precedence "\\textcolor{blue}{"
+page_postcedence "}"
+page_comma "\\textcolor{blue}{, }"
+range_prefix "\\textcolor{blue}{-"

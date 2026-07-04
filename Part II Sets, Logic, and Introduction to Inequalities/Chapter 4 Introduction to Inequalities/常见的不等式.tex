@@ -1,0 +1,303 @@
+\section{常见的不等式}
+\subsection{基本不等式}
+从完全平方公式$(a-b)^2=a^2-2ab+b^2$出发
+得到不等式
+\[(a-b)^2=a^2-2ab+b^2 \geq 0 \Leftrightarrow a^2+b^2\geq 2ab.\text{当且仅当$a=b$取等} \]
+特别地，$a>0,b>0$时，用$\sqrt{a},\sqrt{b}$替换$a,b$,得到不等式
+\[\frac{a+b}{2}\geq \sqrt{ab},\text{当且仅当$a=b$取等}\]
+\begin{theorem}\label{thm:基本不等式}\index{不等式!基本不等式}
+    
+\end{theorem}
+也叫均值不等式\index{不等式!均值不等式}.
+当然，我们也经常使用两侧平方后的形式，即
+\[ab\leq \frac{(a+b)^2}{4}\]
+对于$\dfrac{a+b}{2}$
+\begin{example}
+    已知$x,y>0$，求证：
+
+    $(1)$若$xy=P$（定值），当$x=y$时，和$x+y$有最小值$2\sqrt{P}$
+
+    $(2)$若$x+y=P$（定值），当$x=y$时，积$xy$有大值$\frac{1}{4}S^2$
+\end{example}
+\begin{example}
+   \[ \text{当$x>0$时，求}x+\frac{1}{x}\text{的最小值}\]
+\end{example}
+\begin{jie}
+    $x>0$,则
+\[x+\frac{1}{x} \geq 2\sqrt{x\cdot\frac{1}{x}}=2\]
+\end{jie}
+
+归纳均值不等式的使用步骤：一正，二定，三相等，顺序不能乱
+\begin{example}
+    \ 
+
+    $(1)$\[x>1,\text{求}x+\frac{1}{x-1}\text{的最小值;}\]
+
+    $(2)$\[ab=8\text{，求$a+2b$的最小值;}\]
+
+    $(3)$\[x>2,\text{求}\frac{x^2-2x+4}{x-2}\text{的最小值}\]
+
+    $(4)$
+    \[k\leq 1\text{，求}\frac{x^2+k+1}{\sqrt{x^2+k}}\text{的最小值}\]
+
+    $(5)$\[x,y\text{同号，求}\frac{x}{y}+\frac{y}{x}\text{的最小值}\]
+
+    $(6)$\[\text{求}\frac{xy}{x^2+3xy+y^2}\text{的最大值}\]
+
+    $(7)$\[a,b\in \mathbb{R}_+,\text{求}\frac{a}{a+2b}+\frac{b}{a+b}\text{的最小值}\]
+\end{example}
+\begin{exercise}
+    \ 
+
+    $(1)$\[x\geq1,\text{求}x+\frac{1}{x}+\frac{16x}{x^2+1}\text{的最小值}\]
+\end{exercise}
+\begin{example}
+    \[x\in(0,1),\text{求}x(1-x)\text{的最小值}\]
+\end{example}
+\begin{jie}
+    显然把这题作为二次函数求最值来做是没有任何问题的，但是它也有天然的“和是定值”的优秀形式。
+\end{jie}
+\begin{example}
+    \ 
+
+    $(1)$\[x\in(0,1),\text{求}x(2-3x)\text{的最小值}\]
+
+    $(2)$\[3a^2+2b^2=5,\text{求}(2a^2+1)(b^2+2)\text{的最大值}\]
+
+    $(3)$\[5x^2y^2+y^4=1,\text{求}x^2+y^2\text{的最小值}\]
+\end{example}
+
+练习：(1)$x,y$为不相等的正数，求证
+\[\frac{2xy}{x+y}<\sqrt{xy}\]
+
+\begin{example}
+    \[x>0,y>0,x+y=1,\text{求}\frac{1}{x}+\frac{4}{y}\text{的最小值}\]
+\end{example}
+\begin{jie}
+    
+\end{jie}
+\begin{example}
+    \ 
+
+    $(1)a,b>0,2a+b=1,$
+    \[\text{求}\frac{1}{a+1}+\frac{4}{b+1}\text{的最小值}\]
+
+    $(2)a,b>0,a+b=1,$
+    \[\text{求}\frac{1}{3a+2}+\frac{1}{3b+2}\text{的最小值}\]
+
+    $(3)x,y>0,\dfrac{2}{x}+\dfrac{1}{y}=2,$
+    \[\text{求}x+2y\text{的最小值}\]
+
+    $(4)x,y>0,a+\dfrac{1}{b}=2$
+    \[\text{求}\frac{4}{a}+b\text{的最小值}\]
+\end{example}
+\begin{exercise}
+    \ 
+
+    $(1)x,y>0,x+3y=5xy,$\[\text{求}3x+4y+xy\text{的最小值}\]
+\end{exercise}
+\begin{example}
+    \ 
+
+    $(1)a,b>0,ab=a+b+3,$
+    \[\text{求}ab\text{的取值范围}\]
+
+    $(2)x,y>0,x+y+xy=3,$
+    \[\text{求}x+y\text{的取值范围}\]
+\end{example}
+\begin{theorem}[n元均值不等式]
+    \ 
+
+    $a_1,a_2,\dots,a_n\geq0$,则
+    \[\frac{a_1+\dots+a_n}{n}\geq\sqrt[n]{a_1 \dots a_n}\]
+    
+    当且仅当$a_1=a_2=\dots=a_n$时等号成立。
+\end{theorem}
+\begin{proof}
+    使用向前——向后数学归纳法。
+    
+    $n=1,2$时,显然成立.下证明若$n=2^k$时不等式成立,则$n=2^{n+1}$时不等式仍然成立.
+
+    假设$n=2^k$时，有\[\]
+
+    接下来证明若$n=k$时不等式成立,则$n=k-1$时不等式仍然成立.
+\end{proof}
+\begin{example}
+    \ 
+
+    求证
+    \[\forall a,b,c\in \mathbb{R}\qquad a^2+b^2+c^2\geq ab+bc+ac\]
+\end{example}
+\begin{proof}
+    由\[a^2+b^2\geq 2ab\]
+    
+    类推可得\[b^2+c^2\geq 2bc\]\[a^2+c^2\geq 2ac\]
+
+    累加得\[2a^2+2b^2+2c^2\geq 2ab+2bc+2ac\]
+
+    约去两侧的$2$即得证。
+\end{proof}
+\begin{zhu}
+    请用分析法写此题的证明过程。
+\end{zhu}
+\clearpage
+\begin{exercise}
+    \ 
+
+    $(1)a,b,c,d>0$,求证:
+    \[(a+b)(b+c)(c+d)(d+a)\geq 16abcd\]
+
+    $(2)x,y,z>0$,求证：
+    \[(\frac{y}{x}+\frac{z}{x})(\frac{x}{y}+\frac{z}{y})(\frac{x}{y}+\frac{y}{z})\geq8\]
+
+\end{exercise}
+\clearpage
+\subsection{不等式链}
+\[\sqrt{\frac{a^2+b^2}{2}} \geq \frac{a+b}{2}\geq \sqrt{ab}\geq \frac{2}{\dfrac{1}{a}+\dfrac{1}{b}}\]
+
+\clearpage
+\subsection{糖水不等式}
+\begin{theorem}\index{不等式!糖水不等式}
+    
+\end{theorem}
+\[a,b\in \mathbb{R}_+,a>b,\frac{b+m}{a+m}>\frac{b}{a}\]
+\[a,b\in \mathbb{R}_+,a<b,\frac{b+m}{a+m}<\frac{b}{a}\]
+\[a,b,m\in \mathbb{R}_+,a>b,a>m,\frac{b-m}{a-m}<\frac{a}{b}\]
+\[a,b,c,d\in \mathbb{R} ,\frac{b}{a}<\frac{d}{c}\text{则}\frac{b+d}{a+c}>\frac{d}{c}>\frac{b}{a}\]
+
+\clearpage
+\subsection{绝对值不等式}
+\begin{theorem}[绝对值不等式]\index{不等式!绝对值不等式}
+  \[||a|-|b||\leq|a\pm b|\leq |a|+|b|\]
+  \[|\sum_{i=1}^{n}a_i|\leq\sum_{i=1}^{n}|a_i|\]  
+\end{theorem}
+\begin{corollary}
+    饿啊
+\end{corollary}
+\begin{example}
+    \ 
+
+    $(1)$$|x-m|+|x-n|$
+
+    $(2)$$|x-m|-|x-n|$
+
+    $(3)$$a|x-m|+b|x-n|$
+\end{example}
+\begin{example}
+    \[f(x)=\sum_{i=1}^{n}|x-a_i|=|x-a_1|+|x-a_2|+\cdots+|x-a_i|\]
+
+    $(1)$当$n=2k-1(k\in \mathbb{N} *)$,在$f(a_k)$处取得最小值.
+
+    $(2)$当$n=2k(k\in \mathbb{N} *)$,在$f(a_k)$到$f(a_{k+1})$取得最小值.
+\end{example}
+\begin{example}
+    \[\text{已知}x,y\text{满足}|x+y|+|x|+|y|=2\]
+
+    求$x,y,x+y,x-y$的取值范围。
+\end{example}
+\begin{definition}[距离空间]\label{def:距离空间}\index{距离空间}
+    
+\end{definition}
+\begin{axiom}
+    vv
+\end{axiom}
+\clearpage
+\subsection{柯西不等式*}
+\begin{theorem}[Cauchy不等式]\label{thm:Cauchy不等式}\index{不等式!Cauchy不等式}
+    \[(a^2+b^2)(c^2+d^2)\geq(ac+bd)^2\]
+\[(\sum_{i=1}^{n}a_i^2)(\sum_{i=1}^{n}b_i^2)\geq(\sum_{i=1}^{n}a_ib_i)^2\]
+\end{theorem}
+
+\begin{proof}
+    \ 
+
+    \begin{way1}
+    \[(a^2+b^2)(c^2+d^2)=(ac+bd)^2+(bc-ad)^2\geq (ac+bd)^2\]
+    \[(\sum_{i=1}^{n}a_i^2)(\sum_{i=1}^{n}b_i^2)-(\sum_{i=1}^{n}a_ib_i)^2=
+    \sum_{1\leq i<j\leq n}^{n}(a_ib_j-a_jb_i)^2\geq 0\]
+    \end{way1}
+    \begin{way2}
+    记\[f(x)=\sum_{i=1}^{n}(a_i+xb_i)^2
+    =(\sum_{i=1}^{n}b_i^2)x^2+2(\sum_{i=1}^{n}a_ib_i)x+\sum_{i=1}^{n}a_i^2\geq 0\]
+
+    这等价于二次函数的判别式
+    \[\Delta=4(\sum_{i=1}^{n}a_ib_i)^2-4(\sum_{i=1}^{n}a_i^2)(\sum_{i=1}^{n}b_i^2)\leq 0\]
+    
+    去掉系数$4$即得证明。
+    \end{way2}
+\end{proof}
+简单记忆为“和的积$\geq$ 积的和”，在学完向量相关内容后，会有对柯西不等式更深入的了解。
+\begin{corollary}
+    \ 
+
+    $(1)$\[\sqrt{(a^2+b^2)}\sqrt{(c^2+d^2)}\geq |ac+bd|\]
+
+    $(2)$\[(a+b)(c+d)\geq(\sqrt{ac}+\sqrt{bd})^2\]
+
+    $(3)$\[\sqrt{(a^2+b^2)}\sqrt{(c^2+d^2)}\geq |ac|+|bd|\]
+\end{corollary}
+\begin{example}
+    \ 
+
+    $(1)$
+    \[x+3y=4,\text{求}4x^2+y^2\text{的最小值}\]   
+
+    $(2)$
+    \[\text{求}5\sqrt{x-1}+\sqrt{10-2x}\text{的最大值}\]
+\end{example}
+\begin{jie}
+    \ 
+
+    $(1)$
+    \[(4x^2+y^2)(\frac{1}{4}+9)\geq(x+3y)^2\]
+
+    $(2)$
+    \begin{align*}
+    &\quad\ (5\sqrt{x-1}+\sqrt{10-2x})^2 \\
+    &=(5\sqrt{x-1}+\sqrt{2}\cdot\sqrt{5-x})^2\\
+    &\leq(5^2+(\sqrt{2})^2)(x-1+5-x) \\
+    &=108
+    \end{align*}
+  
+\end{jie}
+\begin{theorem}[权方和不等式]\label{thm:权方和不等式}\index{不等式!权方和不等式}
+    \[a,b,x,y>0,\frac{a^2}{x}+\frac{b^2}{y}\geq\frac{(a+b)^2}{x+y}\]
+    
+    当且仅当$\dfrac{a}{x}=\dfrac{b}{y}$时取等号.
+
+    \[a_i,b_i>0,\sum_{i=1}^{n}\frac{a_i^2}{b_i}\geq\frac{(\sum_{i=1}^{n}a_i)^2}{\sum_{i=1}^{n}b_i}\]
+
+    当且仅当$\dfrac{a_i}{b_i}=k$时取等.
+\end{theorem}
+\begin{proof}
+    由柯西不等式
+    \[\sum_{i=1}^{n}\frac{a_i^2}{b_i}\sum_{i=1}^{n}b_i\geq(\sum_{i=1}^{n}a_i)^2\]
+\end{proof}
+\begin{example}
+    求证\[\frac{a^2}{(a+b)(a+c)}+\frac{b^2}{(b+a)(b+c)}+\frac{c^2}{(c+a)(c+b)}\geq \frac{3}{4}\]
+\end{example}
+\begin{proof}
+        \ 
+        
+        由权方和不等式得
+        \begin{align*}
+        \text{原式}&\geq \frac{(a+b+c)^2}{(a+b)(a+c)+(b+a)(b+c)+(c+a)(c+b)}\\   
+                 &=\frac{a^2+b^2+c^2+2ab+2bc+2ac}{a^2+b^2+c^2+3ab+3bc+3ac}\\
+                 &=1-\frac{ab+bc+ac}{a^2+b^2+c^2+3ab+3bc+3ac}
+        \end{align*}
+        
+        第一个不等号的取等条件是
+        
+        而
+        \begin{align*}
+        &\quad\ \frac{ab+bc+ac}{a^2+b^2+c^2+3ab+3bc+3ac}\\
+        &=\frac{2ab+2bc+2ac}{2a^2+2b^2+2c^2+6ab+6bc+6ac}\\
+        &=\frac{2ab+2bc+2ac}{a^2+b^2+b^2+c^2+a^2+c^2+6ab+6bc+6ac}\\
+        &\leq \frac{2ab+2bc+2ac}{2ab+2bc+2ac+6ab+6bc+6ac}\\
+        &=\frac{1}{4}
+        \end{align*}
+        
+        故原式$\geq \dfrac{3}{4}$，当且仅当$a=b=c$时取等号.
+        
+\end{proof}
+\clearpage

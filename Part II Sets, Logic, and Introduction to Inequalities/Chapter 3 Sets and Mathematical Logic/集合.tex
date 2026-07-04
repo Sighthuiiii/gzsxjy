@@ -1,0 +1,127 @@
+\part{集合、简易逻辑与不等式初步}
+\chapter{数理逻辑}
+\section{集合}
+\subsection{集合的定义、特性与表示}
+在数学学习中，我们会研究一些具有共同特征的对象，我们往往称之为元素.
+比如所有的质数，过某个定点的直线束......此时我们会把这些元素放在一起，得到一个集合.
+集合及相关理可认为是现代数学的根基，是拥有一套公理的严格数学语言.
+但是我们在高中并不会接触晦涩的公理，而是着重研究一些实用，直观的对象.
+\begin{definition}\label{ref:集合}\index{集合}
+    集合(set)是一些不同的、能够确定的研究对象汇集在一起构成的数学结构，其中研究的对象称之为元素(element)。
+\end{definition}
+
+我们常用大写字母$A,B,C...$表示集合，一些特殊的集合可能会使用特殊字体如$\mathcal{B},\mathbb{R},\mathfrak{F} $表示。
+相对地，我们会使用小写字母$a,b,c...$来表示集合中的元素.
+
+若元素$a$在集合$A$中，则记作\[a \in A\]
+
+相对地，若元素$a$不在集合$A$中，则记作\[a \notin A\]
+
+当然，如果有这样的一个集合，没有任何元素属于这个集合，那么我们称之为空集(empty set/null set)，符号为$\varnothing $.
+
+对于两个集合$A,B$，若构成两个集合的元素相同，则记作$A,B$两个集合相等，即\[A=B\]
+\begin{example}
+    判断下面叙述的对象能否构成集合。若能构成集合，试图列举一些集合中的元素.
+    
+    $(1)$教室中比较高的同学，教室中最高的同学.
+
+    $(2)$西游记中所有的妖怪.
+
+    $(3)$所有的奇数，所有的偶数，所有的素数.
+
+    $(4)$在平面上，到$A$$B$两点距离相同的所有的点.
+
+    $(5)$单词success中的所有字母.
+
+    $(6)$不能表示为整数或整数之比的有理数.
+
+    $(7)$平面上所有的平行四边形.
+
+    $(8)$除以$2$余$1$的所有整数.
+\end{example}
+
+\begin{definition}[子集]
+    \[A\subseteq  B\]
+
+    \[A \subsetneqq B\]
+\end{definition}
+\begin{theorem}
+    \[A=B \Leftrightarrow A\subseteq B \text{且} B\subseteq A \]
+\end{theorem}
+
+
+
+知识提纲
+\\集合元素的三个特性：
+\\集合与元素的关系，集合与集合的关系
+\\子集，空集，真子集，非空真子子集
+\\常见的集合：$\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C}$等
+\\含有n个元素的集合共有多少个子集？多少真子集？多少非空真子集？
+\\集合间的运算与交并补，使用Venn图表示
+
+\begin{example}
+    \[\left\{x|y=x^2+2x+2,x\in \mathbb{R} \right\}\]
+\[\left\{y|y=x^2+2x+2,x\in \mathbb{R} \right\}\]
+\[\left\{(x,y)|y=x^2+2x+2,x\in \mathbb{R} \right\}\]
+\[\left\{y=x^2+2x+2 \right\}\]
+\end{example}
+
+提示：字母究竟是什么意思？
+
+\begin{example}
+    \[
+    \emptyset \in \left\{\emptyset\right\},
+    \emptyset \subseteq \left\{\emptyset\right\},
+    \emptyset \notin \emptyset,
+    \emptyset \subseteq \emptyset
+\]
+\end{example}
+
+\begin{example}集合A为$\left\{1,2,3,4,5,6\right\}$，集合为$\left\{4,5,6,7,8\right\}$。
+则满足$S\subseteq A$且$S\cap B\neq \emptyset$的S有几个？
+    
+\end{example}
+解：提示：将元素分为123,456,78三类。
+
+
+特殊的集合表示法：区间
+\\用法细则：
+\\不等式的解集写集合，形如$\left\{x|-3<x<2,x \in \mathbb{R} \right\}$
+\\单调区间写区间
+\\取值范围尽量写区间，不要写一个光秃秃的不等式
+\begin{example}
+    已知 $ a \in \mathbb{R} $, 关于  $x$ 的方程 $ x^{2}+a=x  $的解组成的集合为 $ A(A \neq   \varnothing)$
+    $,\left(x^{2}+a\right)^{2}+a=x $ 的解组成的集合为 $ B .$
+
+$(1) $求证  $: A \subseteq B ;$
+
+$(2)$ 若$  A=B$ , 求实数 $ a $ 的取值范围.
+\end{example}
+
+
+\clearpage
+\subsection{集合的运算}
+\clearpage
+\hw
+\begin{homework}
+    \ 
+
+    定义$1$：称一个以集合作为元素的集合为族$(collection)$.\index{族}
+
+    定义$2$：称非空集合$X$的一个子集族$\Gamma$为X上的一个拓扑$(topology)$\index{拓扑}是指：\\
+\ding{172}$ \emptyset,X\in \Gamma$;\\
+\ding{173}$\Gamma$的任意多元素的并集仍在$\Gamma$中;\\
+\ding{174}$\Gamma$的任意有限多元素的并集仍在$\Gamma$中.
+
+    $(1)$族$P=\{\emptyset,X\}$，族$Q=\{A|A\subseteq X\}$,判断$P$、$Q$是否是$X$上的一个拓扑；
+    
+    $(2)$$\Gamma$为有限集$X$上的一个拓扑，证明：由\(\Gamma\)的所有元素关于$X$的补集构成的族$\Gamma^c$也为$X$上的一个拓扑;
+
+    $(3)$证明：$X$为无限集合，$\tau_f=\{\complement_X A|A\text{为}X\text{的有限子集}\}\bigcup\{\varnothing\}$，则$\tau_f$为$X$上的一个拓扑.
+\end{homework}
+
+
+
+\clearpage
+
+

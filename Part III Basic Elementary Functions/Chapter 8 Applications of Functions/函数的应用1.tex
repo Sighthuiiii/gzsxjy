@@ -1,0 +1,92 @@
+\chapter{函数的应用}
+\section{函数的应用（一）}
+\subsection{函数的零点}
+
+\begin{example}[2024年天津卷15]\label{高考:2024年天津卷15:1}
+    若函数\(f(x)=2\sqrt{x^2-ax}-|ax-2|+1\)恰有一个零点, 则\(a\)的取值范围\uline{\makebox[1.5cm]{}}. 
+\end{example}
+\begin{jie}
+    \begin{comment}
+    要使\(f(x)\)有定义, 需要\(x^2-ax\geq 0\), 因此我们需要讨论\(0\)和\(a\)的关系, 这决定了\(f(x)\)定义域的形状.
+    当\(a=0\)时, \(f(x)=2|x|-1\), 有\(\pm\frac{1}{2}\)两个零点, 不符合题意, 下面在\(a\neq 0\)的前提下讨论.
+
+    原函数有一个零点, 等价为方程
+    \(2\sqrt{x^2-ax}=|ax-2|-1\)
+    有一个实根, 由于左侧非负, 故需要\(|ax-2|-1\geq 0\),
+    即\(x\geq \frac{3}{a}\)或\(x\leq \frac{1}{a}\).
+    两侧平方后整理得到
+    \[(a^2-4)x^2+5=2|ax-2|\]
+    我们需要讨论一个过\((5,0)\)点的抛物线和一条折线之间的关系.    
+    \end{comment}
+    由于根号限制需要\(x^2-ax\geq 0\), \(x^2-ax\)的零点是\(0,a\), 因此需要 
+    讨论\(a\)和\(0\)的关系; 其次因为需要脱去绝对值, 需要讨论\(ax-2\)的正负;
+    考虑等式\(2\sqrt{x^2-ax}=|ax-2|-1\geq 0\), 这需要满足\(ax\geq 3\)或\(ax\leq 1\).
+    因此我们就以上述标准开始讨论.
+
+    \begin{itemize}
+        \item \(a=0\)时, \(f(x)=2|x|-1,\)有\(\pm\frac{1}{2}\)两个零点, 不符合题意.
+        \item \(a>0\)时, \(f(x)\)的定义域是\((-\infty,0)\cup(a,+\infty)\).
+        \begin{enumerate}
+            \item 当\(ax\leq 1\), 即\(x\leq \frac{1}{a}\), 此时\(f(x)=2\sqrt{x^2-ax}+ax-1\),
+            则\begin{align*}
+                2\sqrt{x^2-ax}&=1-ax\\
+                4(x^2-ax)&=(1-ax)^2\\
+                (4 - a^{2})x^{2} - 2a x - 1 &= 0\\
+                 [(a - 2)x + 1][(a + 2)x + 1] &= 0 
+            \end{align*}
+            两根为\(-\frac{1}{a+2}\),\(\frac{1}{2-a}\).其中\(-\frac{1}{a+2}<0\)符合题意,
+            则另外一根\(\frac{1}{2-a}\)不能是\(f(x)\)的零点.讨论的分界线是\(\frac{1}{2-a}\)
+            ,\(\frac{1}{a}\)和\(a\)之间的关系.  结合图像可知, 其分界线应该为\(a=1,2\).
+            \begin{enumerate}
+                \item \(0<a\leq 1\),此时\(a\leq \frac{1}{2-a}\leq\frac{1}{a}\), \(\frac{1}{2-a}\)也是\(f(x)\)的零点, 不符合题意;
+                \item \(1<a<2\),此时\(\frac{1}{a}<a<\frac{1}{2-a}\), \(\frac{1}{2-a}\)不是\(f(x)\)的零点, 符合题意;
+                \item \(a=2\), 直接计算两个根是\(-\frac{1}{4}\)和\(\frac{9}{4}\), 不符合题意;
+                \item \(a>2\), 此时\(\frac{1}{2-a}<0\)也是\(f(x)\)的零点, 不符合题意.
+            \end{enumerate}
+            下面我们希望: 当\(a\in (1,2)\), \(f(x)\)在\(x\geq 3\)的条件下没有零点.
+            \item 当\(ax\geq 3\), 即\(x\geq \frac{3}{a}\), 此时\(f(x)=2\sqrt{x^2-ax}-ax+3\),
+            \begin{align*}
+                2\sqrt{x^2-ax}&=ax-3\\
+                4(x^2-ax)&=(ax-3)^2\\
+               g(x)= (a^{2}-4)x^{2} - 2a x +9 &= 0
+            \end{align*}
+            当\(a\in (1,2)\), 此二次方程的判别式\(\Delta=16(9-2a^2)>0\),
+            此时我们需要比较此二次方程的根, \(\frac{3}{a}\), \(a\)之间的关系.
+            其中\(g(a)=(a^2-4)a^2-2a^2+9=(a^2-3)^2\geq 0\).
+            \begin{enumerate}
+                \item \(a=\sqrt{3}\)时, 则\(x=a=\sqrt{3}\)是\(g(x)\)的零点, 更是\(f(x)\)的零点.不符合题意. 
+                \item 当\(a >\sqrt{3}\),此时\(\frac{3}{a}< a\),\(g(a)>0\).
+                由于\(g(x)\)的图像是开口向下的抛物线, 因此
+                因此\(g(x)=0\)的两根\(\frac{a\pm 2\sqrt{9-2a^2}}{a^2-4}\)中较小的那个
+                一定比\(a\)小, 较大的那个根\(\frac{a- 2\sqrt{9-2a^2}}{a^2-4}\)比\(a\)大,
+                是\(f(x)\)的零点, 不满足题意.
+                \item 当\(a\leq \sqrt{3}\), 此时\(a<\frac{3}{a}\), 计算
+                \[g(\frac{3}{a})=\frac{12(a^2-3)}{a^2}<0,\]
+                即\(x\geq \frac{3}{a}\)时, \(g(x)\)没有零点, \(f(x)\)也就没有零点.符合题意.
+            \end{enumerate}
+        \end{enumerate}
+        即\(a>0\)时, \(1<a<\sqrt{3}\)是符合题意的.
+        \item \(a<0\), 考虑\(f(-x)=2\sqrt{x^2-(-a)x}-|(-a)x-2|+1\),
+        若令\(-a=m\), 则\(f(-x)=h(x)=2\sqrt{x^2-mx}-|mx-2|+1\).
+        若\(x_0\)是\(h(x)\)的零点, 则\(-x_0\)是\(f(x)\)的零点, 此时的讨论和
+        \(a>0\)时完全相同, 只需\(1<m=-a<\sqrt{3}\), 即\(-\sqrt{3}<a<-1\).
+    \end{itemize}
+    综上所述, \(a\)的取值范围是\((-\sqrt{3},-1)\cup(1,\sqrt{3})\).\qed
+
+\end{jie}
+
+
+
+
+\clearpage
+\subsection{Cauchy方程简介*}
+%\subsubsection{从\texorpdfstring{$f(x+y)=f(x)+f(y)$}s开始}
+\begin{theorem}
+    若\(y=f(x), x\in \mathbb{R}\)连续，且满足Cauchy加性方程
+    \begin{equation}
+        f(x+y)=f(x)+f(y)
+    \end{equation}
+    则函数必然为正比例函数\[f(x)=cx\]
+    其中\(c=f(1)\)。
+\end{theorem}
+\clearpage

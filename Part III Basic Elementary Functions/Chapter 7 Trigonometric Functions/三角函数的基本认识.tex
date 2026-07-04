@@ -1,0 +1,165 @@
+\chapter{三角函数}
+\section{三角函数的基本认识}
+\subsection{任意角与弧度制}
+在讨论三角函数之前，我们应该更详细的定义什么是角。
+毕竟当提起角，大家的脑子里第一反应还应该是锐角、直角、钝角、平角这样的分类。
+一些人还会记得$360^\circ $的角叫做周角；
+还有一些人会记得我们利用圆弧的平行概念，把在$(0^\circ,180^\circ)$内的角称为劣角，把在$(180^\circ,360^\circ)$内的角称为优角.
+但是这些都没有顾及到大于$360^\circ$的角.因此我们要实用更加“动态”的角度去定义什么是角。
+\begin{definition}[任意角]
+    一条动射线绕其端点旋转到另一条定射线所得的图形叫做角，定射线和动射线分别叫做角的始边和终边。
+    动射线的旋转方向有顺时针和逆时针之分，规定按顺时针方向旋转成的角是正角，按逆时针方向旋转而成的角叫做负角。
+    当射线没有做任何旋转时，始边和终边重合，称之为零角。
+\end{definition}
+
+在这个定义中，我们进行了两点推广：一是加入了正负的概念，这有助于帮助我们解决角之间的运算；二是旋转的绝对量可以是任意的一个实数，这样我们就完成了任意角概念的推广。
+\begin{example}\label{example7.1.1}
+    \ 
+
+$(1)$尝试画出$30^\circ$、$-140^\circ$、$460^\circ$、$-750^\circ$的角；
+
+$(2)$解释$30^\circ+60^\circ$和$30^\circ-30^\circ$的几何意义.
+\end{example}
+\begin{jie}
+    \ 
+
+    $(1)$
+    \begin{tikzpicture}
+        \draw(1.5,0) coordinate (A) node[right] {A}
+        -- (0,0) coordinate (B) node[left] {B}
+        -- (30:1.5) coordinate (C) node[above right] {C}
+        pic["$30^\circ$",draw=orange, ->, angle eccentricity=2, angle radius=0.5cm]
+        {angle=A--B--C};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \draw(1.5,0) coordinate (A) node[right] {A}
+        -- (0,0) coordinate (B) node[left] {B}
+        -- (-140:1.5) coordinate (C) node[above right] {C}
+        pic["$-140^\circ$",draw=orange, ->, angle eccentricity=1.5, angle radius=0.5cm]
+        {angle=A--B--C};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \draw(1.5,0) coordinate (A) node[right] {A}
+        -- (0,0) coordinate (B) node[left] {B}
+        -- (460:1.5) coordinate (C) node[above right] {C}
+        pic["$460^\circ$",draw=orange, ->, angle eccentricity=2, angle radius=0.5cm]
+        {angle=A--B--C};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \draw(1.5,0) coordinate (A) node[right] {A}
+        -- (0,0) coordinate (B) node[left] {B}
+        -- (-750:1.5) coordinate (C) node[above right] {C}
+        pic["$-750^\circ$",draw=orange, ->, angle eccentricity=2, angle radius=0.5cm]
+        {angle=A--B--C};
+    \end{tikzpicture}
+
+    $(2)$
+\end{jie}
+\begin{zhu}
+作出这样的约定：为不至于混淆，用希腊字母表示角时，我们会用$\alpha$,$\beta$代替$\angle \alpha,\angle \beta$，即省略掉$\angle$。
+如果是用英文字母时，则分情况讨论.若某个点$A$仅是一个角的顶点，则这个角可以直接记作$A$;如果某个点$A$同时作为两个角$\angle CAB,\angle BAD$的顶点，则不应省略$\angle$。
+\end{zhu}
+
+可以看到，即使角的度数超过了$360^\circ$，画成图像也与我们过去的认知没有什么区别。这更多是给我们提供一种动态的视角去观察，也允许我们记录更多关于角度精确的信息。
+一个简单的例子：体操运动员在空中转体三周半，即$1260^\circ$，这并不能等同于仅转了半周。同时，也为物理中圆周运动的研究提供了更多可能性。
+
+但当回到平面上，只关心图像的时候，可以发现$30^\circ$，$390^\circ$，$-330^\circ$这三个角在图像上一模一样。在有相同起始边和顶点的时候，也具有相同的终边。
+从旋转的角度看，从$30^\circ$到$390\du$，相当于顺时针旋转一周；从$30^\circ$到$-330^\circ$，相当于逆时针旋转一周.
+它们都转了一圈回来了，相差一个$360^\circ$，这是旋转带来的一种天然的周期性。
+我们也把这种公用一个终边，角度相差若干个$360$的一类角称为终边相同的角.注意，这里默认了始边和顶点是相同的，这会为我们的研究带来方便。
+\begin{example}
+    \ 
+
+仍默认顶点和起始边相同，
+
+    $(1)$写出终边与$30^\circ$角的终边相同的角构成的集合，把$30^\circ$换成$\alpha$呢？
+
+    $(2)$判断下面三组角是否互为终边相同的角
+\end{example}
+\begin{jie}
+    \ 
+    
+    $(1)$
+
+    $(2)$
+
+
+\end{jie}
+
+为了方便研究，常常会把一个角放在平面直角坐标系中研究.一般地，我们会使角的顶点与坐标系原点重合，角的始边与坐标系横轴的非负半轴重合。
+让终边在平面直角坐标系上转起来，就得到了各种各样的角.如果角的终边落在第$X$象限，则称这个角为第$X$象限角；当然，
+如果角的终边落在了坐标轴上，它不再属于任一象限，就称之为坐标轴角了。下面我们看几个具体的例子。
+\begin{example}
+    \ 
+    
+    $(1)$指出例\ref{example7.1.1}$(1)$的四个角是位于何象限的角。
+
+    $(2)$锐角一定是第一象限角吗？反之，第一象限角一定是锐角吗？
+\end{example}
+\begin{jie}
+    \ 
+
+    $(1)$
+
+    $(2)$
+\end{jie}
+
+\begin{example}
+    \ 
+
+    \begin{enumerate}
+        \item a
+        \item b
+    \end{enumerate}
+
+\end{example}
+
+
+\clearpage
+\subsection{任意角的三角函数}
+
+\clearpage
+\subsection{三角函数线及其应用*}
+\clearpage
+\subsection{同角三角函数关系}
+在锐角三角函数中，
+\begin{center}
+
+\noindent
+\begin{minipage}[t]{0.7\textwidth}
+    \vspace{0pt} % 垂直对齐到顶部
+    \begin{tikzpicture}[scale=2]
+        % Define coordinates
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (1.732,0);
+        \coordinate (C) at (0,1);
+        
+        % Draw triangle
+        \draw (A) -- (B) -- (C) -- cycle;
+        
+        % Label vertices
+        \node[left] at (A) {$A$};
+        \node[right] at (B) {$B$};
+        \node[above] at (C) {$C$};
+        
+        % Draw right angle symbol
+        \draw ($(A)!4pt!(C)$) -- ++(4pt,0) -- ++(0,-4pt);
+    \end{tikzpicture}
+\end{minipage}%
+\begin{minipage}[t]{0.25\textwidth}
+    \vspace{-\baselineskip} % 移除一个基线
+    \begin{align*}
+    &\sin B =\frac{AC}{BC}\\
+    &\cos B =\frac{AB}{BC}\\
+    &\tan B =\frac{AC}{AB}\\
+    &AB^2+AC^2=BC^2
+    \end{align*}
+   
+\end{minipage}
+    
+\end{center}
+
+
+\clearpage
+\subsection{诱导公式}\label{subsec_诱导公式}
+\clearpage

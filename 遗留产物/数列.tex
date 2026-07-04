@@ -1,0 +1,247 @@
+\part{数列}
+\chapter{数列（一）}
+
+\section{数列的初步认识}
+\subsection{数列的基础概念}
+数列是离散的函数的观念，单调性
+\clearpage
+\subsection{和与通项}
+\clearpage
+
+\section{等差数列}
+\subsection{等差数列的通项公式与前\texorpdfstring{$n$}n项和}
+累加，迭代
+\clearpage
+
+\subsection{等差数列的性质}
+最值，证明是等差等比
+\clearpage
+
+\section{等比数列}
+\subsection{等比数列的通项公式与}
+\clearpage
+
+\subsection{等比数列的性质}
+\clearpage
+
+\chapter{数列（二）}
+
+\section{数列的通项公式}
+\subsection{累加与累乘}
+\clearpage
+\subsection{待定系数法的辅助数列}
+\clearpage
+\subsection{不动点与特征根}
+\clearpage
+\subsection{分奇偶讨论}
+\begin{example}
+    数列\(\{a_n\}\) 满足 \(a_1 = 2\)，\(a_{n+1} + a_n = 4n - 3\)，求 \(\{a_n\}\) 的通项公式。
+\end{example}
+\begin{exercise}
+    数列\(\{a_n\}\) 满足 \(a_1 = 1\)，\(a_{n+1} + a_n = 2^{n-1}\)，求 \(\{a_n\}\) 的通项公式。
+\end{exercise}
+
+奇偶项数列能求通项的条件是两侧下标奇偶性相同。
+
+\begin{example}
+数列 \(\{a_n\}\) 满足 \(a_1 = 3\)，\(a_n a_{n+1} = 9 \times 2^{2n-1}\)，求数列 \(\{a_n\}\) 的通项公式。
+\end{example}
+
+\begin{example}
+    数列 \(\{a_n\}\) 满足 \(a_1=1, a_2 = 2\)，\(a_{n+2} + (-1)^{n+1} a_n = 1 + (-1)^n\)，求数列 \(\{a_n\}\) 的通项公式。
+\end{example}
+
+\begin{example}
+    \(\{a_n\}\) 满足 \(a_1 = 1\)，\(a_{n+1} = \begin{cases} 
+        a_n + 1 & n \text{为奇} \\
+        2a_n & n \text{为偶}
+        \end{cases}\)，求 \(\{a_n\}\) 的通项公式。
+\end{example}
+\begin{exercise}
+    已知数列 \(\{a_n\}\) 满足 \(a_1 = 1\)，\(a_{n+1} = 
+\begin{cases} 
+a_n + 1, & n \text{为奇数}, \\
+a_n + 2, & n \text{为偶数}.
+\end{cases}\)，求数列 \(\{a_n\}\) 的通项公式．
+
+\end{exercise}
+
+\begin{example}
+    在数列 \(\{a_n\}\) 中, \(a_1 = 0\)，且对任意 \(k \in \mathbb{N}^*\)，\(a_{2k-1}\)，\(a_{2k}\)，\(a_{2k+1}\) 成等差数列，其公差为 \(d_k\)。
+
+\begin{enumerate}
+    \item 若 \(d_k = 2k\)，求 \(\{a_n\}\) 的通项公式并证明 \(a_{2k}\)，\(a_{2k+1}\)，\(a_{2k+2}\) 成等比数列，\(k \in \mathbb{N}^*\)；
+    \item 若对任意 \(k \in \mathbb{N}^*\)，\(a_{2k}\)，\(a_{2k+1}\)，\(a_{2k+2}\) 成等比数列，其公比为 \(q_k\)，设 \(q_1 \neq 1\)，证明 \(\left\{\dfrac{1}{q_k - 1}\right\}\) 成等差数列。
+\end{enumerate}
+\end{example}
+
+\clearpage
+
+\section{数列求和}
+\subsection{倒序相加法}
+\clearpage
+\subsection{错位相减法}
+\clearpage
+\subsection{裂项相消法}
+\clearpage
+\subsection{绝对值求和}
+\clearpage
+\subsection{奇偶性求和}
+\begin{example}
+    已知\(a_n=(-1)^nn\)，求前\(n\)项和\(S_n\).
+\end{example}
+\begin{jie}
+    当\(n\)为奇数的时候，
+    \begin{align*}
+        S_n&=-1+2-3+4+\cdots-(n-2)+(n-1)-n\\
+           &=(-1+2)+(-3+4)+\cdots+(n-2-(n-1))-n\\
+           &=1+1+\cdots+1-n\\
+           &=\dfrac{n-1}{2}-n\\
+           &=-\dfrac{n+1}{2}
+    \end{align*}
+    这里为什么是\(\dfrac{n-1}{2}\)个\(1\)呢，这相当于在问\(n\)里面有多少个\(2\)。
+
+    当\(n\)为偶数的时候，\(n-1\)是奇数，故
+    \begin{align*}
+        S_n&=S_{n-1}+a_n\\
+           &=-\dfrac{n}{2}+n\\
+           &=\dfrac{n}{2}
+    \end{align*}
+    \qed
+\end{jie}
+
+\begin{exercise}
+    已知\(\{a_n\}=(-1)^nn^2\)，求前\(n\)项和\(S_n\).
+\end{exercise}
+\begin{jie}
+    
+\end{jie}
+\begin{exercise}
+    已知\(a_n=(-1)^n 2^{n-1}\)，求前\(n\)项和\(S_n\).
+\end{exercise}
+\begin{jie}
+    \[S_{n}=\left\{\begin{array}{l}
+        \frac{2^{n}-1}{3}, n=2 k \\
+        \frac{-2^{n}-1}{3}, n=2 k-1
+        \end{array}\right.\]
+\end{jie}
+\begin{example}
+    已知\(a_n=(-1)^{n} \dfrac{4 n}{4 n^{2}-1}\)，求前\(n\)项和\(S_n\).
+\end{example}
+
+\begin{jie}
+    先将\(a_n\)分解\(a_{n}=(-1)^{n} \dfrac{1}{2 n-1}+(-1)^{n} \dfrac{1}{2 n+1}\).
+    仍然采取相似的邻项相加求和的思路。
+
+    当\(n\)为偶数的时候，先计算\(a_{n}+a_{n-1}=\dfrac{1}{2 n-1}+\dfrac{1}{2 n+1}+\left(-\dfrac{1}{2 n-3}-\dfrac{1}{2 n-1}\right)=\dfrac{1}{2 n+1}-\dfrac{1}{2 n-3} \)
+这符合裂项相消的形式，最初的两项应为\(a_2+a_1=\dfrac{1}{5}-1\)，故\(S_n=\dfrac{1}{2n+1}-1\).
+
+    当\(n\)为奇数的时候，\(n+1\)是偶数，故
+    \begin{align*}
+        S_n&=S_{n+1}-a_{n+1}\\
+            &=\frac{1}{2 n+3}-1-\frac{1}{2 n+1}-\frac{1}{2 n+3}\\
+            &=-\frac{1}{2 n+1}-1
+    \end{align*}   
+    \qed
+\end{jie}
+
+
+\begin{example}
+    已知数列 \(\{a_n\}\) 满足，
+\[ a_n = 
+\begin{cases} 
+2n + 1, & n \text{为奇数} \\
+3n - 1, & n \text{为偶数}
+\end{cases}
+\]
+求 \(\{a_n\}\) 的前 \(2n\) 项和。
+\end{example}
+\begin{jie}
+    直接考虑\(a_{2n-1}+a_{2n}=2(2n-1)+1+3(2n)-1=10n-2\),其首项是\(a_1+a_2=8\).
+    故\(S_n=\dfrac{(8+10n-2)n}{2}=5n^2+3n\)
+    \qed
+\end{jie}
+\begin{exercise}
+    \[
+    a_{n}=\left\{
+        \begin{array}{ll}
+        \dfrac{1}{n(n+2)}& n=2 k \\
+        2 n-1&n=2 k-1
+        \end{array}\right.
+\]
+求\(S_{n}\)
+\end{exercise}
+\begin{jie}先注意到\(\dfrac{1}{n(n+2)}=\dfrac{1}{2}\left(\dfrac{1}{n}-\dfrac{1}{n+2}\right)\)
+
+    \(n\)为偶数时，计算\(a_{n}+a_{n-1}=\dfrac{1}{2}\left(\dfrac{1}{n}-\dfrac{1}{n+2}\right)+2 n-3 \),
+    其前两项是\(a_1+a_2=\dfrac{1}{2}\left(\dfrac{1}{2}-\dfrac{1}{4}\right)+4-3\).此求和分两部分，前一部分是裂项相消的形式，后一部分是等差数列的形式。
+
+    即\(S_n=\dfrac{1}{2}(1-\dfrac{1}{n+2})+\dfrac{(1+2n-3)\frac{n}{2}}{2}=\dfrac{1}{2}(1-\dfrac{1}{n+2})+\dfrac{n(n-1)}{2}\)
+
+    \(n\)为奇数时，\(S_{n}=S_{n+1}-a_{n+1}=\dfrac{n^{2}+n}{2}+\dfrac{n-1}{4(n+1)}\)
+
+    \qed
+\end{jie}
+\begin{example}
+    数列 \(\{a_n\}\) 中，\(a_n = n^2 \cos \dfrac{2n\pi}{3}\)，求 \(\{a_n\}\) 的前 \(3n\) 项和。
+\end{example}
+\begin{jie}
+    \begin{align*}
+        a_{3n-2} & = (3n-2)^2 \cdot \cos\left(\dfrac{(6n-4)\pi}{3}\right) = (3n-2)^2 \cdot \cos\left(-\dfrac{4\pi}{3}\right) = -\dfrac{1}{2}(9n^2 + 4 - 12n) \\
+        a_{3n-1} & = (3n-1)^2 \cdot \cos\left(\dfrac{(6n-2)\pi}{3}\right) = (3n-1)^2 \cdot \cos\left(-\dfrac{2\pi}{3}\right) = -\dfrac{1}{2}(9n^2 + 1 - 6n) \\
+        a_{3n} & = (3n)^2 \cdot \cos\left(\dfrac{6n\pi}{3}\right) = 9n^2 
+    \end{align*}
+
+    故\(a_{3n-2}+a_{3n-1}+a_{3n}=9n - \frac{5}{2}\)
+
+    由此\(S_{3n}=S_{3n}  = \dfrac{\left(9 - \dfrac{5}{2} + 9n - \dfrac{5}{2}\right)n}{2} = \dfrac{(4 + 9n)n}{2}\)
+\end{jie}
+
+
+\begin{example}
+    数列 \(\{a_n\}\) 中，\(a_n = 2^n \cos \dfrac{n\pi}{3}\)，求 \(\{a_n\}\) 的前 \(n\) 项和。
+\end{example}
+\begin{jie}
+    由Euler公式，\(\e^{\i\theta}=\cos \theta+\i\sin\theta,\theta\in\mathbb{R}\).
+    故\[a_n \cos \frac{n\pi}{3} = 2^n \re\left(\e^{\frac{n\pi}{3}\i}\right) = \re\left((2\e^{\frac{\pi}{3}\i})^n\right) \]
+    \begin{align*}
+     S_n&= \re\left(\sum_{j=1}^{n} (2\e^{\frac{\pi}{3}\i})^j \right)  \\
+        &= \re\left(\frac{(2\e^{\frac{\pi}{3}\i})^{n+1} - 2\e^{\frac{\pi}{3}\i}}{2\e^{\frac{\pi}{3}\i} - 1}\right) \\
+        &= \re\left(\frac{2^{n+1} \e^{\frac{(n+1)\pi}{3}\i} - 2\e^{\frac{\pi}{3}\i}}{2\e^{\frac{\pi}{3}\i} - 1}\right) \\
+        &= \re\left(\frac{2^{n+1} \cos\left(\frac{(n+1)\pi}{3}\right) + 2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right)\i - 1}{2\cos\left(\frac{\pi}{3}\right) + 2\sin\left(\frac{\pi}{3}\right)\i - 1} - 1\right) \\
+        &= \frac{2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right)}{2\sin\left(\frac{\pi}{3}\right)} - 1 \\
+        &= \frac{\sqrt{3}}{3} \cdot 2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right) - 1
+        \end{align*}
+
+    \qed
+
+
+
+\end{jie}
+
+
+
+
+\clearpage
+
+\section{数列的性质}
+
+\subsection{\texorpdfstring{$a_n=f(n)$}s的单调性}
+\clearpage
+\subsection{\texorpdfstring{$a_{n+1}=f(a_n)$}s的单调性}
+\clearpage
+\subsection{数列的周期性}
+\clearpage
+
+\section{数列放缩初步}
+\clearpage
+\subsection{拆项放缩}
+\clearpage
+\subsection{等比放缩}
+\clearpage
+
+\section{数学归纳法}
+\subsection{Peano公理**}
+\clearpage
+\subsection{数学归纳法的应用*}
+\clearpage

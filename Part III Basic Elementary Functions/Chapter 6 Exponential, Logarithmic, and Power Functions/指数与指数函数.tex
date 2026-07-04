@@ -1,0 +1,149 @@
+\chapter{指、对、幂函数}
+\section{指数与指数函数}
+
+\subsection{实数指数幂与指数的运算}
+在小学, 我们学习了正整数次幂, 且那时还没有负数的概念, 停留在
+\[2^4=2\times2\times2\times2\]
+在初中, 我们将指数从正整数推广至整数, 底数也允许有负数的出现, 
+
+\begin{theorem}
+    \begin{equation}
+        a^m\cdot a^n=a^{m+n}
+    \end{equation}
+    \begin{equation}
+        (a^m)^n=a^{mn}
+    \end{equation}
+    \begin{equation}
+        a^n\cdot b^n=(ab)^n
+    \end{equation}
+\end{theorem}
+
+负指数幂和分数指数幂是对运算法则兼容性的“妥协”
+\begin{example}[Euler的谬误]
+    \[\begin{aligned}
+        -4&=\sqrt{-4}\times \sqrt{-4}\\
+        &=\sqrt{(-4)\times(-4)}\\
+        &=\sqrt{4\times 4}\\
+        &=4
+    \end{aligned}\]
+
+
+\end{example}
+
+
+\begin{exercise}计算下列各式的值
+\begin{center}
+      \begin{tabular}{lllll}
+         \(8^{\frac{2}{3}}\)&$(-27)^{\frac{1}{3}}$&$1^{\frac{37}{24}}$&  \(16^{\frac{1}{8}}\)&\((-59049)^{\frac{1}{5}}\)\\
+         \(27^{-\frac{3}{4}}\)&\((\dfrac{16}{81})^{-\frac{3}{4}}\)  &\((-8)^{-\frac{2}{3}}\) &\(32^{-\frac{2}{5}}\) &\(343^{-\frac{1}{3}}\)
+        \end{tabular}
+\end{center}
+\end{exercise}
+
+\begin{example}计算
+
+    (1)\(0.064^{-\frac{1}{3}}-(-\dfrac{5}{7})^0+[(-2)^3]^{-\frac{3}{4}}+16^{-0.75}\)
+
+    (2)\(\left(\dfrac{9}{4}\right)^\frac{1}{2}-(-9.6)^0-\left(-\dfrac{27}{8}\right)^{-\frac{2}{3}}\div (-1.5)^{-2}\)
+
+    (3)$\left(-3\dfrac{3}{8}\right)^{-\frac{2}{3}}+0.002^{-\frac{1}{2}}-10(\sqrt{5}-\sqrt{2})^{-1}+(\sqrt{5}-\sqrt{2})^{0}$
+    
+\end{example}
+
+\begin{exercise}用分数指数幂的形式表达下列各式, 其中\(a>0, b>0 \). 
+    \begin{center}
+       \begin{tabular}{llll}
+        \(a^2\sqrt{a}\) &\(\sqrt[3]{a^2}\sqrt{a^3}\)&\((\sqrt[3]{a})^2\sqrt{ab^2}\)&\(\dfrac{a^2}{\sqrt[6]{a^3}}\)
+    \end{tabular}  
+    \end{center}
+\end{exercise}
+\begin{example}
+    化简下列各个式子, 其中各个字母均为正数. 
+
+(1)\[2a^\frac{1}{4}b^\frac{1}{3}\div \left(-\frac{1}{8}a^{-\frac{1}{4}}b^{-\frac{2}{3}}\right)\]
+
+(2)\[\frac{\left(2x^\frac{1}{4}y^{-\frac{2}{3}}\right)\left(-3x^\frac{1}{4}y^{\frac{1}{3}}\right)}{4xy^{-\frac{2}{3}}}\]
+
+(3)\[\left(2x^{\frac{1}{4}}+3^\frac{2}{3}\right)\left(2x^{\frac{1}{4}}-3^\frac{2}{3}\right)-4x^{-\frac{1}{2}}\left(x-x^\frac{1}{2}\right)\]
+
+
+(4)\[\zsqrt{x^2\zsqrt{x\zsqrt{x^3\zsqrt{x^5\zsqrt{x\zsqrt{x}}}}}}\]
+
+\end{example}
+
+\begin{example}
+    已知\(\sqrt{a}+\dfrac{1}{\sqrt{a}}=\sqrt{5}\), 求下列表达式的取值：
+    
+    
+    \begin{minipage}{0.45\textwidth}
+        (1)\(a+a^{-1}\)
+
+    (2)\(a-a^{-1}\)
+    
+    (3)\(a^2+a^{-2}\)
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        (4)\(a^2-a^{-2}\)
+
+    (5)\(a^3+a^{-3}\)
+
+    (6)\(a^3-a^{-3}\)
+    \end{minipage}
+    
+
+    
+\end{example}
+
+
+
+
+
+\clearpage
+
+
+\subsection{指数函数}
+%\subsubsection{指数函数的基本性质}
+\begin{definition}[指数函数]
+    \begin{equation}
+        f(x)=a^x
+    \end{equation}
+\end{definition}
+定义域、值域
+\begin{theorem}[指数函数的单调性]
+    
+\end{theorem}
+%\subsubsection{指数函数有关的复合函数}
+%\subsubsection{双曲三角函数}
+\begin{definition}[双曲三角函数]
+    \ 
+
+    借助指数函数$\e ^x$与$\e ^{-x}$, 定义双曲正弦、余弦、正切函数如下. 
+\begin{align}
+\sinh x&=\frac{\e^x-e^{-x}}{2}\\
+\cosh x&=\frac{\e^x+e^{-x}}{2}\\
+\tanh x&=\frac{\sinh x}{\cosh x}
+\end{align}
+其余三种可以由上述三种取倒数得到, 但是并不常用故不再列出. 
+\end{definition}
+
+
+
+\clearpage
+
+\hw
+\begin{homework}
+若函数 \( f(x) = |2^{x} - a| - 1 \) 的值域为 \([-1, +\infty)\), 则实数 \( a \) 的一个取值可以为\underline{\hspace{2cm}}.
+\end{homework}
+
+% 第二题：零点结论判断（填空题）
+\begin{homework}
+已知函数 \( f(x) = |2^{x} - a| - kx - 3 \), 给出下列四个结论：
+\begin{enumerate}
+  \item 若 \( a=1 \), 则函数 \( f(x) \) 至少有一个零点; 
+  \item 存在实数 \( a, k \), 使得函数 \( f(x) \) 无零点; 
+  \item 若 \( a>0 \), 则不存在实数 \( k \), 使得函数 \( f(x) \) 有三个零点; 
+  \item 对任意实数 \( a \), 总存在实数 \( k \) 使得函数 \( f(x) \) 有两个零点. 
+\end{enumerate}
+其中所有正确结论的序号是\underline{\hspace{2cm}}.
+\end{homework}

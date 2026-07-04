@@ -1,0 +1,200 @@
+\section{数列求和}
+\subsection{倒序相加法}
+\clearpage
+\subsection{错位相减法}
+\clearpage
+\subsection{裂项相消法}
+\begin{example}[2025年天津卷19节选]\label{高考:2025年天津卷19下半}
+    已知数列\(\{a_n\},\{b_n\}\), 其中\(a_n=3n-1,b_n=2^n\).
+    给定 $n \in \mathbb{N}^{*}$, 记集合 $I = \{0, 1\}$, 集合
+    \[
+    T_n = \{p_1 a_1 b_1 + p_2 a_2 b_2 + \cdots + p_n a_n b_n \mid p_1, p_2, \cdots, p_n \in I\}.
+    \]
+\begin{enumerate}[label=(\arabic*)]
+        \item 求证：对任意的 $t \in T_n$, 有 $t < a_{n+1} b_{n+1}$；
+        \item 求 $T_n$ 中所有元素之和.
+\end{enumerate}
+\end{example}
+\begin{jie}
+    \,
+
+    \begin{enumerate}[label=(\arabic*)]
+        \item 由于\(a_n,b_n>0\),故\(\forall t\in T_n\)
+        都满足\(t<\sum_{i=1}^na_ib_i\).
+        \begin{way1}
+            由于\(\sum_{i=1}^na_ib_i=\sum_{i=1}^n(3i-1)2^i   \),只需要利用错位相减求和得
+            \[\sum_{i=1}^na_ib_i=\sum_{i=1}^n(3i-1)2^i=(3n-4)2^{n+1}+8\]
+        \end{way1}
+        \begin{way2}
+            把\(a_i\)全部放大到\(a_{n+1}\), 即
+            \begin{align*}
+                t&<\sum_{i=1}^na_ib_i\\
+                &<\sum_{i=1}^na_{n+1}b_i=a_{n+1}\sum_{i=1}^n 2^i\\
+                &<a_{n+1}2^{n+1}=a_{n+1}b_{n+1}
+            \end{align*}
+        \end{way2}
+        \item 一个简单的想法是直接求和,即直接计算
+        \begin{align*}
+            &\sum_{p_1=0}^{1}\sum_{p_2=0}^{1}\cdots\sum_{p_n=0}^{1}\sum_{i=1}^{n}p_ia_ib_i\\
+            =&\sum_{i=1}^{n}\left(\sum_{p_1=0}^{1}\sum_{p_2=0}^{1}\cdots\sum_{p_n=0}^{1}p_ia_ib_i\right)\\
+            =&\sum_{i=1}^{n}\left(a_ib_i\sum_{p_1=0}^{1}\sum_{p_2=0}^{1}\cdots\sum_{p_n=0}^{1}p_i\right)\\
+            =&\sum_{i=1}^{n}\left(a_ib_i\sum_{p_i=0}^{1}p_i\left(\sum_{p_1=0}^{1}\sum_{p_2=0}^{1}\cdots\sum_{p_n=0}^{1}\right)\right)\\
+            =&\sum_{i=1}^{n}\left(a_ib_i\sum_{p_i=0}^{1}p_i2^{n-1}\right)\\
+            =&\sum_{i=1}^{n}a_ib_i2^{n-1}=2^{n-1}\sum_{i=1}^{n}a_ib_i\\
+            =&2^{n-1}((3n-4)2^{n+1}+8)=2^{2n}(3n-4)+2^{n+2}
+        \end{align*}
+        一个问题是, 看起来\(T_n\)中有\(2^n\)个元素, 那么\(T_n\)中真的有这些元素吗. 实际上我们接下来证明
+        这\(2^n\)个元素各不相同, 即对于先证：对于 $(p_1, \ldots, p_n)$ 与 $(p'_1, \ldots, p'_n)$ 不全相同, $p_i, p'_i \in I$, 有
+\begin{equation}
+\sum_{i=1}^{n} p_i a_i b_i \neq \sum_{i=1}^{n} p'_i a_i b_i
+\end{equation}
+使用反证法：若 $\sum_{i=1}^{n} p_i a_i b_i = \sum_{i=1}^{n} p'_i a_i b_i$,
+设$j$ 为最大的使 $p_i \neq p'_i$ 的下标, 即$p_j \neq p'_j$, 且 $p_{j+1} = p'_{j+1}, \ldots, p_n = p'_n$. 
+不妨 $p_j = 1, p'_j = 0$, 则由我们的假设可知
+\[
+a_j b_j = \sum_{i=1}^{j-1} (p'_i - p_i) a_i b_i \leq \sum_{i=1}^{j-1} a_i b_i < a_j b_j
+\]由上一问可知这是矛盾的. 
+
+        
+    \end{enumerate}
+\end{jie}
+\clearpage
+\subsection{绝对值求和}
+\clearpage
+\subsection{奇偶性求和}
+\begin{example}
+    已知\(a_n=(-1)^nn\), 求前\(n\)项和\(S_n\).
+\end{example}
+\begin{jie}
+    当\(n\)为奇数的时候, 
+    \begin{align*}
+        S_n&=-1+2-3+4+\cdots-(n-2)+(n-1)-n\\
+           &=(-1+2)+(-3+4)+\cdots+(n-2-(n-1))-n\\
+           &=1+1+\cdots+1-n\\
+           &=\dfrac{n-1}{2}-n\\
+           &=-\dfrac{n+1}{2}
+    \end{align*}
+    这里为什么是\(\dfrac{n-1}{2}\)个\(1\)呢, 这相当于在问\(n\)里面有多少个\(2\). 
+
+    当\(n\)为偶数的时候, \(n-1\)是奇数, 故
+    \begin{align*}
+        S_n&=S_{n-1}+a_n\\
+           &=-\dfrac{n}{2}+n\\
+           &=\dfrac{n}{2}
+    \end{align*}
+    \qed
+\end{jie}
+
+\begin{exercise}
+    已知\(\{a_n\}=(-1)^nn^2\), 求前\(n\)项和\(S_n\).
+\end{exercise}
+\begin{jie}
+    
+\end{jie}
+\begin{exercise}
+    已知\(a_n=(-1)^n 2^{n-1}\), 求前\(n\)项和\(S_n\).
+\end{exercise}
+\begin{jie}
+    \[S_{n}=\left\{\begin{array}{l}
+        \frac{2^{n}-1}{3}, n=2 k \\
+        \frac{-2^{n}-1}{3}, n=2 k-1
+        \end{array}\right.\]
+\end{jie}
+\begin{example}
+    已知\(a_n=(-1)^{n} \dfrac{4 n}{4 n^{2}-1}\), 求前\(n\)项和\(S_n\).
+\end{example}
+
+\begin{jie}
+    先将\(a_n\)分解\(a_{n}=(-1)^{n} \dfrac{1}{2 n-1}+(-1)^{n} \dfrac{1}{2 n+1}\).
+    仍然采取相似的邻项相加求和的思路. 
+
+    当\(n\)为偶数的时候, 先计算\(a_{n}+a_{n-1}=\dfrac{1}{2 n-1}+\dfrac{1}{2 n+1}+\left(-\dfrac{1}{2 n-3}-\dfrac{1}{2 n-1}\right)=\dfrac{1}{2 n+1}-\dfrac{1}{2 n-3} \)
+这符合裂项相消的形式, 最初的两项应为\(a_2+a_1=\dfrac{1}{5}-1\), 故\(S_n=\dfrac{1}{2n+1}-1\).
+
+    当\(n\)为奇数的时候, \(n+1\)是偶数, 故
+    \begin{align*}
+        S_n&=S_{n+1}-a_{n+1}\\
+            &=\frac{1}{2 n+3}-1-\frac{1}{2 n+1}-\frac{1}{2 n+3}\\
+            &=-\frac{1}{2 n+1}-1
+    \end{align*}   
+    \qed
+\end{jie}
+
+
+\begin{example}
+    已知数列 \(\{a_n\}\) 满足, 
+\[ a_n = 
+\begin{cases} 
+2n + 1, & n \text{为奇数} \\
+3n - 1, & n \text{为偶数}
+\end{cases}
+\]
+求 \(\{a_n\}\) 的前 \(2n\) 项和. 
+\end{example}
+\begin{jie}
+    直接考虑\(a_{2n-1}+a_{2n}=2(2n-1)+1+3(2n)-1=10n-2\),其首项是\(a_1+a_2=8\).
+    故\(S_n=\dfrac{(8+10n-2)n}{2}=5n^2+3n\)
+    \qed
+\end{jie}
+\begin{exercise}
+    \[
+    a_{n}=\left\{
+        \begin{array}{ll}
+        \dfrac{1}{n(n+2)}& n=2 k \\
+        2 n-1&n=2 k-1
+        \end{array}\right.
+\]
+求\(S_{n}\)
+\end{exercise}
+\begin{jie}先注意到\(\dfrac{1}{n(n+2)}=\dfrac{1}{2}\left(\dfrac{1}{n}-\dfrac{1}{n+2}\right)\)
+
+    \(n\)为偶数时, 计算\(a_{n}+a_{n-1}=\dfrac{1}{2}\left(\dfrac{1}{n}-\dfrac{1}{n+2}\right)+2 n-3 \),
+    其前两项是\(a_1+a_2=\dfrac{1}{2}\left(\dfrac{1}{2}-\dfrac{1}{4}\right)+4-3\).此求和分两部分, 前一部分是裂项相消的形式, 后一部分是等差数列的形式. 
+
+    即\(S_n=\dfrac{1}{2}(1-\dfrac{1}{n+2})+\dfrac{(1+2n-3)\frac{n}{2}}{2}=\dfrac{1}{2}(1-\dfrac{1}{n+2})+\dfrac{n(n-1)}{2}\)
+
+    \(n\)为奇数时, \(S_{n}=S_{n+1}-a_{n+1}=\dfrac{n^{2}+n}{2}+\dfrac{n-1}{4(n+1)}\)
+
+    \qed
+\end{jie}
+\begin{example}
+    数列 \(\{a_n\}\) 中, \(a_n = n^2 \cos \dfrac{2n\pi}{3}\), 求 \(\{a_n\}\) 的前 \(3n\) 项和. 
+\end{example}
+\begin{jie}
+    \begin{align*}
+        a_{3n-2} & = (3n-2)^2 \cdot \cos\left(\dfrac{(6n-4)\pi}{3}\right) = (3n-2)^2 \cdot \cos\left(-\dfrac{4\pi}{3}\right) = -\dfrac{1}{2}(9n^2 + 4 - 12n) \\
+        a_{3n-1} & = (3n-1)^2 \cdot \cos\left(\dfrac{(6n-2)\pi}{3}\right) = (3n-1)^2 \cdot \cos\left(-\dfrac{2\pi}{3}\right) = -\dfrac{1}{2}(9n^2 + 1 - 6n) \\
+        a_{3n} & = (3n)^2 \cdot \cos\left(\dfrac{6n\pi}{3}\right) = 9n^2 
+    \end{align*}
+
+    故\(a_{3n-2}+a_{3n-1}+a_{3n}=9n - \frac{5}{2}\)
+
+    由此\(S_{3n}=S_{3n}  = \dfrac{\left(9 - \dfrac{5}{2} + 9n - \dfrac{5}{2}\right)n}{2} = \dfrac{(4 + 9n)n}{2}\)
+\end{jie}
+
+
+\begin{example}
+    数列 \(\{a_n\}\) 中, \(a_n = 2^n \cos \dfrac{n\pi}{3}\), 求 \(\{a_n\}\) 的前 \(n\) 项和. 
+\end{example}
+\begin{jie}
+    由Euler公式, \(\e^{\i\theta}=\cos \theta+\i\sin\theta,\theta\in\mathbb{R}\).
+    故\[a_n \cos \frac{n\pi}{3} = 2^n \re\left(\e^{\frac{n\pi}{3}\i}\right) = \re\left((2\e^{\frac{\pi}{3}\i})^n\right) \]
+    \begin{align*}
+     S_n&= \re\left(\sum_{j=1}^{n} (2\e^{\frac{\pi}{3}\i})^j \right)  \\
+        &= \re\left(\frac{(2\e^{\frac{\pi}{3}\i})^{n+1} - 2\e^{\frac{\pi}{3}\i}}{2\e^{\frac{\pi}{3}\i} - 1}\right) \\
+        &= \re\left(\frac{2^{n+1} \e^{\frac{(n+1)\pi}{3}\i} - 2\e^{\frac{\pi}{3}\i}}{2\e^{\frac{\pi}{3}\i} - 1}\right) \\
+        &= \re\left(\frac{2^{n+1} \cos\left(\frac{(n+1)\pi}{3}\right) + 2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right)\i - 1}{2\cos\left(\frac{\pi}{3}\right) + 2\sin\left(\frac{\pi}{3}\right)\i - 1} - 1\right) \\
+        &= \frac{2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right)}{2\sin\left(\frac{\pi}{3}\right)} - 1 \\
+        &= \frac{\sqrt{3}}{3} \cdot 2^{n+1} \sin\left(\frac{(n+1)\pi}{3}\right) - 1
+        \end{align*}
+
+    \qed
+
+
+
+\end{jie}
+
+
+
+
+\clearpage

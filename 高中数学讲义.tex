@@ -1,0 +1,987 @@
+\documentclass[fontset=none]{ctexbook} % 手动配置字体以跨平台兼容
+
+% ---- 中文字体跨平台自动配置 ----
+% 按优先级检测：SimSun(Win) → Songti SC(macOS) → Fandol(Linux/TeX Live 内置)
+\IfFontExistsTF{SimSun}{
+  % ===== Windows =====
+  \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+  \setCJKsansfont{Microsoft YaHei}[BoldFont=Microsoft YaHei Bold]
+  \setCJKmonofont{FangSong}
+  \setCJKfamilyfont{zhsong}{SimSun}
+  \setCJKfamilyfont{zhhei}{SimHei}
+  \setCJKfamilyfont{zhkai}{KaiTi}
+  \setCJKfamilyfont{zhfs}{FangSong}
+  \setCJKfamilyfont{zhyahei}{Microsoft YaHei}[BoldFont=Microsoft YaHei Bold]
+}{
+  \IfFontExistsTF{Songti SC}{
+    % ===== macOS =====
+    \setCJKmainfont{Songti SC}[BoldFont=Heiti SC,ItalicFont=Kaiti SC]
+    \setCJKsansfont{PingFang SC}
+    \setCJKmonofont{STFangsong}
+    \setCJKfamilyfont{zhsong}{Songti SC}
+    \setCJKfamilyfont{zhhei}{Heiti SC}
+    \setCJKfamilyfont{zhkai}{Kaiti SC}
+    \setCJKfamilyfont{zhfs}{STFangsong}
+  }{
+    % ===== Linux / 通用 fallback：Fandol（TeX Live 自带） =====
+    \setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolHei-Regular.otf,ItalicFont=FandolKai-Regular.otf]
+    \setCJKsansfont{FandolHei-Regular.otf}
+    \setCJKmonofont{FandolFang-Regular.otf}
+    \setCJKfamilyfont{zhsong}{FandolSong-Regular.otf}
+    \setCJKfamilyfont{zhhei}{FandolHei-Regular.otf}
+    \setCJKfamilyfont{zhkai}{FandolKai-Regular.otf}
+    \setCJKfamilyfont{zhfs}{FandolFang-Regular.otf}
+  }
+}
+% 字体切换命令（在所有平台上统一使用）
+\NewDocumentCommand{\songti}{}{\CJKfamily{zhsong}}
+\NewDocumentCommand{\heiti}{}{\CJKfamily{zhhei}}
+\NewDocumentCommand{\kaishu}{}{\CJKfamily{zhkai}}
+\NewDocumentCommand{\fangsong}{}{\CJKfamily{zhfs}}
+
+\usepackage[dvipsnames,svgnames]{xcolor}%xcolor在tcolorbox前面，否则会报错
+% ==================== 宏包加载 ====================
+
+% ---- 数学与公式 ----
+\usepackage{amsmath}        % AMS 数学环境（align, gather, matrix 等）
+\usepackage{amsfonts}       % AMS 数学字体（\mathbb, \mathfrak 等）
+\usepackage{amssymb}        % AMS 数学符号扩展
+\usepackage{mathtools}      % 数学工具（\xrightarrow, \coloneqq, dcases 等，自动加载 amsmath）
+\usepackage{bm}             % 粗体数学符号（\bm）
+\usepackage{cancel}         % 划线取消（\cancel, \bcancel, \xcancel）
+\usepackage{cases}          % 增强 cases 环境
+\usepackage{scalerel}       % 缩放关系符号
+\usepackage{ntheorem}       % 定理环境
+
+% ---- 表格 ----
+\usepackage{booktabs}       % 三线表（\toprule, \midrule, \bottomrule）
+\usepackage{tabularx}       % 定宽表格
+\usepackage{array}          % 增强表格列定义
+\usepackage{multirow}       % 跨行表格
+
+% ---- 图形与绘图 ----
+\usepackage{graphicx}       % 插图（\includegraphics）
+\usepackage{tikz}           % 绘图引擎
+\usepackage{pgfplots}       % 数据坐标系图（基于 tikz）
+\usepackage{float}          % 浮动体控制（[H] 选项）
+\usepackage{subcaption}     % 子图标题（\subcaptionbox）
+
+% ---- 字体与符号 ----
+\usepackage{pifont}         % 特殊符号（ding 字体，\ding, \textcircled 等）
+\usepackage{ulem}           % 下划线 / 删除线（\uline, \sout, \xout）
+
+% ---- 页面布局与样式 ----
+\usepackage[margin=1in]{geometry} % 页面边距
+\usepackage{fancyhdr}       % 页眉页脚
+\usepackage[strict]{changepage} % 局部调整页面宽度（adjustwidth 环境）
+\usepackage{multicol}       % 多栏排版
+\usepackage{enumitem}       % 自定义列表（label, leftmargin 等）
+\usepackage{framed}         % 基础框架环境
+\usepackage{titlesec}       % 章节标题格式自定义
+
+% ---- 颜色与框 ----
+\usepackage[many]{tcolorbox} % 彩色文本框（定理框等，必须在 xcolor 之后）
+\usepackage{listings}       % 代码列表
+
+% ---- 链接、索引与工具 ----
+\usepackage{hyperref}       % 超链接（通常最后加载）
+\usepackage{imakeidx}       % 索引生成
+\usepackage{etoolbox}       % LaTeX 底层编程工具（\patchcmd, \AtBeginEnvironment 等）
+\usepackage{lipsum}         % 盲文占位（Lorem ipsum，完成后可删除）
+
+% ---- 俄文人名支持（待启用：取消下面两行注释即可） ----
+% \newfontfamily{\cyrillicfont}{CMU Serif}[Script=Cyrillic]
+% \newcommand{\ru}[1]{{\cyrillicfont #1}} % 用法：\ru{Чебышёв}
+
+% ==================== 宏包设置 ====================
+
+\makeindex[intoc,columnseprule,options= -s idxstyle.ist]
+\tcbuselibrary{skins}
+\pgfplotsset{compat=1.18}
+
+\allowdisplaybreaks[4]
+\graphicspath{{figures/}} % 使用相对路径
+\usetikzlibrary{angles,quotes,calc,patterns}
+\usetikzlibrary{external} % 加载外部化库
+\tikzset{
+    external/system call={ % 定义外部图形如何编译
+        xelatex \tikzexternalcheckshellescape % 调用 XeLaTeX
+        -halt-on-error     % 报错时停止
+        -interaction=batchmode % 静默模式（不显示编译日志）
+        --shell-escape         % 关键：允许执行系统命令
+        -jobname "\image"      % 指定输出文件名
+        "\texsource"           % 输入文件（包含当前图形的临时 .tex 文件）
+    }
+}
+\tikzexternalize[prefix=tikz111/]
+
+
+
+\tcbuselibrary{breakable}
+\tcbset{shield externalize}%tikz外部化的时候防止tcb被干扰.
+%%%%%%%%%%%%%%%%%%%%%两个自定义计数器，用来写习题和知识梳理%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{exercisectr}[section]
+\renewcommand{\theexercisectr}{\thesection}
+ % 设置习题计数器的显示格式
+\newcommand{\hw}{\refstepcounter{exercisectr}\subsection*{习题 \theexercisectr}\addcontentsline{toc}{subsection}{习题\theexercisectr}} % 定义一个新的exercise命令用于添加新的习题
+\setcounter{exercisectr}{0}
+
+\newcounter{reviewctr}[section]
+\renewcommand{\thereviewctr}{\thesection} % 设置习题计数器的显示格式
+\newcommand{\review}{\refstepcounter{reviewctr}\subsection*{知识回顾 \thereviewctr}\addcontentsline{toc}{subsection}{知识回顾\thereviewctr}} % 定义一个新的exercise命令用于添加新的习题
+\setcounter{reviewctr}{0}
+ % 重置习题计数器
+%\hw和\review两个命令用来设置习题和复习的小节，自动编号。
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%花里胡哨框框区%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tcolorboxenvironment{theorem}{
+    enhanced,
+  colback=green!10, % 设定背景颜色为浅绿色
+  colframe=green!10, % 设定边框颜色为深绿色
+  %boxrule=0.5mm, % 设置边框宽度
+  boxsep=1pt, % 设置内边距为0
+  left=1pt, % 调整左侧内边距为0
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, green!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{corollary}{
+    enhanced,
+  colback=green!5, % 设定背景颜色为浅绿色
+  colframe=green!5, % 设定边框颜色为深绿色
+  %boxrule=0.5mm, % 设置边框宽度
+  boxsep=1pt, % 设置内边距为0
+  left=1pt, % 调整左侧内边距为0
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, green!30!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{lemma}{
+    enhanced,
+  colback=green!5, % 设定背景颜色为浅绿色
+  colframe=green!5, % 设定边框颜色为深绿色
+  %boxrule=0.5mm, % 设置边框宽度
+  boxsep=1pt, % 设置内边距为0
+  left=1pt, % 调整左侧内边距为0
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, green!30!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{character}{
+    enhanced,
+  colback=yellow!15, 
+  colframe=yellow!15, 
+  %boxrule=0.5mm,
+  boxsep=1pt, 
+  left=1pt, 
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, yellow!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{proposition}{
+    enhanced,
+  colback=green!0, % 设定背景颜色为浅绿色
+  colframe=green!10, % 设定边框颜色为深绿色
+  %boxrule=0.5mm, % 设置边框宽度
+  boxsep=1pt, % 设置内边距为0
+  left=1pt, % 调整左侧内边距为0
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, green!30!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{definition}{
+    enhanced,
+  colback=blue!7, % 设定背景颜色为浅蓝色
+  colframe=blue!7, % 设定边框颜色为深蓝色
+  %boxrule=0.5mm, % 设置边框宽度
+  boxsep=1pt, % 设置内边距为0
+  left=1pt, % 调整左侧内边距为0
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, blue!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{axiom}{
+    enhanced,
+  colback=blue!10, 
+  colframe=blue!10, 
+  %boxrule=0.5mm,
+  boxsep=1pt, 
+  left=1pt, 
+  sharp corners,
+  breakable,
+  overlay={
+    \draw[line width=0.5mm, blue!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  }
+}
+\tcolorboxenvironment{att}{
+    enhanced,
+  colback=red!15, 
+  colframe=red!80!black, 
+  %boxrule=0.5mm,
+  boxsep=1pt, 
+  left=1pt, 
+  sharp corners,
+  breakable,
+  %overlay={
+  %  \draw[line width=0.5mm, red!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+  %}
+}
+  \tcolorboxenvironment{homework}{
+      enhanced,
+    colback=blue!0, % 设定背景颜色为浅蓝色
+    colframe=blue!7, % 设定边框颜色为深蓝色
+    %boxrule=0.5mm, % 设置边框宽度
+    boxsep=1pt, % 设置内边距为0
+    left=1pt, % 调整左侧内边距为0
+    sharp corners,
+    breakable,
+    overlay={
+      \draw[line width=0.5mm, blue!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+    }
+  }
+  \tcolorboxenvironment{exercise}{
+      enhanced,
+    colback=blue!0, % 设定背景颜色为浅蓝色
+    colframe=blue!7, % 设定边框颜色为深蓝色
+    %boxrule=0.5mm, % 设置边框宽度
+    boxsep=1pt, % 设置内边距为0
+    left=1pt, % 调整左侧内边距为0
+    sharp corners,
+    breakable,
+    overlay={
+      \draw[line width=0.5mm, blue!40!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+    }
+  }
+  \tcolorboxenvironment{example}{
+      enhanced,
+    colback=blue!0, % 设定背景颜色为浅蓝色
+    colframe=green!15, % 设定边框颜色为深蓝色
+    %boxrule=0.5mm, % 设置边框宽度
+    boxsep=1pt, % 设置内边距为0
+    left=1pt, % 调整左侧内边距为0
+    sharp corners,
+    breakable,
+    overlay={
+      \draw[line width=0.5mm, green!30!black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+    }
+  }
+  \tcolorboxenvironment{experience}{
+      enhanced,
+    colback=blue!0, % 设定背景颜色为浅蓝色
+    colframe=gray!15, % 设定边框颜色为深蓝色
+    %boxrule=0.5mm, % 设置边框宽度
+    boxsep=1pt, % 设置内边距为0
+    left=1pt, % 调整左侧内边距为0
+    sharp corners,
+    breakable,
+    overlay={
+      \draw[line width=0.5mm, black] (frame.north west) -- (frame.south west); % 只加粗左侧边框，并设定颜色
+    }
+  }
+
+% ====== 颜色定义 ======
+\definecolor{bluekonw1}{RGB}{0,0,128}
+\definecolor{greenknow1}{RGB}{0,100,0}
+\definecolor{lightblueknow}{RGB}{230,240,255}
+
+% ====== 重新定义 know 环境 ======
+\newtcolorbox{knowledgebox}[1][]{
+  enhanced,
+  frame empty,           % 隐藏默认边框
+  colback=lightblueknow,     % 浅蓝背景
+  boxrule=0pt,           % 无边框线
+  arc=0pt,               % 直角边框
+  left=5pt,              % 增加左右内边距
+  right=5pt,
+  top=25pt,              % 增加顶部空间放置标题
+  bottom=6pt,
+  before skip=12pt,      
+  after skip=12pt,       
+  overlay={
+    % 顶部边框线（深蓝色）
+    \draw[bluekonw1,line width=1.2pt] 
+      ([yshift=0.5pt]frame.north west) -- ([yshift=0.5pt]frame.north east);
+    % 底部边框线（深蓝色）
+    \draw[bluekonw1,line width=1.2pt] 
+      ([yshift=-0.5pt]frame.south west) -- ([yshift=-0.5pt]frame.south east);
+    % 标题（位于两条线之间，居中，深绿色）
+    \node[align=center,text=greenknow1,font=\large\bfseries,inner sep=0pt] 
+      at ([yshift=-15pt]frame.north) {知识概括}; % 标题位置上移
+  },
+  #1
+}
+\newenvironment{know}
+  {\begin{knowledgebox}
+   \begin{multicols}{2}           
+   \setlist[itemize]{
+     leftmargin=*,
+     nosep,
+     topsep=0pt,
+     label=\textcolor{black}{\textbullet}} % 黑色实心圆点
+   \begin{itemize}}
+  {\end{itemize}\end{multicols}\end{knowledgebox}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%环境区%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{定理}[section]
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{character}[theorem]{性质}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+%上面四个是一个编号
+
+\newtheorem{definition}{定义}[section]
+\newtheorem{axiom}{公理}[section]
+\newtheorem{experience}{经验总结}[section]
+
+\newtheorem{example}{例}[section]
+\newtheorem{exercise}{练习}[section]
+\newtheorem{homework}{习题}[section]
+
+\theoremstyle{plain}
+
+\newtheorem*{proof}{证明}[subsection]
+\newtheorem*{jie}{解}[subsection]
+\newtheorem*{way1}{法1}[subsection]
+\newtheorem*{way2}{法2}[subsection]
+\newtheorem*{way3}{法3}[subsection]
+\newtheorem*{way4}{法4}[subsection]
+
+\newtheorem*{zhu}{注}[subsubsection]
+\newtheorem*{att}{值得注意的是}[subsection]
+\newtheorem*{analyse}{分析}[subsection]
+%\renewtheorem*{comment}{评价}[subsection]
+\newtheorem*{hint}{提示}[subsection]
+
+
+
+%%%%%%%%%%%%%%%%新定义区%%%%%%%%%%%%%%%%
+
+
+
+\renewcommand*{\d}{\ensuremath{\mathrm{d}}} % Differentiation. 
+\newcommand*{\e}{\ensuremath{\mathrm{e}}} % Base of natural log. 
+\renewcommand*{\i}{\ensuremath{\mathrm{i}}} % The imaginary. 
+\newcommand*{\re}{\ensuremath{\mathrm{Re}}}
+\newcommand*{\im}{\ensuremath{\mathrm{Im}}}
+\newcommand*{\du}{^\circ}%角度，deg什么的被占用了
+\newcommand*{\pll}{\kern 0.56em/\kern -0.8em /\kern 0.56em}%平行符号
+\newcommand{\qed}{\par\nobreak\hfill\penalty50
+            \hskip2em\hbox{}\nobreak\hfill$:)$
+            \parfillskip=0pt\finalhyphendemerits=0\endgraf}%用\qed，:)表示证明结束
+\newcommand{\fxg}{\textbackslash}%反斜杠，一个若只设置
+\newcommand{\capb}{\ensuremath{C_{\alpha+\beta}}}
+\newcommand{\camb}{\ensuremath{C_{\alpha-\beta}}}
+\newcommand{\sapb}{\ensuremath{S_{\alpha+\beta}}}
+\newcommand{\samb}{\ensuremath{S_{\alpha-\beta}}}
+\newcommand{\tapb}{\ensuremath{T_{\alpha+\beta}}}
+\newcommand{\tamb}{\ensuremath{T_{\alpha-\beta}}}%三角函数公式的简称
+\newcommand{\rt}{\ensuremath{\mathrm{Rt}}}%直角三角形
+\newcommand{\tri}{\triangle}%三角形
+\renewcommand{\aa}{\alpha}
+\newcommand{\bb}{\beta}
+\newcommand{\yy}{\gamma}%希腊字母简写
+\newcommand{\ve}{\overrightarrow}%向量箭头，比vec好用
+\newcommand{\ha}{\boldsymbol{a}}
+\newcommand{\hb}{\boldsymbol{b}}
+\newcommand{\hc}{\boldsymbol{c}}
+\newcommand{\hd}{\boldsymbol{d}}
+\newcommand{\he}{\boldsymbol{e}}
+\newcommand{\lxl}{\boldsymbol{0}}
+\newcommand{\nor}[2]{\mathop{}\!\mathrm{N}(#1,\,#2)}
+\newcommand{\ber}[2]{\mathop{}\!\mathrm{B}(#1,\,#2)}
+\newcommand{\hgeo}[3]{\mathop{}\!\mathrm{H}(#1,\,#2,\,#3)}
+\newcommand{\geo}[1]{\mathop{}\!\mathrm{G}(#1)}
+
+\newcommand{\pxqdy}{%
+    \mathrel{\text{%
+            \tikz[baseline,line width=0.05ex,line cap=round]
+            \draw (0,0) -- (.7em,0)
+            (0,.45ex) -- (.7em,.45ex)
+            (.25em,.55ex) -- (.35em,1.6ex)
+            (.45em,.55ex) -- (.55em,1.6ex);}}}%平行且相等
+\newcommand{\parallelogram}{
+	\mathord{\text{
+			\tikz[baseline]
+			\draw (0,.1ex) -- (.8em,.1ex) -- (1em,1.6ex) -- (.2em,1.6ex) -- cycle;}}}
+
+\newcommand{\tbox}[1]{
+\begin{center}
+\begin{tcolorbox}[colback=gray!20,%gray background
+                  colframe=gray!20,% black frame colour
+                  width=\linewidth,% Use 90% total width,
+                  boxrule=0.5pt,
+                  sharp corners,
+                  breakable
+                 ]
+{#1}
+\end{tcolorbox}
+\end{center}
+}%绝美灰色小方框
+
+\def\depthgrowth{0.6pt}
+\def\heightgrowth{1.8pt}
+\newsavebox\zbox
+\newcommand\zsqrt[1]{%
+  \ignoremathstyle
+  \savebox\zbox{$#1\rule{0pt}{.45\baselineskip}$}%
+  \stretchrel*{\sqrt{\phantom{#1}\kern0.5pt}}%
+              {\rule[-\dimexpr\dp\zbox+\depthgrowth]{0pt}{%
+                \dimexpr\ht\zbox+\dp\zbox+\depthgrowth+\heightgrowth}}%
+  \kern-\wd\zbox#1%
+}%好看的根号
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\numberwithin{equation}{subsection}%equation环境中式子的计数
+\numberwithin{figure}{subsection}
+
+%缩小item间距\setlength{\itemsep}{-\itemsep}
+
+%box内选择题排版，适用于短选项
+%\begin{table}[H]
+%  \centering
+%\begin{tabular*}{\hsize}{@{}@{\extracolsep{\fill}}llll@{}}
+% \(\text{A.}  \left[\dfrac{1}{2}, \dfrac{5}{4}\right] \)  & \( \text{B.}  \left[\dfrac{1}{2}, \dfrac{3}{4}\right] \) & \(    \text{C.} \left(0, \dfrac{1}{2}\right] \) & $\text{D.}  (0, 2]$
+%\end{tabular*}
+%\end{table}
+% ====== 选择题选项排版经验 ======
+%1. 不必排版括号
+%2.【问题】\hsize + table 浮层的写法在 enumerate 等缩进环境中会溢出：
+%   1. \hsize 始终等于全文宽 \textwidth，不随 enumerate 的 \leftmargin 缩进而变；
+%   2. table 环境内部会把 \linewidth 重置为 \textwidth，即使改用 \linewidth 也无效。
+% 【方案一·推荐】去掉 table 浮层，改用 \linewidth，用 {\centering ... \par} 居中包裹：
+%   \item 题干…… 这里换行非常重要！!!!!!!!
+%
+%   {\centering\begin{tabular*}{\linewidth}{@{}@{\extracolsep{\fill}}llll@{}}
+%     \(\text{A. }...\)  & \(\text{B. }...\)  & \(\text{C. }...\)  & \(\text{D. }...\)
+%   \end{tabular*}\par}
+%   说明：\linewidth 会自动反映 enumerate 的缩进宽度，表格完美适配，不再溢出。
+% 【方案二】若必须保留 table 浮层，在进入 table 前先用 \setlength 保存 \linewidth：
+%   \newlength{\optwidth}\setlength{\optwidth}{\linewidth}
+%   然后在 tabular* 中用 {\optwidth} 代替 {\hsize}。
+% 【方案三】使用 tabularx 宏包的 X 列类型，宽度设为 \linewidth，自动均分列宽：
+%   {tabularx}{\linewidth}{@{}XXXX@{}}（四个 X 列等宽分布）。
+%   注意：tabularx 会将总宽均分给各 X 列，选项宽度不等时可能不如 tabular* 好看。
+% ====== 选择题选项排版经验 END ======
+%注意需要用正体的一些场合：自然对数的底，随机变量的分布N(0,1)的分布名，期望方差概率的EDP。
+% ====== 填空横线排版经验 ======
+% 【问题】使用 \uline{\hspace{3em}} 生成填空横线存在缺陷：
+% 【解决方案】全部替换为实体盒子的 rule：
+%     \uline{\hspace{3em}}  →  \rule[-0.3ex]{3em}{0.4pt}
+%   参数说明：[-0.3ex] 使横线下沉至基线以下（模拟下划线位置），
+%   3em 为宽度（与原来一致），0.4pt 为线粗。
+% ====== 填空横线排版经验 END ======
+%如非必要，避免直接使用unicode字符①或内置命令\textcircled, 而是使用\ding{172}等代替。
+
+%%%%%%%%%%%%%%%%%%%%%%%页眉页脚设置区%%%%%%%%%%%%%%%%%%%%
+\definecolor{deepblue1}{rgb}{0,0,0.5}
+\definecolor{deepblue2}{rgb}{0,0,0.7}
+\definecolor{lightgreen}{rgb}{0,1,0}
+\definecolor{drakgreen}{HTML}{2e8b57}
+\titleformat{\chapter}{\normalfont\huge\centering\bfseries\color{drakgreen}}{第\thechapter 章}{1em}{}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+\titleformat{\section}{\normalfont\large\bfseries\color{deepblue1}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{deepblue2}}{\thesubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{lightgreen}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[LE]{\color{lightgreen}\kaishu\small\leftmark} % 左页使用楷体并缩小字体
+\fancyhead[RO]{\color{lightgreen}\kaishu\small\rightmark} % 右页使用楷体并缩小字体
+\fancyfoot[C]{\thepage}
+
+\setlength{\headheight}{10mm}
+\everymath{\displaystyle}
+
+
+
+
+\begin{document}
+
+\frontmatter
+\begin{titlepage}
+    \centering
+
+    \includegraphics[width=0.7\textwidth]{figures/bnu.pdf} % 将图片宽度缩小到文本宽度的 0.5 倍
+   
+    \vspace{1cm}
+    
+    {\Huge\bfseries 高中数学讲义\par} % 标题
+    
+    \vspace{2cm}
+    
+    {\Large\itshape 顾晖\par} % 作者
+
+    \vspace{1cm}
+
+    {\Large\itshape 起玄黓摄提格尽？凡？年\par}
+
+    \vfill
+    
+    {\itshape 一蓑烟雨任平生}
+    
+    \vspace{1cm}
+
+    {\large \today\par} % 日期
+\end{titlepage}%不要动这里的换行 不然封面的换行会很奇怪。
+
+\clearpage
+
+
+\chapter{前言}
+
+
+这本讲义最初的想法是提供一本可以自学的课本。但最初它只是我上课的讲义的一个大纲，\LaTeX 敲出来的
+东西总比手写的格调要高一点，而且仅仅只是充当了一个PPT的作用，主要的内容还是依靠我来手写。
+后来我想，如果考虑看书自学，除了课本，市面上已经有很多优秀的习题册和面向高考的专题讲解，但是缺少一本
+面对高一高二学生，阅读即可自学的一本书。教材对于基础知识的讲解十分优秀，但是在难点上稍显不足；
+如教材帮等同步教辅或许难度上覆盖较广，但并不非常适合自学，同时两者都受限于
+课本与课标，对一些“超纲”或者技术性上的东西有所不足。
+于是便开始了编写了这份讲义，在编写的过程中，我也时刻提醒自己：这份讲义是希望人自学的一份讲义。
+
+
+本讲义内容分为“部分”、“章”、“节”、“小节”四个层级单位，共包含十一个部分。在某一小节的标题中，
+形如\(A.B.C\)的数字串表示这是第\(A\)章、第\(B\)节，第\(C\)小节。标题上打上*，表示这部分内容
+不在课程标准之中，但技术手段仍未超出高中且有利于解题，是推荐学有余力的同学阅读的内容；标题上打上
+**，表示这部分内容和高考没有半毛钱关系，仅仅是为了某几个结论或者知识体系的完整性，当然也可能只是
+出于我的私心罢了（目移），更详细的内容都写在了每部分的序言处。
+
+考虑到对标高一高二平时的学习，这十一部分去掉最后两个部分，其余九个部分可以对标四个学期、两个学年的教学内容。
+在不考虑打**部分的情况下，可以做到第一学年将完成前五个部分，第二学年完成后续四个部分。
+前九个部分不仅覆盖了初高中衔接内容，也包括了高中阶段应掌握的全部数学知识，确保覆盖了普通高中
+数学课程标准（2017年版2020年修订）。
+这本讲义在结构上并非严格遵循某一本教材的顺序，
+而是基于教学的实际需要和我本人的教学实践重新确定的顺序。当然在实际使用中并不拘泥于什么顺序，
+从头阅读当然很好，从任何某处开始阅读也能获得一定收获，至少我是这样想的，也尽量这样去写了。
+
+第一部分专注于初高中数学知识的衔接，填补初中阶段学习中不够深入，或是选学、删去的内容，而在高中阶段这些又是必要的内容。
+第二部分是高中最基础的知识，主要包括集合论、逻辑命题与不等式的初步认识。
+第三部分覆盖了所有基本初等函数，从映射的概念开始，介绍函数的共性，
+然后分别深入指数函数、对数函数、幂函数以及三角函数和反三角函数，并以函数的应用作为结束，其中解三角形作为三角函数应用的一个实例。
+第四部分是相对来说比较特殊，仅包括平面向量和复数两个板块，并用大量的篇幅讲述了一些抽象代数中的内容，供感兴趣的高中生阅读，如果能够读懂最后
+的“饺子醋”——一元五次及以上方程没有求根公式这件事就更好了
+第五部分专注于立体几何，包括经典的Euclid几何和空间向量，并逐一介绍常见的空间模型。实际上如果不考虑前面的**内容的话，
+第四部分和第五部分衔接得很紧密，都使用“在空间中无法解决的问题就转化为一个平面上解决”的想法，同时也会用到前面函数和解三角形的工具。
+接下来又花费一章的功夫把把线性代数简要介绍了一遍，一方面线性代数的一些结论确实有趣，比如“实对称矩阵都能正交对角化”，另一方面也是为后面可能用到的线性代数
+工具和思想提供一个理论依据。
+在第五部分的最后介绍了球面上的几何，一方面是为了致敬2003版教材的选修教材3-3，另一方面球面上的知识也确实很有趣。
+
+第六部分覆盖了所有解析几何的内容，前三章是平面解析几何，第四章是空间解析几何和用代数工具研究二次曲面、曲线，最后以射影几何结束。
+虽然现代数学基本上不会研究射影几何这东西了
+，但它确实在研究平面几何的时候确实很好用。当然，也许Apollonius写完他的《圆锥曲线论》之后，这方面后人就没什么能插足的了。
+第七部分是数列，除了常见的主题以外把Peano公理也加进去了，算是我的一点私心。
+第八部分涉及概率与统计，前两章为基础内容，覆盖必修课程；后两章则对应选修内容，
+考虑到教材不讲连续性随机变量却讲正态分布这一吊诡的事实，我想着索性把概率论与数理统计的常见
+话题都讲了，于是加入了连续性随机变量、大数定律与中心极限定理、简单的假设检验等知识。当然，这些知识难免
+要使用微积分的工具，这就是下一部分负责的了。当然这也意味着第一次学习的时候可以跳过全部打**的章节。
+最后一个部分名义上是微积分选讲，但是对于正常的高中生仅需要第二十九章、第三十一章和第三十三章的内容——这些是不超过高中范畴的。
+其他章节都是我为了这两碟醋包的一大桌饺子罢了。对于希望进一步学习的同学，可以参考参考文献\cite{徐森林1}\cite{徐森林2}\cite{徐森林3}\cite{Zorich1}\cite{Zorich2}等。
+
+第十部分是初等数论，同时也介绍了一些数论中的常见话题——密钥、Fermat大定理的一些趣事。
+第十一部分是数学建模，主要是抄袭了我大学期间上过的数学建模的课。当然，数学建模并不是非要
+取参加美赛写出一篇论文才叫建模，把实际问题抽象成数学问题再用数学知识解决都是数学建模，
+这一部分希望作为优秀的科普让人能一窥数学建模的魅力。
+
+从行文角度来看，和高中教科书相比，这本书更像是大学的教材。你翻开后面可以看到各种各样的
+定义、定理、推论等等东西，希望帮助阅读这本书的同学也能提前适应大学的数学学习。当然只有这些东西
+的书本就过于死板了，因此在正文上也像普通的高中教科书学习，做到正文部分也言之有物，有效衔接起各个定理之间的关系。
+在一节结束之后，会有一节知识回顾和一节习题：知识回顾以问答的形式覆盖这一节中的绝大部分知识，供学习后自测
+；而习题根据难度递进分为A, B, C三组，供读者练习，或增加熟练度，或拓展视野。
+
+值得说明的是，这本讲义对高中数学的原创性几乎没有贡献，其中很多内容都在网络上都可以找到成熟的叙述，
+这里我只不过是将他们集中起来。因此在涉及高考题、模拟题、一些网络杯赛的时候，都会尽可能标明出处。
+说回开头，这本讲义本身是为了自学而存在的，因此希望作为读者的你尽可能独立地思考，如果能指出我写作中没有发现的错误或是
+提出结构的优化就更好了。
+
+在正文中出现的计数“环境”包括公理、定理、推论、定义、性质、命题、例题。它们具体的含义
+可以在下一页——数学符号约定与术语说明中看到。
+其中，公理、定义、例题单独计数，定理、性质、命题则共同计数。
+形如定理\(a.b.c\)的数字串表示这是第\(a\)章、第\(b\)节下的第\(c\)个定理。
+
+
+
+这篇讲义起于22年寒假，目的是帮助复习高一知识，实际上也只写到了函数的基本性质。
+后来几次完善目录，
+在此之前都是很摸鱼地写\dots
+\begin{flushright}
+  2024年10月26日 \\
+  顾晖于北京师范大学教八楼
+
+\end{flushright}
+\clearpage
+
+\chapter{术语说明}
+
+
+\textbf{公理}是没有经过证明，但被当作不证自明的一个命题。
+因此，其真实性被视为是理所当然的，且被当做演绎及推论其他（理论相关）事实的起点。
+当不断要求证明时，因果关系毕竟不能无限地追溯，而需停止于无需证明的公理。通俗地说，
+如果把数学当做一个游戏，那么公理就是游戏中的那些设定，大多数时候
+你无需追究设定为什么如此，只要设定是自洽的、游戏是好玩的就足够了；数学中的公理也是
+如此，大多数时候你无需追究“为什么公理是对的”，只要公理是自洽的、数学是好玩的就足够了。
+\begin{axiom}
+  公理在正文中以这种形式出现，用浅紫色的框包裹。
+\end{axiom}
+
+
+
+\textbf{定义}是对某个数学概念的精确描述，用已知的概念来界定一个新概念的含义。
+定义本身不是可以被证明或反驳的命题——它只是将一个名称赋予一组确定的对象或性质，从而建立起讨论的共同基础。
+通俗地说，如果把数学比作一场游戏，定义就是游戏规则中对角色、道具或技能的命名与说明：它告诉你“某物是什么”，
+是一切讨论的起点。一个好的定义应当简洁、明确且不自相矛盾。
+\begin{definition}
+  定义在正文中以这种形式出现，用浅蓝色的框包裹。
+\end{definition}
+
+\textbf{命题}是可以判断真假的陈述句。在本书中，命题通常指那些已经被证明为真、但重要性不及定理的结论。
+它可能是一个定理证明过程中的中间结果，也可能是一个独立但相对简单的结论。
+如果说定理是数学大厦的承重墙，那么命题就是房间与走廊之间的隔断——虽不如承重墙那般决定结构，
+却让整个大厦更加完整和便于通行。
+\begin{proposition}
+  命题在正文中以这种形式出现，用浅绿色的框包裹。
+\end{proposition}
+
+\textbf{定理}是经过严格的逻辑证明而被确认为真的重要命题。定理通常揭示了一个分支中的核心规律，
+具有广泛的应用价值，是数学理论体系的骨干。如果说公理是游戏的初始设定，那么定理就像是从这些设定中
+推导出的精妙战术——你没法一开始就知道它，但一旦有人证明了它的可行性，它就成了后来者手中的利器。
+在本书中，定理、性质、命题共用一套编号。
+\begin{theorem}
+  定理在正文中以这种形式出现，用浅绿色的框包裹，左侧有深绿色竖线。
+\end{theorem}
+
+\textbf{引理}是在证明主要定理之前先证明的辅助性命题。引理本身可能并不引人注目，
+甚至单独拿出来看显得无关紧要，但它是通往更重要结论的垫脚石。
+好比你要建一座桥（定理），引理就是桥下的临时脚手架——搭建时不可或缺，
+桥建成后它的使命也就完成了。有些引理在历史上甚至比它服务的定理更加出名，
+例如Zorn引理。
+\begin{lemma}
+  引理在正文中以这种形式出现，用浅绿色的框包裹，左侧有较细的绿色竖线。
+\end{lemma}
+
+\textbf{推论}是从定理直接导出的结论，通常只需简短的说明便可成立，无需重新展开复杂的推理。
+如果定理是一棵大树的主干，那么推论就是从主干上自然延伸出的枝条——你不必重新种一棵树，
+只需伸手便能摘到果实。推论的意义在于把定理中隐含的、容易使用的特殊情形显式地写出来，
+方便读者直接引用。
+\begin{corollary}
+  推论在正文中以这种形式出现，用浅绿色的框包裹，左侧有较细的绿色竖线。
+\end{corollary}
+
+\textbf{性质}是某个数学对象本身固有的特征或规律，通常可以直接从定义出发推导出来。
+性质不如定理那样具有跨领域的普适性，但它是理解和运用特定数学对象的关键。
+如果说定义描述了一个人的身份，那么性质就是描述这个人的特征——“身高一米八，会弹吉他”——
+这些特征由其身份决定，能帮助你更好地认识和运用这个对象。
+\begin{character}
+  性质在正文中以这种形式出现，用浅黄色的框包裹，左侧有黄色竖线。
+\end{character}
+
+\textbf{例题}是展示如何应用所学知识解决具体问题的示范。例题不仅演示常见的题型和标准的解题步骤，
+有时也承担引出更深层次知识点的任务。好的例题如同一张地图，告诉读者“从这里可以走到那里”。
+\begin{example}
+  例题在正文中以这种形式出现，用白色背景、浅绿色框包裹，左侧有绿色竖线。
+\end{example}
+
+\textbf{练习}是紧密联系附近内容的实践题，供读者在阅读定理和例题后立即动手尝试。
+练习的难度通常不大，目的在于巩固刚刚学到的知识，检验自己是否真正理解了上文的内容。
+\begin{exercise}
+  练习在正文中以这种形式出现，用白色背景、浅蓝色框包裹，左侧有蓝色竖线。
+\end{exercise}
+
+\textbf{习题}出现在每节的末尾，内容较为综合，难度递进。与练习不同，习题可能涉及整节甚至跨节的知识，
+部分习题还可能用到后文的方法，鼓励读者在学完后续内容后再回头思考。习题按难度分为A、B、C三组。
+\begin{homework}
+  习题在正文中以这种形式出现，用白色背景、浅蓝色框包裹，左侧有蓝色竖线。
+\end{homework}
+
+在一节的开头, 会出现如下的\textbf{知识概括}:
+\begin{know}
+  \item \textbf{知识点1}
+  
+  知识点1需要掌握的内容\dots
+  \item \textbf{知识点2}
+  
+  知识点2需要掌握的内容\dots
+\end{know}
+例题旨在展示常见题型和如何应用知识解决问题，
+或引出更深层次的知识点。练习题紧密相关于附近的内容，供读者在阅读定理和例题后进行实践；
+习题则出现在每节的末尾，内容较为综合，难度递进，可能会用到后文的知识。
+
+
+“注”、“值得注意的是”、“评价”等标注通常位于解答或证明之后，
+其中“注”用于补充不适合出现在正文中的观点或不严格的看法，“值得注意的是”用来强调易错点或需要注意的事项，
+“评价”则是作者个人意见的表达。相对地，“分析”部分则位于解答或证明之前，用于概述解题思路，理清逻辑脉络。
+
+
+
+\clearpage
+\chapter{数学符号约定}
+
+\begin{table}[htbp] % 放置表格位置的参数，可根据需要调整
+  \centering % 表格居中
+  % 表格标题
+  \label{tab:example} % 表格标签，用于交叉引用
+ % 定义表格列数和对齐方式（此处为三列，居中对齐）
+    \begin{tabularx}{\textwidth}{XXX}
+    \toprule % 顶部横线
+    可能出现的量 & 记号 \\
+    \midrule % 中间横线
+    末端位置 & $y$  \\ % 表格内容
+    RU & $r$  \\
+    SMB & $s$  \\
+    海水温度&$T$\\
+    海水盐度&$c$\\
+    海水冰点&$b_c$\\
+    地下冰形&$d$\\
+    冰川体积&$V$\\
+    冰川面积&$S$\\
+    冰川高度&$h$\\
+    迁移率&$\gamma$\\
+    列长&$l$\\
+    崩解的概率&\(p_b\)\\
+    崩解量&$n_b$\\
+    溶解量&\(n_r\)\\
+    末端净变化&\(\Delta_e\)\\
+    总体净变化&\(\Delta\)\\
+    元胞自动机中的参数&\(\alpha_i,i=1,\dots,6\)\\
+    \bottomrule % 底部横线
+    \end{tabularx}
+    
+\end{table}
+\tableofcontents % 生成目录
+\clearpage
+\mainmatter
+
+
+
+\include{Part I Transition from Junior High to Senior High/Chapter 1 Algebraic Expressions and Equations/因式分解}
+\include{Part I Transition from Junior High to Senior High/Chapter 1 Algebraic Expressions and Equations/一元二次方程}
+\include{Part I Transition from Junior High to Senior High/Chapter 2 Review of Junior High Geometry/平行四边形}
+\include{Part I Transition from Junior High to Senior High/Chapter 2 Review of Junior High Geometry/圆}
+\include{Part I Transition from Junior High to Senior High/Chapter 2 Review of Junior High Geometry/锐角三角函数}
+\include{Part I Transition from Junior High to Senior High/Chapter 2 Review of Junior High Geometry/尺规作图}
+
+\include{Part II Sets, Logic, and Introduction to Inequalities/Chapter 3 Sets and Mathematical Logic/集合}
+\include{Part II Sets, Logic, and Introduction to Inequalities/Chapter 3 Sets and Mathematical Logic/简易逻辑}
+\include{Part II Sets, Logic, and Introduction to Inequalities/Chapter 4 Introduction to Inequalities/不等式}
+\include{Part II Sets, Logic, and Introduction to Inequalities/Chapter 4 Introduction to Inequalities/常见的不等式}
+\include{Part II Sets, Logic, and Introduction to Inequalities/Chapter 4 Introduction to Inequalities/常见不等式的解法}
+
+\include{Part III Basic Elementary Functions/Chapter 5 Introduction to Functions and Mappings/映射}
+\include{Part III Basic Elementary Functions/Chapter 5 Introduction to Functions and Mappings/函数的基本概念}
+\include{Part III Basic Elementary Functions/Chapter 5 Introduction to Functions and Mappings/函数的性质}
+
+\include{Part III Basic Elementary Functions/Chapter 6 Exponential, Logarithmic, and Power Functions/指数与指数函数}
+\include{Part III Basic Elementary Functions/Chapter 6 Exponential, Logarithmic, and Power Functions/对数与对数函数}
+\include{Part III Basic Elementary Functions/Chapter 6 Exponential, Logarithmic, and Power Functions/幂函数}
+\include{Part III Basic Elementary Functions/Chapter 7 Trigonometric Functions/三角函数的基本认识}
+\include{Part III Basic Elementary Functions/Chapter 7 Trigonometric Functions/三角函数的图像}
+\include{Part III Basic Elementary Functions/Chapter 7 Trigonometric Functions/三角恒等变换}
+\include{Part III Basic Elementary Functions/Chapter 8 Applications of Functions/函数的应用1}
+\include{Part III Basic Elementary Functions/Chapter 8 Applications of Functions/函数的应用2}
+\include{Part III Basic Elementary Functions/Chapter 8 Applications of Functions/解三角形}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 9 Vector Algebra/向量的线性运算}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 9 Vector Algebra/向量内积}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 9 Vector Algebra/向量在解三角形中的应用}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 10 Complex Numbers and Algebraic Foundations/复数}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 10 Complex Numbers and Algebraic Foundations/复变函数}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 10 Complex Numbers and Algebraic Foundations/群}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 10 Complex Numbers and Algebraic Foundations/环}
+\include{Part IV Introduction to Linear Algebra and Algebraic Foundations/Chapter 10 Complex Numbers and Algebraic Foundations/域}
+
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 11 Basic Understanding of Three-Dimensional Space/空间中点线面的关系}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 11 Basic Understanding of Three-Dimensional Space/空间几何体}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 12 Parallelism and Perpendicularity in Space/平行的判定及性质}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 12 Parallelism and Perpendicularity in Space/垂直的判定及性质}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 12 Parallelism and Perpendicularity in Space/平行垂直的综合证明}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 13 Spatial Vectors/从平面向量到空间向量}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 13 Spatial Vectors/向量在立体几何中的应用}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 14 Applications of Solid Geometry/特殊的空间模型}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 14 Applications of Solid Geometry/球}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/从实数到矩阵}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/行列式}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/线性空间}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/再话内积}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/特征值与特征向量}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 15 Introduction to Linear Algebra/二次型}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 16 Geometry on the Sphere/球面上的线和角}
+\include{Part V Solid Geometry and Introduction to Linear Algebra/Chapter 16 Geometry on the Sphere/球面上的几何图形}
+
+\include{Part VI Analytic Geometry/Chapter 17 Analytic Geometry (I)/平面解析几何简介}
+\include{Part VI Analytic Geometry/Chapter 17 Analytic Geometry (I)/直线}
+\include{Part VI Analytic Geometry/Chapter 17 Analytic Geometry (I)/圆}
+\include{Part VI Analytic Geometry/Chapter 17 Analytic Geometry (I)/线性规划初步}
+\include{Part VI Analytic Geometry/Chapter 18 Analytic Geometry (II)/椭圆}
+\include{Part VI Analytic Geometry/Chapter 18 Analytic Geometry (II)/双曲线}
+\include{Part VI Analytic Geometry/Chapter 18 Analytic Geometry (II)/抛物线}
+\include{Part VI Analytic Geometry/Chapter 18 Analytic Geometry (II)/圆锥曲线的联立}
+\include{Part VI Analytic Geometry/Chapter 19 Analytic Geometry (III)/常见的坐标系}
+\include{Part VI Analytic Geometry/Chapter 19 Analytic Geometry (III)/参数方程}
+\include{Part VI Analytic Geometry/Chapter 19 Analytic Geometry (III)/圆锥曲线的统一定义}
+\include{Part VI Analytic Geometry/Chapter 19 Analytic Geometry (III)/常见的几何模型1}
+\include{Part VI Analytic Geometry/Chapter 19 Analytic Geometry (III)/常见的几何模型2}
+\include{Part VI Analytic Geometry/Chapter 20 Analytic Geometry (IV)/空间中的直线和平面}
+\include{Part VI Analytic Geometry/Chapter 20 Analytic Geometry (IV)/二次曲面与其他特殊曲面}
+\include{Part VI Analytic Geometry/Chapter 20 Analytic Geometry (IV)/二次曲线曲面的分类}
+\include{Part VI Analytic Geometry/Chapter 20 Analytic Geometry (IV)/仿射变换}
+\include{Part VI Analytic Geometry/Chapter 21 Introduction to Projective Geometry/射影几何简介}
+
+
+
+\include{Part VII Sequences/Chapter 22 Sequences (I)/数列的初步认识}
+\include{Part VII Sequences/Chapter 22 Sequences (I)/等差数列}
+\include{Part VII Sequences/Chapter 22 Sequences (I)/等比数列}
+\include{Part VII Sequences/Chapter 23 Sequences (II)/数列的通项公式}
+\include{Part VII Sequences/Chapter 23 Sequences (II)/数列求和}
+\include{Part VII Sequences/Chapter 23 Sequences (II)/数列的性质}
+\include{Part VII Sequences/Chapter 23 Sequences (II)/数列放缩初步}
+\include{Part VII Sequences/Chapter 23 Sequences (II)/数学归纳法}
+
+
+\include{Part VIII Statistics and Probability/Chapter 24 Statistics (I)/数据的收集}
+\include{Part VIII Statistics and Probability/Chapter 24 Statistics (I)/数据的可视化}
+\include{Part VIII Statistics and Probability/Chapter 24 Statistics (I)/样本的数字特征}
+\include{Part VIII Statistics and Probability/Chapter 24 Statistics (I)/计数原理}
+\include{Part VIII Statistics and Probability/Chapter 24 Statistics (I)/二项式定理}
+\include{Part VIII Statistics and Probability/Chapter 25 Probability (I)/随机事件与样本空间}
+\include{Part VIII Statistics and Probability/Chapter 25 Probability (I)/古典概型与几何概型}
+\include{Part VIII Statistics and Probability/Chapter 25 Probability (I)/条件概率}
+\include{Part VIII Statistics and Probability/Chapter 26 Probability (II)/随机变量}
+\include{Part VIII Statistics and Probability/Chapter 26 Probability (II)/重要的几种分布}
+\include{Part VIII Statistics and Probability/Chapter 26 Probability (II)/随机变量的数字特征}
+\include{Part VIII Statistics and Probability/Chapter 26 Probability (II)/Markov链}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/数理统计中常见的分布}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/回归分析}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/矩估计和极大似然估计}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/无偏估计}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/区间估计的基本思想}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/显著性检验}
+\include{Part VIII Statistics and Probability/Chapter 27 Statistics (II)/独立性检验}
+
+
+
+
+\include{Part IX Introduction to Calculus/Chapter 28 Real Numbers/集合论概览}
+\include{Part IX Introduction to Calculus/Chapter 28 Real Numbers/整数与有理数}
+\include{Part IX Introduction to Calculus/Chapter 28 Real Numbers/实数的定义}
+\include{Part IX Introduction to Calculus/Chapter 29 Limits of Sequences/极限的定义}
+\include{Part IX Introduction to Calculus/Chapter 29 Limits of Sequences/级数的收敛}
+\include{Part IX Introduction to Calculus/Chapter 30 Limits and Continuity of Functions/函数极限的概念}
+\include{Part IX Introduction to Calculus/Chapter 30 Limits and Continuity of Functions/连续函数}
+\include{Part IX Introduction to Calculus/Chapter 31 Introduction to Derivatives/导数的概念}
+\include{Part IX Introduction to Calculus/Chapter 31 Introduction to Derivatives/求导的法则}
+\include{Part IX Introduction to Calculus/Chapter 31 Introduction to Derivatives/导数的应用}
+\include{Part IX Introduction to Calculus/Chapter 32 Mean Value Theorem in Differential Calculus/微分的概念}
+\include{Part IX Introduction to Calculus/Chapter 32 Mean Value Theorem in Differential Calculus/Taylor公式}
+\include{Part IX Introduction to Calculus/Chapter 33 Applications of Derivatives/用导数研究函数}
+\include{Part IX Introduction to Calculus/Chapter 33 Applications of Derivatives/恒成立问题}
+\include{Part IX Introduction to Calculus/Chapter 33 Applications of Derivatives/零点与极值点}
+\include{Part IX Introduction to Calculus/Chapter 33 Applications of Derivatives/复杂函数的处理}
+\include{Part IX Introduction to Calculus/Chapter 34 Introduction to Integral Calculus/不定积分}
+\include{Part IX Introduction to Calculus/Chapter 34 Introduction to Integral Calculus/Riemann积分}
+\include{Part IX Introduction to Calculus/Chapter 34 Introduction to Integral Calculus/定积分的应用}
+\include{Part IX Introduction to Calculus/Chapter 35 Differential Equations/初等积分法}
+\include{Part IX Introduction to Calculus/Chapter 35 Differential Equations/ode的问题}
+\include{Part IX Introduction to Calculus/Chapter 36 Introduction to Multivariable Calculus/rn的结构}
+\include{Part IX Introduction to Calculus/Chapter 36 Introduction to Multivariable Calculus/多元函数的极限和连续}
+\include{Part IX Introduction to Calculus/Chapter 36 Introduction to Multivariable Calculus/多元函数的导数与微分}
+\include{Part IX Introduction to Calculus/Chapter 37 Functional Series/函数项级数}
+\include{Part IX Introduction to Calculus/Chapter 37 Functional Series/Fourier分析}
+
+
+\include{Part X Elementary Number Theory/Chapter 38 Integers/整数的除法}
+\include{Part X Elementary Number Theory/Chapter 38 Integers/整数的分解}
+\include{Part X Elementary Number Theory/Chapter 39 Congruences/同余的基本概念}
+\include{Part X Elementary Number Theory/Chapter 39 Congruences/同余的应用}
+\include{Part X Elementary Number Theory/Chapter 40 Indeterminate Equations and Congruences/不定方程}
+\include{Part X Elementary Number Theory/Chapter 40 Indeterminate Equations and Congruences/同余方程}
+\include{Part X Elementary Number Theory/Chapter 40 Indeterminate Equations and Congruences/二次剩余}
+
+
+
+
+
+
+\appendix
+%在使用enumerate环境排版小题题号时，根据情况加入[leftmargin=5pt]使观感协调，左侧不留太多空
+\chapter{历年高考题目录及索引}
+\include{GaoKao/2010}
+\include{GaoKao/2011}
+\include{GaoKao/2012}
+\include{GaoKao/2013}
+\include{GaoKao/2014}
+\include{GaoKao/2015}
+\include{GaoKao/2016}
+\include{GaoKao/2017}
+\include{GaoKao/2018}
+\include{GaoKao/2019}
+\include{GaoKao/2020}
+\include{GaoKao/2021}
+\include{GaoKao/2022}
+\include{GaoKao/2023}
+\include{GaoKao/2024}
+\include{GaoKao/2025}
+\include{GaoKao/2026}
+
+
+\chapter{数理统计中的常用表格}
+\section{随机数表}
+\section{常见分位数表}
+
+
+\backmatter
+\chapter{后记}
+\bibliography{reference}
+\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{参考文献}
+\printindex
+\end{document}

@@ -1,0 +1,169 @@
+\chapter{不等式初步}
+
+\section{不等式}
+\subsection{不等式的性质}
+研究不等式\index{不等式}，其实就是在追溯一个古老的问题———比大小.我们把目光主要放在$\mathbb{R}$上，由于这个集合良好的性质
+其中的任意两个实数$a,b$，一定是可以比较大小的，也就是它们一定满足
+\[a>b,a=b,a<b\]
+其中之一。注意，不是所有数集中的元素都可以比较大小的，一个经典的例子就是复数集$\mathbb{C}$，这些会在
+后面学习中学到.
+
+话说回来，我们如何定义$a$与$b$两个数（代数式）的大小呢？
+我们已经有了“正数>$0$>负数”的这样的结论，所以两数的大小只要归结到两数之差和$0$的即可，
+这是基于我们过去学习的一个直观的想法.
+\begin{definition}
+    \ 
+
+    $a>b$是指$a-b>0$，即$a>b\Leftrightarrow a-b>0$.
+
+    同理可以定义$<,\geq,\leq,\neq$.
+
+\end{definition}
+由此定义我们可以推导出来不等式的若干性质，或许在初中数学中已经了解过它们了，但是我们这里要看看如何严格地利用定义证明这些性质。
+\begin{character}
+    \ 
+
+    $(1)$反对称性\[a>b\Leftrightarrow b<a\]
+
+    $(2)$传递性\[a>b,b>c \Rightarrow a>c\]
+
+    $(3)$可加性\uppercase\expandafter{\romannumeral1} \[\forall c,a>b\Leftrightarrow a+c>b+c\]
+
+    $(4)$可加性\uppercase\expandafter{\romannumeral2}\[a>c,b>d \Rightarrow a+b>c+d \]
+
+    $(5)$可乘性\uppercase\expandafter{\romannumeral1}
+\[\forall c>0,a>b\Leftrightarrow ac>bc\]
+\[\forall c<0,a>b\Leftrightarrow ac<bc\]
+
+    $(6)$可乘性\uppercase\expandafter{\romannumeral2}
+\[a>b>0,c>d>0 \Rightarrow ac>bd\]
+
+    $(7)$可乘方性
+\[a>b>0 \Rightarrow a^n>b^n (n \in \mathbb{N} ,n\geq 2)\]
+
+    $(8)$可开方性
+\[a>b>0 \Rightarrow \sqrt[n]{a}>\sqrt[n]{b} (n \in \mathbb{N} ,n\geq 2)\]
+
+\end{character}
+\begin{proof}
+    \ 
+
+    仅证明$(4)(6)(7)(8)$，其余作为练习.
+\end{proof}
+
+练习 \[a>b\Rightarrow \frac{1}{a}\_\_\frac{1}{b}\]
+例1 一个很抽象高考不会考但是得会的题目
+\\已知$-3\leq a+b\leq2,-1\leq a-b\leq 4$，求$a,b,3a-2b$的取值范围。
+\\解：求$a,b$的取值范围无疑是很简单的，但是在求$3a-2b$的取值范围是时候是否可以直接套用呢？答案是不能
+答案是不可以。
+\\两式相加得$-4\leq 2a \leq 6$，即$-2\leq a \leq 3$.同理两式相减（注意不等式的减法的算法）
+得到$-7\leq 2b\leq 3$，即$-3.5\leq b\leq 1.5$.
+\\在求$3a-2b$的时候，使用最初的不等式配凑的带$3a-2b$,而不要用a,b的取值范围直接相加减得到。
+使用直接相加减会得到$-9\leq 3a-2b\leq16$,这个16是哪里来的？应该是a取最大值3，b取最小值-3.5的时候得到的。
+但是此时$a-b=7.5$,并不符合题目最初的式子的要求，说明随着多次使用同向不等式的加减法，逐渐扩大了最初的取值范围。
+因此才要使用所谓的配凑法。
+令\[3a-2b=m(a+b)+n(a-b)=a(m+n)+b(m-n)\]
+对比等号两端，得到方程组
+\[  
+    \left\{
+    \begin{lgathered}
+    m+n=3\\
+    m-n=-2
+    \end{lgathered}
+    \right.
+\]
+解得
+\[  
+    \left\{
+    \begin{lgathered}
+    m=0.5\\
+    n=2.5
+    \end{lgathered}
+    \right.
+\]
+即\[3a-2b=0.5(a+b)+2.5(a-b)\],乘上对应倍数相加后得到
+\[-4\leq 3a-2b\leq11\]
+很明显这个范围比之前缩小了不少。等学完直线方程之后再来看这个就会清晰很多了。这个东西本质上是新高考中被删掉的线性规划。
+\subsection{比大小与证明不等式}
+比大小和不等式的研究方法有许多，我们手里的工具现在还很少，我们会先介绍一些简单的方法和例子.
+\begin{theorem}\label{bidaxiao}
+    \[\forall a,b\in\mathbb{R},a>b\Leftrightarrow a-b>0\]
+    \[\forall a,b\in\mathbb{R}_+,a>b\Leftrightarrow \frac{a}{b}>1\]
+\end{theorem}
+
+由不等式的性质，定理$\ref*{bidaxiao}$是显然的。也就是说对于绝大多数的比大小问题，
+归结于作差或者是作商，再判断差或商的性质。针对不同的结构，我们需要灵活选择方法.
+\begin{example}
+    \ 
+
+    $(1)$比较$a^2+b^2$与$2(2a-b)-5$
+
+    $(2)$$\forall a,b\in\mathbb{R}_+$,比较
+    \[\frac{a}{b^2}+\frac{b}{a^2}\text{与}\frac{1}{a}+\frac{1}{b}\]
+\end{example}
+\begin{jie}
+    \ 
+
+    $(1)$作差得
+    \begin{align*}
+    &\quad\  a^2+b^2-(2(2a-b)-5)\\
+    &=a^2+b^2-4a+2b+5\\
+    &=a^2-4a+4+b^2+2b+1\\
+    &=(a-2)^2+(b+1)^2 \geq 0
+    \end{align*}
+    
+    故$a^2+b^2\geq 2(2a-b)-5$，当且仅当$a=2$且$b=-1$时取得等号.
+
+    $(2)$
+    \begin{way1}
+    作差得
+    \[\frac{a}{b^2}+\frac{b}{a^2}-(\frac{1}{a}+\frac{1}{b})
+    =\frac{a^3+b^3-ab^2-a^2b}{a^2b^2}=\frac{(a-b)^2(a+b)}{a^2b^2}\geq0\]
+
+    第二个等号处的因式分解只要将四项两两重新组合即可。这里$\forall a,b\in\mathbb{R}_+$保证了
+    最后的式子每一个因式都是非负的，故整个式子是非负的.
+    \end{way1}
+    \begin{way2}
+    显然两个式子都为正，故做商得
+    \begin{align*}
+    &\quad\ \frac{\dfrac{a}{b^2}+\dfrac{b}{a^2}}{\dfrac{1}{a}+\dfrac{1}{b}}\\
+    &=\frac{a^3+b^3}{ab^2+a^2b}\\
+    &=\frac{(a+b)(a^2-ab+b^2)}{ab(a+b)}\\
+    &=\frac{a^2-ab+b^2}{ab}\\
+    &=\frac{a}{b}+\frac{b}{a}-1 \geq 2\sqrt{\frac{a}{b}\cdot \frac{b}{a}}-1=1
+    \end{align*}
+
+    当且仅当满足$\dfrac{a}{b}=\dfrac{b}{a}$即$a=b$时取等.
+    \end{way2}
+\end{jie}
+\begin{example}
+    \ 
+
+    $(1)$已知$x>0$，求证\[\sqrt{1+x}<1+\dfrac{x}{2}\]
+    
+    $(2)$已知$x\in[0,1]$，求证\[x^3+\frac{1}{x+1}\geq 1-x+x^2\]
+
+    $(3)$已知$n>0$，比较\[\sqrt{n}-\sqrt{n-1}\text{与}\sqrt{n-1}-\sqrt{n-2}\]
+\end{example}
+
+
+
+
+
+\begin{proposition}
+    hh
+    
+\end{proposition}
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage

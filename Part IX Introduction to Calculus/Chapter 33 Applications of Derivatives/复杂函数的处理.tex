@@ -1,0 +1,75 @@
+\section{复杂函数的处理手段}
+\subsection{凹凸反转}
+\clearpage
+\subsection{相同结构的函数——“同构”}
+
+\begin{example}[2022年武汉二调]
+    已知函数 $f(x) = a|\ln x| + x + \dfrac{1}{x}, g(x) = e^x + e^{-x} - a|\ln(ax)| - \dfrac{1}{ax}$，其中 $a > 0$.
+        (1) 当 $a = 1$ 时，求 $\frac{f'\left(\frac{1}{e}\right)}{f'(e)}$ 的值；
+        (2) 讨论 $g(x)$ 的零点个数。
+\end{example}
+\begin{jie}
+\ 
+
+$(1)$当 $a=1$ 时，$f(x) = |\ln x| + x + \frac{1}{x}$。
+
+当 $0 < x < 1$ 时，$f(x) = -\ln x + x + \frac{1}{x}$，$f'(x) = -\frac{1}{x} + 1 - \frac{1}{x^2}$，$f'\left(\frac{1}{e}\right) = -e + 1 - e^2$。
+
+当 $x > 1$ 时，$f(x) = \ln x + x + \frac{1}{x}$，$f'(x) = \frac{1}{x} + 1 - \frac{1}{x^2}$，$f'(e) = \frac{1}{e} + 1 - \frac{1}{e^2} = \frac{e^2 + e - 1}{e^2}$。
+
+\[
+\frac{f'\left(\frac{1}{e}\right)}{f'(e)} = -e^2.
+\]
+
+
+$(2) $令 $g(x) = 0$，有 $e^x + e^{-x} = a|\ln(ax)| + \frac{1}{ax}$。
+    
+则 $ax + e^x + e^{-x} = a|\ln(ax)| + ax + \frac{1}{ax}$，即 $a|\ln e^x| + e^x + e^{-x} = a|\ln(ax)| + ax + \frac{1}{ax}$。
+所以 $f(e^x) = f(ax)$。
+
+关注\(f(x)\)的单调性：
+    \[
+    \begin{aligned}
+        &0 < x < 1 , f'(x) = -\frac{a}{x} + 1 - \frac{1}{x^2} = -\frac{a}{x} - \frac{1-x^2}{x^2} < 0; \\
+        &x > 1 ,f'(x) = \frac{a}{x} + 1 - \frac{1}{x^2} = \frac{a}{x} + \frac{x^2-1}{x^2} > 0;
+    \end{aligned}
+    \]
+所以，$f(x)$ 在 $(0,1)$ 上递减；在 $(1,+\infty)$ 上递增。
+    
+    又因为 $f(x) = f\left(\frac{1}{x}\right)$，所以 $f(e^x) = f(ax)$，当且仅当 $e^x = ax$ 或 $e^x = \frac{1}{ax}$。
+    又 $e^x > 1$，故 $e^x = ax$ 和 $e^x = \frac{1}{ax}$ 不可能同时成立。
+    所以 $g(x)$ 的零点个数是两个函数 $s(x) = e^x - ax$ 和 $t(x) = xe^x - \frac{1}{a}$ 的零点个数之和，其中 $x > 0$。
+    
+    $s'(x) = e^x - a$，$0 < a \leq 1$ 时，$s'(x) > 0$，$s(x)$ 递增，$s(x) > s(0) = 1$，$s(x)$ 无零点。
+    
+    $a > 1$ 时，令 $s'(x) = 0$，得 $x = \ln a$，故 $s(x)$ 在 $(0, \ln a)$ 上递减；在 $(\ln a, +\infty)$ 上递增。
+    
+    当 $1 < a < e$ 时，$s(\ln a) = a(1 - \ln a) > 0$，此时 $s(x)$ 无零点。
+    
+    当 $a = e$ 时，$s(\ln a) = 0$，此时 $s(x)$ 有一个零点。
+    
+    当 $a > e$ 时，$s(\ln a) = a(1 - \ln a) < 0$，$s\left(\frac{1}{a}\right) = e^{\frac{1}{a}} - 1 > 0$，$s(2\ln a) = a^2 - 2a\ln a = a(a - 2\ln a)$。
+    
+    令 $h(a) = a - 2\ln a \ (a > e)$，$h'(a) = 1 - \frac{2}{a} > 0$，故 $h(a) > h(e) = e - 2 > 0$，所以 $s(2\ln a) > 0$。
+    由零点存在性定理，$s(x)$ 在 $\left(\frac{1}{a}, \ln a\right)$ 和 $(\ln a, 2\ln a)$ 上各有一个零点，此时 $s(x)$ 有两个零点。
+     $t(x) = xe^x - \frac{1}{a}$，$t'(x) = (x + 1)e^x > 0$，$t(x)$ 在 $(0, +\infty)$ 上递增。
+    又 $t(0) = -\frac{1}{a} < 0$，$t\left(\frac{1}{a}\right) = \frac{1}{a}\left(e^{\frac{1}{a}} - 1\right) > 0$，故 $a > 0$ 时，$t(x)$ 在 $(0, +\infty)$ 上必有一个零点。
+    
+    综上所述，$0 < a < e$ 时，$g(x)$ 有一个零点；
+    
+    $a = e$ 时，$g(x)$ 有两个零点；
+    
+    $a > e$ 时，$g(x)$ 有三个零点。
+    
+    
+\end{jie}
+    
+
+
+
+\clearpage
+\subsection{函数的放缩}
+\clearpage
+\subsection{主元的选取}
+\clearpage
+

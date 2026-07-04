@@ -1,0 +1,152 @@
+\chapter{解析几何（二）}
+\section{椭圆}
+\subsection{椭圆的方程与性质}
+椭圆给人的直观感受无非就是扁了的圆，但是这如何用数学语言去刻画呢？
+联想到三角函数\(y=\sin x\)与\(y=A\sin(\omega x)\)，其中参数\(A\)和$\omega$都是对函数的
+拉伸或压缩。由此可以给出椭圆的一个简单的定义：
+\begin{definition}[椭圆的第零定义]
+    给一个单位圆\(x^2+y^2=1\)，做伸缩变换
+    \[ \left\{
+        \begin{array} { l } 
+        x'=a x\\
+        y'=b y
+        \end{array}
+    \right.\]
+    则变换后的方程
+    \[\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\]在平面直角坐标系的轨迹中为椭圆。
+\end{definition}
+
+\begin{definition}[椭圆的第一定义]
+    到平面内两定点距离之和为定值（距离之和大于两定点间距离）的点的集合为椭圆。其中，称两个定点为椭圆的两个焦点(focal point)；
+    定点之间的距离称为椭圆的焦距(focal length)。
+\end{definition}
+展开来讲，平面上首先应该有两个定点称作焦点，记为\(F_1,F_2\)，并设\(|F_1F_2|=2c\)。
+再有一个定值，设之为\(2a\)，且\(2a>2c\)。那么椭圆就是下面的集合：
+\[\{P\in \mathbb{R}^2||PF_1|+|PF_2|=2a\}\]
+\begin{theorem}[椭圆的标准方程]
+    \begin{equation}
+        \frac{x^2}{a^2}+\frac{y^2}{b^2}=1 \quad (a>b>0)
+    \end{equation}
+    \begin{equation}
+        a^2=b^2+c^2
+    \end{equation}
+    \begin{equation}
+        \frac{y^2}{a^2}+\frac{x^2}{b^2}=1 \quad (a>b>0)
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    设焦距为\(2c\)，不妨把它放置在\(x\)轴上，设为\(F_1(-c,0), F_2(c,0)\)。再设
+    到两个焦点的距离之和为\(2a\)。
+    \begin{way1}考虑共轭根式
+        
+    \end{way1}
+
+    \begin{way2}考虑将根号分布在等式两侧处理。
+        
+    \end{way2}
+    \qed
+\end{proof}
+在推导完椭圆的方程之后，一个自然的问题是：条件\(2a>2c\)起到了什么样的作用？其实在上述推导过程中可以窥见一点：
+\begin{corollary}
+    \(a=c\) 线段\(F_1F_2\)
+
+    \(a<c\) 空集
+\end{corollary}
+\begin{example}
+    判断下列方程所代表的椭圆焦点是在\(x\)轴上还是\(y\)轴上。并指出标准方程中的\(a,b,c\)。
+\end{example}
+\begin{example}
+    求满足下列条件的椭圆的标准方程：
+\end{example}
+\begin{exercise}
+    满足下列条件的点的轨迹是椭圆吗？如果是，写出标准方程，并计算出标准方程中的\(a,b,c\)；如果不是，说明理由。
+\end{exercise}
+
+\begin{example}
+    
+\end{example}
+%\subsubsection{椭圆的标准方程}
+%\subsubsection{椭圆的几何性质}
+\begin{character}[椭圆的性质]
+\begin{enumerate}
+    \item 有界性
+    \item 对称性
+    \item 顶点
+\end{enumerate}
+\end{character}
+\begin{definition}[离心率]
+    \begin{equation}
+        e=\frac{c}{a}
+    \end{equation}
+\end{definition}
+\begin{theorem}[椭圆的离心率]
+    \begin{equation}
+        e\in (0,1)
+    \end{equation}
+    椭圆的离心率越接近\(0\)则越圆；椭圆的离心率越接近\(1\)越扁。
+\end{theorem}
+
+\begin{definition}[通径]
+    
+\end{definition}
+
+\clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{椭圆的其他定义}
+\begin{definition}[椭圆的第二定义]
+    到定点的距离与到定直线的距离的比值为一个定值\(e(\in(0,1))\)的点的轨迹为椭圆。
+    该定点称为椭圆的焦点，定直线称为椭圆的准线，\(e\)称为离心率。
+\end{definition}
+
+\begin{jie}
+    过焦点做准线的垂线作为\(x\)轴，以焦点指向准线的方向为正方向。选取合适的\(y\)轴，使得准线的方程为
+    \(x=\dfrac{a^2}{c}\)，焦点的坐标是\((c,0)\)。
+    
+    由题意列式：
+       \[ \frac{\sqrt{(x-c)^2+y^2}}{\left|x-\frac{a^2}{c}\right|}=e\]
+两侧平方，将分母移到右边并展开括号得
+\[x^2-2cx+c^2+y^2=e^2\left(x^2-2\frac{a^2}{c}x+\frac{a^4}{c^2}\right)\]    
+移项得
+\[\left(1-e^2\right)x^2+y^2+\left(2e^2\frac{a^2}{c}-2c\right)x=e^2\frac{a^4}{c^2}-c^2\]
+取\(e=\dfrac{c}{a},\ b^2=a^2-c^2\)，则得到
+\vspace*{-0.5cm}
+\begin{align*}
+    \frac{b^2}{a^2}x^2+y^2&=b^2\\
+    \frac{x^2}{a^2}+\frac{y^2}{b^2}&=1\\
+\end{align*}
+这恰好就是椭圆的标准方程。
+\end{jie}
+\begin{character}
+    \ 
+    
+    准线
+
+    焦准距
+\end{character}
+
+\begin{theorem}[焦半径公式]
+    
+\end{theorem}
+
+
+
+
+
+
+
+
+
+\clearpage
+%\subsection{椭圆的光学性质}
+\clearpage

@@ -1,0 +1,34 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.pdf
+
+# Index
+*.idx
+*.ind
+*.ilg
+*.thm
+
+# Codex
+.codex/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Temp
+test/
+codex_test/

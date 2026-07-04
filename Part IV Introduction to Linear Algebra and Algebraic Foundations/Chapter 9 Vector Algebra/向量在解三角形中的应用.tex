@@ -1,0 +1,305 @@
+\section{向量在解三角形中的应用}
+\subsection{解三角形中常见的定理}
+\clearpage
+\subsection{向量在解三角形中的应用}
+\begin{theorem}[奔驰定理]
+    对于 \(\triangle ABC\) 内的一点 \(P\)，有恒等式
+    \[
+    S_{\triangle BPC} \ve{PA} + S_{\triangle CPA} \ve{PB} + S_{\triangle APB} \ve{PC} = 0.
+    \]
+\end{theorem}
+
+
+在平面 \(ABC\) 中，以 \(\ve{AB}, \ve{AC}\) 为基底向量，考虑对平面内任意一点 \(P\) 进行分解。
+作出直线 \(AP\) 与 \(BC\) 的交点 \(Q\)，则有 \(\frac{\ve{AP}}{|AP|} = \frac{\ve{AQ}}{|AQ|} \Rightarrow \ve{AP} = \dfrac{|AP|}{|AQ|}\ve{AQ}\)。
+
+下面只需对 \(\ve{AQ}\) 进行分解。
+
+由等和线及 \(B, Q, C\) 三点共线的推论可得 \(\ve{AQ} = s\ve{AB} + (1-s)\ve{AC}\)。这里有
+\[
+s = \frac{|QC|}{|BQ| +|QC|}.
+\]
+故
+\[
+\ve{AQ} = \frac{|QC|}{|BQ|+|QC|} \ve{AB} + \frac{|BQ|}{|BQ|+|QC|} \ve{AC}.
+\]
+
+此处为了将线段比 \(\frac{|AP|}{|AQ|}\) 与 \(\frac{|BQ|}{|QC|}\) 关联，我们考虑对这些线段比用相同的量表示，故此处运用点 \(P\) 有关的三角形面积比来表示线段比，故
+\[
+\frac{|BQ|}{|QC|} = \frac{S_{\triangle AQB}}{S_{\triangle AQC}} = \frac{S_{\triangle PQB}}{S_{\triangle PQC}} = \frac{S_{\triangle AQB} - S_{\triangle PQB}}{S_{\triangle AQC} - S_{\triangle PQC}} = \frac{S_{\triangle APB}}{S_{\triangle APC}}.
+\]
+其中应用了等比定律，而
+\[
+\frac{|AP|}{|AQ|} = \frac{S_{\triangle ABC} - S_{\triangle PBC}}{S_{\triangle ABC}} = \frac{S_{\triangle APB} + S_{\triangle APC}}{S_{\triangle ABC}},
+\]
+所以
+\[
+\ve{AP} = \frac{|AP|}{|AQ|} \ve{AQ} = \frac{S_{\triangle APB} + S_{\triangle APC}}{S_{\triangle ABC}} \ve{AQ} = \frac{S_{\triangle APC}}{S_{\triangle ABC}} \ve{AB} + \frac{S_{\triangle APB}}{S_{\triangle ABC}} \ve{AC}.
+\]
+
+接下来考虑以点 \(P\) 为所有向量的起点，由 \(\ve{AB} = \ve{PB} - \ve{PA}\)，\(\ve{AC} = \ve{PC} - \ve{PA}\)，\(\ve{AP} = -\ve{PA}\) 得 \(S_{\triangle ABC}(-\ve{PA}) = S_{\triangle APC}(\ve{PB} - \ve{PA}) + S_{\triangle APB}(\ve{PC} - \ve{PA}) \Rightarrow S_{\triangle BPC} \ve{PA} + S_{\triangle CPA} \ve{PB} + S_{\triangle APB} \ve{PC} = \boldsymbol{0}\)。
+
+若\(P\)在外侧，则前面系数会出现负数，此时系数表示有向面积。其中有向面积为负的时候是指\(\tri APB\)完全在\(\tri ABC\)外侧。
+
+\begin{theorem}
+    已知A,B,C,P在同一平面，且满足 \(\lambda_1 \ve{PA} + \lambda_2 \ve{PB} + \lambda_3 \ve{PC} = \ve{0}\)，则有：
+\[
+\lambda_1 : \lambda_2 : \lambda_3 = \mathrm{det} \left[ \begin{array}{cc} \ve{PB} & \ve{PC} \end{array} \right] : \mathrm{det} \left[ \begin{array}{cc} \ve{PC} & \ve{PA} \end{array} \right] : \mathrm{det} \left[ \begin{array}{cc} \ve{PA} & \ve{PB} \end{array} \right]
+\]
+
+这里的 \(\text{det} \left[ \begin{array}{cc} \ve{m} & \ve{n} \end{array} \right]\) 表示以 \(\ve{m}, \ve{n}\) 为列向量的矩阵行列式，其几何意义为以 \(\ve{m}, \ve{n}\) 张成的平行四边形的有向面积。其数值绝对值等于该平行四边形的面积大小，正负取决于 \(\ve{m}, \ve{n}\) 之间的位置关系，由右手法则判定。
+
+
+\end{theorem}
+
+\begin{example}
+    点\(P\)为\(\tri ABC\)所在平面内一点，且满足\(3\ve{PA}-\ve{PB}+7\ve{PC}=\boldsymbol{0}\),
+    求\(\frac{S_{\tri BPC}}{S_{\tri ABC}}\).
+\end{example}
+\begin{example}
+    \(\tri ABC\)外接圆半径为\(1\)，圆心为\(O\)，且\(3\ve{OA}+4\ve{OB}+5\ve{OC}=\lxl\), 求\(S_{\tri ABC}\)
+\end{example}
+\clearpage
+\subsection{三角形的“心”}
+
+\begin{definition}[三角形的“心”]
+    \   
+
+    三角形三条中线交于一点，称作重心；
+
+    三角形三条高交于一点，称作垂心；
+
+    三角形三条角平分线线交于一点，称作内心；
+
+    三角形三条边的垂直平分线线交于一点，称作外心；
+\end{definition}
+
+\begin{proposition}
+    三角形三条中线交于一点.
+\end{proposition}
+\begin{proof}
+    设 $AD$, $BE$ 相交于点 $G$，则
+\[
+\ve{CG} = \ve{CE} + \ve{EG} = \ve{EA} + \ve{EG} = 2\ve{EG} + \ve{GA},
+\]
+\[
+\ve{CG} = \ve{CD} + \ve{DG} = \ve{DB} + \ve{DG} = 2\ve{DG} + \ve{GB},
+\]
+于是有 $2\ve{EG} + \ve{GA} = 2\ve{DG} + \ve{GB}$，所以 $2\ve{EG} = \ve{GB}$，$2\ve{DG} = \ve{GA}$，所以
+\[
+\ve{CG} = \ve{GA} + \ve{GB} = 2\ve{GF},
+\]
+即 $C$, $G$, $F$ 三点共线。
+\qed
+\end{proof}
+\begin{proposition}
+    三角形三条高交于一点.
+\end{proposition}
+\begin{proof}
+    设 $AA_1 \perp BC$, $BB_1 \perp AC$, $AA_1 \cap BB_1 = H$,下证 $CH \perp AB$.
+\begin{align*}
+    \ve{CH} \cdot \ve{AB}&= (\ve{CB} + \ve{BH}) \cdot (\ve{CB} - \ve{CA})\\
+                         &= \ve{CB}^2 + \ve{BH} \cdot \ve{CB} - \ve{CA} \cdot \ve{CB}\\
+                         &= \ve{CB}^2 + \ve{BA_1} \cdot \ve{CB} - \ve{CA_1} \cdot \ve{CB}\\
+                         &= 0 
+\end{align*}
+
+\qed
+
+\end{proof}
+\begin{proposition}
+    三角形三条角平分线线交于一点.
+\end{proposition}
+\begin{proof}
+    在\(\tri ABC\)中，\(AA_1\)是\(\angle BAC\)的角平分线，\(BB_1\)是\(\angle ABC\)的角平分线，
+    且\(AA_1\cap BB_1=I\)，即证\(CI\)是\(\angle BCA\)的角平分线。
+
+    由角平分线的性质，过\(I\)做\(IA_2\perp BC,IB_2\perp AC,IC_2\perp\),则
+    \[IA_2=IB_2=IC_2\]
+
+    \qed
+\end{proof}
+\begin{lemma}
+    \(\boldsymbol{a},\boldsymbol{b},\boldsymbol{c},\boldsymbol{d}\)是四个向量，则有
+    \[
+\left(\hd - \frac{\ha+\hb}{2}\right) \cdot (\ha-\hb) + \left(\hd-\frac{\hb+\hc}{2}\right) \cdot (\hb-\hc) + \left(
+    \hd - \frac{\hc+\ha}{2}\right) \cdot (\hc-\ha) = 0.
+\]
+\end{lemma}
+\begin{proposition}
+    三角形三条边的垂直平分线线交于一点.
+\end{proposition}
+
+\begin{proof}
+    设 $l_1, l_2$ 分别是 $BC, AB$ 的垂直平分线,\(l_1\cap l_2=O\), $AB, BC, AC$ 中点分别为 $D, E, F$.
+    \(P\)为平面上任意一点,\(\ve{PO}=\hd, \ve{PA}=\ha,\ve{PB}=\hb,\ve{PC}=\hc\)，带入下式
+
+    \[
+\left(\hd - \frac{\ha+\hb}{2}\right) \cdot (\ha-\hb) + \left(\hd-\frac{\hb+\hc}{2}\right) \cdot (\hb-\hc) + \left(
+    \hd - \frac{\hc+\ha}{2}\right) \cdot (\hc-\ha) = 0.
+\]
+
+\[
+\ve{DO} \cdot \ve{AB} + \ve{EO} \cdot \ve{BC} + \ve{OF} \cdot \ve{AC} = 0
+\]
+\[
+\therefore \ve{OT} \cdot \ve{AC} = 0 \Rightarrow  OT \perp AC.
+\]
+\qed
+\end{proof}
+
+\begin{corollary}
+    \ 
+
+    \(O\)为\(\tri ABC\)的外心, 则\(\sin 2A \cdot\ve{OA}+\sin 2B\cdot\ve{OB}+\sin 2C\cdot\ve{OC}=\lxl\);
+
+    \(I\)为\(\tri ABC\)的内心, 则\(a\ve{IA}+b\ve{IB}+c\ve{IC}=\sin A\ve{IA}+\sin B\ve{IB}+\sin C\ve{IC}=\lxl\);
+
+    \(H\)为\(\tri ABC\)的垂心, 则\(\tan A \cdot\ve{HA}+\tan B\cdot\ve{HB}+\tan C\cdot\ve{HC}=\lxl\);
+
+    \(G\)为\(\tri ABC\)的重心, 则\(\ve{GA}+\ve{GB}+\ve{GC}=\lxl\);
+\end{corollary}
+\begin{proof}
+    \  
+
+    \((1)\)外心：\(S_{\tri OBC}=\dfrac{1}{2}R^2\sin 2A\)
+
+    \((2)\)内心：\(S_{\tri OBC}=\dfrac{1}{2}ar\)
+
+    \((3)\)垂心：\(\frac{S_{\tri AHB}}{S_{\tri CHA}}=\dfrac{|AH||BP|}{|AH||CP|}=\dfrac{\tan C}{\tan B}\)
+
+    \((4)\)重心：\(S_{\tri AGB}=S_{\tri BGC}=S_{\tri CGA}\)
+    
+    \qed
+\end{proof}
+回忆上一节的式子
+\[
+\ve{AP} =\frac{S_{\triangle CPA}}{S_{\triangle ABC}} \ve{AB} + \frac{S_{\triangle APB}}{S_{\triangle ABC}} \ve{AC}.
+\]
+\begin{proposition}
+    \ 
+
+    \begin{align*}
+        \ve{AO}&=\frac{\cos B}{2\sin A\sin C}\ve{AB}+\frac{\cos C}{2\sin A\sin B}\ve{AC}\\
+    \ve{AI}&=\frac{b}{a+b+c}\ve{AB}+\frac{c}{a+b+c}\ve{AC}\\
+    \ve{AH}&=\frac{1}{\tan A \tan C}\ve{AB}+\frac{1}{\tan A\tan B}\ve{AC}\\
+    \ve{AG}&=\dfrac{1}{3}\ve{AB}+\dfrac{1}{3}\ve{AC}
+    \end{align*}
+    
+\end{proposition}
+\begin{proof}
+    \qed
+\end{proof}
+\begin{character}[外心的性质]
+    \                     
+
+    \((1)\)锐角三角形的外心在三角形内部，直角三角形的外心在三角形斜边中点，钝角三角形的外心在三角形外部；
+
+    \((2)\)外心是三角形外接圆的圆心，且外心到三角形的三个顶点距离相等，都是外接圆的半径。
+\end{character}
+
+\begin{character}[内心的性质]
+    \
+
+    \((1)\)内心永远在三角形内部;
+
+    \((2)\)内心是三角形内切圆的圆心，且内心到三角形三边的距离相等，都是内切圆的半径；
+    
+    \((3)\)\[\ve{IA}\cdot(\he_{AB}-\he_{AC})=\ve{IB}\cdot(\he_{BA}-\he_{BC})=\ve{IC}\cdot(\he_{CA}-\he_{CB})=\lxl\]
+
+\end{character}
+
+\begin{character}[垂心的性质]
+    \ 
+
+    \((1)\)锐角三角形的垂心在三角形内部，直角三角形的垂心在直角顶点，钝角三角形的垂心在三角形外部；
+
+    \((2)\)\[\ve{HA}\cdot\ve{HB}=\ve{HB}\cdot\ve{HC}=\ve{HC}\cdot\ve{HA}\]
+
+    \((3)\)\[|AH|^2+|BC|^2=|BH|^2+|AC|^2=|CH|^2+|AB|^2\]
+
+    \((4)\) \(6\)组四点共圆
+\end{character}
+
+\begin{character}[重心的性质]
+    \
+
+    \((1)\)重心永远在三角形内部；
+
+    \((2)\)重心是中线上的三等分点；
+
+    \((3)\)\(P\)为平面内任意一点，则\(\ve{PG}=\dfrac{1}{3}\left(\ve{PA}+\ve{PB}+\ve{PC}\right)\);
+
+    \((4)\)重心坐标公式\[\left(\dfrac{x_1+x_2+x_3}{3},\dfrac{y_1+y_2+y_2}{3}\right)\]
+\end{character}
+
+
+\begin{lemma}在\(\tri ABC\)中，\(O\)为外心，\(H\)为垂心，则
+    \begin{equation}
+        \ve{OH}=\ve{OA}+\ve{OB}+\ve{OC}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    过\(C\)做\(DC\perp BC\),\(D\)是\(DC\)与外接圆的交点。
+    则\(AH\pll DC\),由圆内接四边形对角互补可知\(DA\perp AB\)，即\(CH\pll AD\).
+    故四边形\(AHCD\)是平行四边形，故\(\ve{AH}=\ve{CD}\)
+
+    又\(BC\perp CD\),故\(BD\)是直径，即\(BOD\)共线且\(\ve{OD}=\ve{BO}\).
+    因此\begin{align*}
+        \ve{OH}&=\ve{OA}+\ve{AH}\\
+               &=\ve{OA}+\ve{CD}\\
+               &=\ve{OA}+\ve{OC}+\ve{DO}\\
+               &=\ve{OA}+\ve{OC}+\ve{OB}
+    \end{align*}
+
+
+    \qed
+\end{proof}
+\begin{theorem}[Euler线]
+    三角形的外心、重心、垂心总是共线的，且重心为外心垂心连线的三等分点中靠近外心的那个。 
+\end{theorem}
+\begin{proof}
+    由于对于任意\(P\)有\(\ve{PG}=\dfrac{1}{3}\left(\ve{PA}+\ve{PB}+\ve{PC}\right)\)，取\(P\)为外心\(O\),
+    则有\[\ve{OG}=\frac{1}{3}\left(\ve{OA}+\ve{OB}+\ve{OC}\right)=\dfrac{1}{3}\ve{OH}\]
+    \qed
+\end{proof}
+
+
+\begin{example}
+    在\(\tri ABC\)所在的平面内，\(E\)为一个定点，存在动点\(P\)满足下列条件，问\(P\)轨迹一定过什么心？
+
+    \((1)\)\[\ve{EP}=\ve{EA}+\lambda\left(\ve{AB}+\ve{AC}\right)\]
+
+    \((2)\)\[\ve{EP}=\ve{EA}+\lambda\left(\frac{\ve{AB}}{|AB|}+\frac{\ve{AC}}{|AC|}\right)\]
+
+    \((3)\)\[\ve{EP}=\ve{EA}+\lambda\left(\frac{\ve{AB}}{|AB|\sin B}+\frac{\ve{AC}}{|AC|\sin C}\right)\]
+
+    \((4)\)\[\ve{EP}=\ve{EA}+\lambda\left(\frac{\ve{AB}}{|AB|\cos B}+\frac{\ve{AC}}{|AC|\cos C}\right)\]
+
+    \((5)\)\[\ve{EP}=\dfrac{\ve{EB}+\ve{EC}}{2}+\lambda\left(\frac{\ve{AB}}{|AB|\cos B}+\frac{\ve{AC}}{|AC|\cos C}\right)\]
+\end{example}
+\begin{jie}
+    \qed
+\end{jie}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage

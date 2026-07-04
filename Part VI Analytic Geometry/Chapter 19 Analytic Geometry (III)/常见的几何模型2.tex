@@ -1,0 +1,196 @@
+\section{常见的几何模型（二）}
+\subsection{联立？不联立？}
+\clearpage
+\subsection{齐次化处理}
+\clearpage
+\subsection{定点与定直线}
+\clearpage
+\subsection{常见轨迹概览}
+\begin{theorem}[Apollonius圆]
+    平面内到两定点  $A, B  $的距离比值为一定值 $ \lambda(\lambda \neq 1) $ 的点 $ P$  的轨迹是一个圆，此圆被称为Apollonius（阿波罗尼斯）圆，俗称“阿氏圆”。
+
+    若\(AB=2m\)，则此圆的半径为
+    \begin{equation}
+        r=\left|2m\frac{\lambda}{\lambda^2-1}\right|
+    \end{equation}
+\end{theorem}
+\begin{example}
+    $\triangle A B C $中,$A B=2, A C=2 B C $， 求$ S_{\triangle A B C}$ 的最大值 。
+\end{example}
+
+\begin{theorem}[Monge圆]
+    设椭圆的方程为 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1 (a > b > 0)$，则椭圆两条互相垂直的切线 $PA, PB$ 交点 $P$ 的轨迹圆，其方程是 $x^2 + y^2 = a^2 + b^2$。
+\end{theorem}
+
+
+\begin{proof}
+若切线 $PA, PB$ 斜率均存在且不为 $0$ 时，可设 $P(x_0, y_0) (x_0 \neq \pm a, y_0 \neq \pm b)$，过 $P$ 的椭圆的切线方程为 $y - y_0 = k(x - x_0) (k \neq 0)$，则
+\[
+\begin{cases}
+y - y_0 = k(x - x_0) \\
+\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1
+\end{cases}
+\Rightarrow (a^2k^2 + b^2)x^2 - 2ka^2(kx_0 - y_0)x + a^2(kx_0 - y_0)^2 - a^2b^2 = 0
+\]
+由 $\Delta = 0$，得 $(x_0^2 - a^2)k^2 - 2x_0y_0k + y_0^2 - b^2 = 0 (x_0^2 - a^2 \neq 0)$
+
+$\therefore k_{PA}, k_{PB}$ 是这个关于 $k$ 的一元二次方程的两个根，$\therefore k_{PA} \cdot k_{PB} = \dfrac{y_0^2 - b^2}{x_0^2 - a^2}$
+
+由已知 $PA \perp PB$，$\therefore k_{PA} \cdot k_{PB} = -1$，$\therefore \dfrac{y_0^2 - b^2}{x_0^2 - a^2} = -1$，$\therefore x_0^2 + y_0^2 = a^2 + b^2$，
+
+$\therefore$ 点 $P$ 的坐标满足方程 $x^2 + y^2 = a^2 + b^2$。
+
+切线 $PA, PB$ 有斜率不存在或斜率为 $0$ 时，可得点 $P$ 的坐标为 $(\pm a, b)$ 或 $(a, \pm b)$，此时点 $P$ 也在圆 $x^2 + y^2 = a^2 + b^2$ 上。
+
+综上所述：椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 (a > b > 0)$ 两条互相垂直的切线 $PA, PB$ 交点 $P$ 的轨迹方程为 $x^2 + y^2 = a^2 + b^2$。
+\end{proof}
+\begin{corollary}
+    过圆 $x^2 + y^2 = a^2 + b^2$ 上的动点 $P$ 作椭圆 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1 (a > b > 0)$ 的两条切线 $PA, PB$，则 $PA \perp PB$。
+\end{corollary}
+\begin{proof}
+    设 $P(x_0, y_0)$，则由
+\[
+\begin{cases}
+\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1 \\
+y - y_0 = k(x - x_0)
+\end{cases}
+\]
+得
+\[
+(a^2k^2 + b^2)x^2 - 2ka^2(kx_0 - y_0)x + a^2(kx_0 - y_0)^2 - a^2b^2 = 0
+\]
+由其判别式的值为 $0$，得 $(x_0^2 - a^2)k^2 - 2x_0y_0k + y_0^2 - b^2 = 0 (x_0^2 - a^2 \neq 0)$
+
+$\because k_{PA}, k_{PB}$ 是这个关于 $k$ 的一元二次方程的两个根，
+\[
+\therefore k_{PA} \cdot k_{PB} = \frac{y_0^2 - b^2}{x_0^2 - a^2}, \quad x_0^2 + y_0^2 = a^2 + b^2, \quad k_{PA} \cdot k_{PB} = \frac{y_0^2 - b^2}{x_0^2 - a^2} = -1, \quad PA \perp PB.
+\]
+
+\end{proof}
+\begin{corollary}设 $P$ 为蒙日圆 $O: x^2 + y^2 = a^2 + b^2$ 上任一点，过点 $P$ 作椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ 的两条切线，切点分别为 $A, B$，若 $O$ 为原点，则：
+
+    \begin{enumerate}
+        \setlength{\itemsep}{-\itemsep}
+        \item 直线 $OP, AB$ 的斜率乘积为定值 $k_{OP} \cdot k_{AB} = -\dfrac{b^2}{a^2}$；
+        \item 直线 $OA, PA$ 的斜率乘积为定值 $k_{OA} \cdot k_{PA} = -\dfrac{b^2}{a^2}$；
+        \item 直线 $OA, OB$ 的斜率乘积为定值 $k_{OA} \cdot k_{OB} = -\dfrac{b^4}{a^4}$;
+        \item \(PO\)平分切点弦\(AB\)。
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+
+ 设 $P(x_0, y_0)$，则容易求得切点弦所在的直线 $AB$ 的方程为 $\dfrac{x_0 x}{a^2} + \dfrac{y_0 y}{b^2} = 1$，其斜率为 $k_{AB} = -\dfrac{b^2 x_0}{a^2 y_0}$。而 $k_{OP} = \dfrac{y_0}{x_0}$，所以 $k_{OP} \cdot k_{AB} = -\dfrac{b^2}{a^2}$。
+设 $A(x_1, y_1)$，则容易求得切线 $AP$ 的方程为 $\dfrac{x_1 x}{a^2} + \dfrac{y_1 y}{b^2} = 1$，其斜率为 $k_{AP} = \dfrac{b^2 x_1}{a^2 y_1}$。而 $k_{OA} = \dfrac{y_1}{x_1}$，所以 $k_{OA} \cdot k_{PA} = -\dfrac{b^2}{a^2}$。
+
+    
+    \[
+    \begin{cases} 
+    k_{OA} \cdot k_{PA} = -\dfrac{b^2}{a^2} \\
+    k_{OB} \cdot k_{PB} = -\dfrac{b^2}{a^2} \\
+    k_{PA} \cdot k_{PB} = -1 
+    \end{cases}
+    \Rightarrow k_{OA} \cdot k_{OB} = -\dfrac{b^4}{a^4}.
+    \]
+
+    取\(A, B\)中点\(M\)，则\(k_{OM}k_{AB}=-\dfrac{b^2}{a^2}\)，同时有$k_{OP} \cdot k_{AB} = -\dfrac{b^2}{a^2}$。
+    故\(k_{OM}=k_{OP}\)，即\(O,M,P\)共线。
+
+
+
+\end{proof}
+\begin{corollary}
+    设 $P$ 为蒙日圆 $O: x^2 + y^2 = a^2 + b^2$ 上任一点，过点 $P$ 作椭圆 $\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 (a > b > 0)$ 的两条切线，切点分别为 $A, B$，若 $O$ 为原点，且 $O, P$ 到 $AB$ 的距离分别为 $d_1, d_2$，则 $d_1, d_2$ 乘积为定值。
+\end{corollary}
+\begin{proof}
+    设 $P(\sqrt{a^2 + b^2} \cos \theta, \sqrt{a^2 + b^2} \sin \theta)$，则直线 $AB$ 的方程为
+\[
+x b^2 \sqrt{a^2 + b^2} \cos \theta + y a^2 \sqrt{a^2 + b^2} \sin \theta - a^2 b^2 = 0
+\]
+
+则原点 $O$ 到直线 $AB$ 的距离为
+\[
+d_1 = \frac{a^2 b^2}{\sqrt{(a^2 + b^2)(a^4 \sin^2 \theta + b^4 \cos^2 \theta)}}
+\]
+
+点 $P$ 到直线 $AB$ 的距离为
+
+\begin{align*}
+    d_2 &= \frac{|b^2 (a^2 + b^2) \cos^2 \theta + a^2 (a^2 + b^2) \sin^2 \theta - a^2 b^2|}{\sqrt{(a^2 + b^2)(a^4 \sin^2 \theta + b^4 \cos^2 \theta)}}\\
+        &= \frac{a^4 \sin^2 \theta + b^4 \cos^2 \theta}{\sqrt{(a^2 + b^2)(a^4 \sin^2 \theta + b^4 \cos^2 \theta)}}\\
+        &= \sqrt{\frac{a^4 \sin^2 \theta + b^4 \cos^2 \theta}{a^2 + b^2}}
+\end{align*}
+
+
+
+因此
+\[
+d_1 d_2 = \frac{a^2 b^2}{a^2 + b^2}
+\]
+
+\end{proof}
+
+
+\begin{theorem}[椭圆的内准圆]
+    设点 $M, N$ 在椭圆 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1 (a > b > 0)$ 上，且 $OM \perp ON$，则
+\begin{enumerate}
+    \item $\dfrac{1}{|OM|^2} + \dfrac{1}{|ON|^2} = \dfrac{1}{a^2} + \dfrac{1}{b^2}$ 为定值;
+    \item  \item 圆 $x^2 + y^2 = \dfrac{a^2 b^2}{a^2 + b^2}$ 与直线 $MN$ 相切，这里的圆称为椭圆的内准圆.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+
+（这个直接图的几何关系设参数证明比较方便）
+
+设 $|OA| = m$, $|OB| = n$，$OA$ 与 $x$ 轴的夹角为 $\theta$，则 $A(m\cos\theta, m\sin\theta)$，$B\left(n\cos\left(\theta + \dfrac{\pi}{2}\right), n\sin\left(\theta + \dfrac{\pi}{2}\right)\right)$ 即 $B(-n\sin\theta, n\cos\theta)$。
+
+把 $A, B$ 代入椭圆化简得
+\[
+\dfrac{1}{m^2} = \dfrac{\cos^2\theta}{a^2} + \dfrac{\sin^2\theta}{b^2}
+\]
+\[
+\dfrac{1}{n^2} = \dfrac{\sin^2\theta}{a^2} + \dfrac{\cos^2\theta}{b^2}
+\]
+故
+\[
+\dfrac{1}{|OA|^2} + \dfrac{1}{|OB|^2} = \dfrac{1}{m^2} + \dfrac{1}{n^2} = \dfrac{1}{a^2} + \dfrac{1}{b^2}
+\]
+
+（运用等面积代换）
+
+\[
+S_{\triangle OAB} = \dfrac{|OA||OB|}{2} = \dfrac{|AB||OH|}{2}
+\]
+
+又
+\[
+\dfrac{1}{|OA|^2} + \dfrac{1}{|OB|^2} = \dfrac{|OA|^2 + |OB|^2}{|OA|^2|OB|^2} = \dfrac{|AB|^2}{|OA|^2|OB|^2} \quad \text{同乘} \dfrac{|OH|^2}{4}
+\]
+
+得
+\[
+\dfrac{1}{|OA|^2} + \dfrac{1}{|OB|^2} = \dfrac{(S_{\triangle OAB})^2}{|OH|^2 (S_{\triangle OAB})^2} = \dfrac{1}{|OH|^2} = \dfrac{a^2 + b^2}{a^2 b^2}
+\]
+
+故 $|OH| = \dfrac{ab}{\sqrt{a^2 + b^2}}$ 则点 $H$ 的轨迹为 $x^2 + y^2 = \dfrac{a^2 b^2}{a^2 + b^2}$
+
+
+\end{proof}
+
+
+
+
+\clearpage
+
+
+\review
+
+\clearpage
+
+\hw
+\begin{homework}
+    
+\end{homework}
+\clearpage
+
+

@@ -1,0 +1,117 @@
+
+\section{函数的基本概念}
+\subsection{函数的基本概念及其三要素}
+
+\begin{definition}[函数，定义域，值域]
+    \ 
+\index{函数}
+    函数$f(\cdot)$是指从非空数集$A$到非空数集$B$的映射$f$.
+    其中映射的定义域$A$称为函数$f(\cdot)$的定义域，映射的值域称作$f(\cdot)$的值域.
+\end{definition}
+\begin{zhu}
+    在映射中，我们可能会经常研究一些不满的映射，这意味着陪域和值域不等。
+    而在函数中，我们会默认把陪域缩小到值域的大小。当然这种问题是很trivial的，不必纠结。
+\end{zhu}
+我们在初中阶段学习了一次函数，二次函数和反比例函数。现在我们用定义域和值域的语言来叙述一下。
+\begin{example}
+    \ 
+
+    $(1)$一次函数
+
+    一次函数$f(x)=kx+b(k\neq0)$的定义域和值域都是$\mathbb{R}$，也常写作$(-\infty,+\infty)$.
+    
+    $(2)$二次函数
+
+    $(3)$反比例函数
+\end{example}
+原像构成的集合，更功利化的一句话总结是：“定义域是x的取值范围”。这本身是句废话，但是在复合函数的地方我们会看到这句话的用处。
+
+一些常见的限制：根号，分式，零次幂，对数
+\begin{definition}[复合函数]
+    \index{复合函数}
+\end{definition}
+\begin{example}
+    \ 
+
+    $f(x+1)$的定义域是$[-2,3]$,求$f(2x-1)$定义域
+\end{example}
+
+省流版：定义域是x的取值范围，括号的范围不变。
+\begin{exercise}
+    \ 
+
+    \begin{enumerate}
+        \item  $f(x)$的定义域是$[-2,3]$,则试求函数\[y=\frac{f(2x+1)}{x+1}\]的定义域。
+       \item \[y=\frac{ax+1}{\sqrt{ax^2-4ax+3}}\]的定义域是$\mathbb{R}$，求$a$的取值范围。
+    \end{enumerate}
+   
+\end{exercise}
+
+
+
+更深刻地理解对应法则，本质上对应法则就是一个“机器”
+
+\begin{example}
+    \begin{equation}
+        f(x)=x^2+2x-3
+    \end{equation}
+    \begin{equation}
+        f(t)=t^2+2t-3
+    \end{equation}
+\end{example}
+\begin{example}
+    \[f(x+2)=x^2+5x+7,\text{求}f(x)\]
+\end{example}
+\begin{exercise}
+    \[f(\sqrt{x}+4)=x+8\sqrt{x},\text{求}f(x)\]
+\end{exercise}
+\begin{example}
+    \[f(x)-2f(\frac{1}{x})=3x+2,\text{求}f(x)\]
+\end{example}
+\begin{exercise}
+    \[f(x)-2f(-x)=3x+2,\text{求}f(x)\]
+\end{exercise}
+
+\begin{comment}
+    $-x$复合两次变回$x$，$\dfrac{1}{x}$也是
+\end{comment}
+\begin{example}复合函数值域
+
+    \[y=2-\frac{3}{\sqrt{x-2}+1}\]
+\end{example}
+\begin{jie}
+    求定义域$x \in [2,+\infty)$,然后一步步把整个函数拆解开来
+    \begin{align*}
+        u&=\sqrt{x-2},u\in[0,+\infty)\\
+        v&=u+1,v\in[1,+\infty) \\
+        w&=\frac{1}{v},w\in(0,1]\\
+        y&=2-3w,y\in [-1,2)
+    \end{align*}
+\end{jie}
+\begin{example}
+    \[y=6x+1+\sqrt{3x-1}\]
+\end{example}
+ 形式：一次式＋根号下一次式
+\begin{example}
+    \[y=\frac{x^2-x}{x^2-x+1}\] 
+\end{example}
+ 形式：分式
+\begin{exercise}
+    \[y=\frac{ax+b}{cx+d}\]
+\end{exercise}
+
+\clearpage
+\subsection{表示法与分段函数}
+表示法：列表图像解析式，不是万能的，图像注意联系三要素
+
+\begin{example}
+\begin{numcases}{f(x)=}
+    x^2-2           &   $x>0$ \notag
+\\  \pi             &   $x=0$\notag
+\\  0             &   $x<0$\notag
+\end{numcases}
+求$f(f(f(1)))=$
+\end{example}
+
+
+

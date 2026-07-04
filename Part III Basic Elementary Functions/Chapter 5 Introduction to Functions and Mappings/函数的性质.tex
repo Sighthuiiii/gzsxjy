@@ -1,0 +1,215 @@
+\section{函数的性质}
+\subsection{单调性与极值、最值}
+定义
+\\设$f(x)$定义域为$I$，区间$D\subseteq I$.若满足
+\[\forall x_1,x_2 \in D,\text{当}x_1<x_2,\text{总有}f(x_1)<f(x_2)\]
+则称$f(x)$在$D$上单调递增，当在$I$上递增的时候，称f(x)为增函数。\index{函数!单调性}
+\\相似地可以定义单调递减和减函数。在一般书写的时候，会使用$\nearrow \searrow $来代替“单调增”“单调减”
+\\不难发现，递增和递减本质上就是初中所说的“y随x的增大而增大”“y随x的增大而减小”
+\\由此，我们可以重新描述初中学习过的一次函数，二次函数，反比例函数的单调性（证明间后）
+\\值得注意的是，单调性是函数的局部性质，应当建立在某个具体的区间上，否则就是耍流氓。
+
+思考：如何书写$f(x)=\frac{1}{x}$的单调性？
+\\单调区间书写法：和，“，”
+\subsubsection*{证明}
+最起初的证明方法：根据定义，分四步：取值作差变形定号
+\\举例：一次函数，二次函数，三次函数，反比例函数(平移后)，$\sqrt{x}$
+\\等价描述
+\[f(x)\nearrow (x\in D)\Leftrightarrow \forall x_1\neq x_2\in D,\frac{f(x_1)-f(x_2)}{x_1-x_2}>0\]
+\[f(x)\searrow (x\in D)\Leftrightarrow \forall x_1\neq x_2\in D,\frac{f(x_1)-f(x_2)}{x_1-x_2}<0\]
+练习1 探究\[y=x+\frac{1}{x}\]的单调性
+\\练习2 探究\[y=\sqrt{3x-2}+\sqrt{x-4}\]的单调性
+\subsubsection*{复合函数}
+\[y=g[f(x)]\]
+\[y=g(u)\]
+\[u=f(x)\]
+“同增异减”
+\\如果复合了更多层呢？
+
+\[f(x)\nearrow ,g(x)\nearrow \Rightarrow f(x)+g(x)\nearrow \]
+\[f(x) \Rightarrow kf(x)\]
+
+\begin{exercise}
+    \ 
+
+    \begin{enumerate}
+        \item \[f(x)=\frac{1}{1+x^2}\]
+        \item \[f(x)=\sqrt{x^2-5x+6}\]
+        \item \[f(x)=x-\frac{1}{x}\]
+    \end{enumerate}
+\end{exercise}
+
+
+
+\begin{example}
+    已知$f(x)$在$\mathbb{R} $上$\nearrow$，且$f(1-a)<f(a-3)$，求$a$的取值。
+
+\end{example}
+\begin{exercise}
+    已知$f(x)$在$(-1,1)$上$\searrow$ ，且$f(1-a)<f(2a-1)$，求$a$取值。
+\end{exercise}
+
+
+
+\begin{exercise}
+    \[f(x)\nearrow (x \in \mathbb{R}),a,b\in\mathbb{R},a+b\leq 0\]则
+\\A.$f(a)+f(b)\leq -f(a)+f(b)$
+\\B.$f(a)+f(b)\leq f(-a)+f(-b)$
+\\C.$f(a)+f(b)\geq -f(a)+f(b)$
+\\D.$f(a)+f(b)\geq f(-a)+f(-b)$
+\end{exercise}
+
+
+
+\begin{example}
+    \begin{numcases}{f(x)=}
+        \frac{1}{x}     &   $x<a$ \notag
+    \\  |x+2|           &   $x\geq a$\notag
+    \end{numcases}
+    若$f(x)$在$(-\infty,a)\searrow $,在$(a,+\infty)\nearrow $，求$a$取值。
+\end{example}
+
+
+\begin{exercise}
+    \begin{numcases}{f(x)=}
+        -x^2-ax-5            &   $x\leq 1$ \notag
+    \\  \frac{a}{x}          &   $x>1 a$\notag
+    \end{numcases}
+    若$f(x)$在$\mathbb{R}$单调增，求$a$取值 
+\end{exercise}
+
+
+
+\clearpage
+\subsection{奇偶性}
+\begin{definition}
+    \ 
+
+    设函数$f(x),x\in I$，若$\forall x\in I$,都有$-x \in I$,且$f(-x)=f(x)$,则称$f(x)$为偶函数
+
+    设函数$f(x),x\in I$，若$\forall x\in I$,都有$-x \in I$,且$f(-x)=-f(x)$,则称$f(x)$为奇函数
+
+\end{definition}
+
+奇偶性是函数的整体性质，判断奇偶性前，应该先明确定义域，若定义域不关于原点对称，则函数必然为非奇非偶函数。
+
+思考：奇函数一定有$f(0)=0$吗
+
+\begin{theorem}
+    任意定义在关于原点对称的区间上的函数$f$都可以写作一个奇函数和一个偶函数的和.
+\end{theorem}
+\begin{proof}
+    \[f(x)=\frac{f(x)-f(-x)}{2}+\frac{f(x)+f(-x)}{2}\]
+\end{proof}
+\subsubsection*{常见奇偶性总结}
+1.基本初等函数：
+\\奇函数：
+\\偶函数：
+\\2.四则运算引发的奇偶性：
+\\偶$\times$偶=
+\\偶+偶=
+\\奇$\times$奇=
+\\奇+奇=
+\\偶$\times$奇=
+\\偶函数上下平移，奇函数的若干倍
+\\3.复合函数
+\\$y=f(g(x))$,$g(x)$为偶函数
+\\$y=f(g(x))$,$f(x),g(x)$为奇函数
+\\4.构造
+\[y=f(x)+f(-x)\]
+\[y=f(x)-f(-x)\]
+\\5.奇函数的反函数
+
+其实，定义最最最有用
+\begin{exercise}判断下列函数奇偶性：
+    \begin{enumerate}
+        \item \[f(x)=\frac{\sqrt{1-x^2}}{2-|x+2|}\]
+    \end{enumerate}
+    
+\end{exercise}
+\begin{example}
+    \ 
+    
+    \begin{enumerate}
+        \item $f(x),x\in \mathbb{R}$是奇函数，$x>0,f(x)=x^3+x+1$，求$f(x)$；
+        \item $f(x),x\in \mathbb{R}$是偶函数，$x<0,f(x)=x^2+6x+1$，求$f(x)$。
+    \end{enumerate}
+\end{example}
+例3 
+\\“求谁设谁”
+
+
+奇偶性与单调性的关系？借助草图解题
+
+例4 $f(x),x\in [-2,2]$是奇函数，在$[-2,2]$单调减，若$f(m)+f(m-1)>0$,求m的值
+
+变式 $f(x),x\in [-2,2]$是偶函数，在$[-2,2]$单调减，若$f(1-m)<f(m)$,求m的值
+
+\subsubsection*{与对称性的联系}
+$f(x+a)$为奇函数/偶函数
+\clearpage
+
+\subsection{周期性}
+\begin{definition}
+    
+\end{definition}
+\begin{theorem}
+    
+\end{theorem}
+周期性：$\forall x,f(x)=f(x+T)$
+\[f(x)=-f(x+a)\]
+\[f(x)=\pm\frac{m}{f(x+a)}\] 
+\[f(x)+f(x+a)=c\]
+\[f(x+a)=\frac{1+f(x)}{1-f(x)}\]
+\begin{example}
+    
+\end{example}
+\clearpage
+
+
+
+\subsection{反函数简介}
+定义域值域互换，关于$y=x$对称，单调性相同，思考只有什么特征的映射才有反函数？（双射）
+
+
+\clearpage
+\subsection{函数的变换}
+\begin{know}
+    \item 函数的平移变换
+    \item 函数的对称变换
+    \item 函数的伸缩变换
+    \item 绝对值函数
+    \item \(\max\)与\(\min\)函数
+\end{know}
+$f(x)$向上下左右平移的方法：上加下减，左加右减。
+
+或者统一一下：上减下加，右减左加
+
+函数$f(x)$与$g(x)$关于关于直线$x=a$对称，则$g(x)=f(2a-x)$
+\\故$f(-x)$？
+\\函数$f(x)$与$g(x)$关于关于直线$y=b$对称，则$g(x)=-f(x)+2b$
+\\故$-f(x)$
+\\函数$f(x)$与$g(x)$关于关于点$(a,b)$对称，则$g(x)=-f(2a-x)+2b$
+\\故$-f(-x)$
+\\探究$f(x)$与$f(\omega x)$
+
+\subsubsection*{函数本身的性质}
+\[f(x)+f(2a-x)=2b\]
+\[f(x)=f(2a-x)\]
+\[f(x+a)=f(x+b)\]
+\[f(x+a)+f(-x+b)=2c\]
+
+\clearpage
+\hw
+\begin{homework}
+    设$\Gamma$ 表示定义在$\mathbb{R}$上全体函数构成的集合，$S$是$\Gamma$
+    的一个子集，且$S$对函数的加法、减法、乘法封闭，$S^*$对函数的除法封闭.
+    已知$f(x)=x\in S$.
+    
+    求证：若全体偶函数构成的集合包含于$S$，则$S=\Gamma$
+\end{homework}
+\clearpage
+
+
+\clearpage
+
