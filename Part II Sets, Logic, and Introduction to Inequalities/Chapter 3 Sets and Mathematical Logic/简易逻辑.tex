@@ -1,123 +1,727 @@
 \section{简易逻辑}
-\subsection{从集合到命题}
-命题最最基础的定义是“可以判断真假的陈述句。”\index{命题}，在一定的范围内可以判定真假是判断是否是命题的核心方法。
-一个误区是所有的命题都可以写成若p则q的形式，这是不对的。实际上命题的核心形式是$x \in \mathbb{X} $,很显然元素属于集合与否是容易判断的。
-但是我们见到的大多数命题都经过了各种修饰与复合，使得看起来和集合已经没有什么关系了。
-我们最常见的两种命题就是若p则q和带有$\forall,\exists $的命题。（当然两者结合在一起也可以）
-\clearpage
-\subsection{四种命题*}
+在上一节我们学习了集合。集合语言回答的问题是“某个对象是否属于某个集合”，这一节我们要学习的逻辑语言，回答的是“某个说法是否成立”。这两者紧密相连：判断一个说法是否成立，往往可以转化为判断某个对象是否属于某个集合。事实上，命题最本质的形式就是“$x\in X$”；我们见到的大多数命题，要么是“若$p$则$q$”的形式，要么是带有量词$\forall,\exists$的形式（两者也常常结合在一起）。
 
 \clearpage
-\subsection{充分条件，必要条件，充要条件}
-\begin{definition}
-    若“若p，则q”是真命题，则记作$p \Rightarrow q$，称p是q的充分条件\index{充分条件}，q是p的必要条件\index{必要条件}。
-反之，若“若p，则q”是假命题，则记作$p \not\Rightarrow  q$，称p不是q的充分条件，q不是p的必要条件。
+\subsection{命题与四种命题}
+\begin{know}
+    \item 命题：可以判断真假的陈述句
+    \item 论域：讨论问题时约定的对象范围
+    \item 谓词与开语句：含变量的语句$P(x)$
+    \item 命题的否定：$p$与$\neg p$一真一假
+    \item 四种命题：原命题、逆命题、否命题、逆否命题
+    \item “若$p$则$q$”的真值表与虚真论断
+    \item 原命题与逆否命题等价；反证法
+\end{know}
+
+\begin{definition}[命题]
+\index{命题}\index{真命题}\index{假命题}
+用语言、符号或式子表达的，可以判断真假的陈述句叫做命题(proposition)。判断为真的命题叫做真命题，判断为假的命题叫做假命题。
 \end{definition}
 
-思考：充分一词很容易理解，那么必要一词如何理解？即q不成立，p一定不成立。请用一些具体的命题来验证一下这个说法。
-\begin{definition}
-    若满足$p \Rightarrow q$且$q \Rightarrow p$，则称p与q互为充分必要条件，简称充要条件。
-记作
-\[p \Leftrightarrow q\]
-\end{definition}
+初中时我们已经见过很多命题，例如“对顶角相等”（真命题）、“同位角相等”（假命题，还要补上“两直线平行”才是真命题）。要注意，命题必须是陈述句，而且必须能够判断真假。
 
-\begin{exercise}
-    请写出“p是q的充分不必要条件”和“p是q的必要不充分条件”的等价命题。
-\end{exercise}
-
-
-与集合的关系
-\\若$p \Rightarrow q$，其中$p$是$x \in \mathbb{P} $，$q$是$x \in \mathbb{Q} $,
-则$\mathbb{P} $与$\mathbb{Q} $的关系是？（$\mathbb{P}\subseteq\mathbb{Q} $）简记为：在小范围里一定在大范围里
-
-例8
 \begin{example}
-    已知集合$\mathbb{P} =\{x|a-4<x<a+4\}$，$\mathbb{Q} =\{x|1<x<3\}$,“$x \in \mathbb{P} $”是“$x \in \mathbb{Q} $”
-的必要条件，则实数a的取值范围是？
+判断下列语句是否为命题；若是命题，指出其真假。
+\begin{enumerate}
+    \item $3>2$；
+    \item $7$是偶数；
+    \item $x>3$；
+    \item 平行四边形的对角线互相平分；
+    \item 请把门关上！
+    \item 你是高一的学生吗？
+\end{enumerate}
 \end{example}
-
 \begin{jie}
-    “$x \in \mathbb{P} $”是“$x \in \mathbb{Q} $”的必要条件，即“$x \in \mathbb{Q} $”是“$x \in \mathbb{P} $”
-的充分条件，根据上文可得$\mathbb{Q} \subseteq \mathbb{P} $.列出不等式组
+    $(1)$是命题，真命题。
 
-\[  
-    \left\{
-    \begin{lgathered}
-    a-4\leq 1\\
-    3\leq a+4\\
-    \end{lgathered}
-    \right.
+    $(2)$是命题，假命题，因为$7$不能被$2$整除。
+
+    $(3)$不是命题。$x$的取值没有给定：当$x=5$时它是真的，当$x=1$时它是假的，因而无法判断真假。
+
+    $(4)$是命题，真命题，这是初中平面几何中的定理。
+
+    $(5)$不是命题。祈使句表示请求，不涉及真假。
+
+    $(6)$不是命题。疑问句表示提问，也不涉及真假。
+\end{jie}
+
+为什么“$x>3$”无法判断真假？问题出在变量$x$上——我们不知道$x$可以在什么范围内取值。为此引入论域的概念。
+
+\begin{definition}[论域]
+\index{论域}
+讨论某个数学问题时，研究对象可能取到的值组成的集合叫做该问题的论域(universe of discourse)。例如讨论自然数的性质时，论域常取$\mathbb{N}$；讨论实数问题（如不等式）时，论域常取$\mathbb{R}$。确定了论域，含有变量的语句才有可能判断真假。
+\end{definition}
+
+\begin{att}
+在集合一章中我们说过，“元素是否属于某个集合”是最容易判断真假的事情。事实上，任何命题的真假最终都可以归结为“某个对象是否属于某个集合”：
+\[
+5\text{是奇数} \iff 5\in \{\text{奇数}\},\qquad
+7\text{是偶数} \iff 7\in \{2,4,6,\ldots\}
 \]
-最后解得$a\in [-1,5]$
-\end{jie}
-\begin{exercise}
-    判断一下说法的正误：
-    \begin{enumerate}
-        \item $a=b$是$ac=bc$的充分不必要条件；
-        \item $\frac{1}{a}>\frac{1}{b}$是$a<b$的既不充分也不必要条件；
-        \item $a\neq 0$是$ab \neq 0$的必要不充分条件；
-        \item $a>b>0$是$a^n>b^n(n\in \mathbb{N}\text{且}n\leq2)$的充要条件。
-    \end{enumerate}
-\end{exercise}
-\begin{exercise}
-    已知条件p:$|x-1|\leq 2$，条件q:$x>a$，且满足q是p的必要不充分条件，则a取值为？
-\end{exercise}
+反过来，“$a\in A$”本身就是一个命题：当$a$确实是集合$A$的元素时它为真，否则为假。因此，集合语言与逻辑语言是相通的——判断命题真假，本质上就是在判断元素与集合的属于关系。
+\end{att}
 
-\subsection{全称量词、存在量词与命题的否定}
-\begin{definition}
-    在逻辑中，诸如“所有的”，“任意一个”的短语叫做全称量词\index{全称量词}，用记号$\forall$表示；
-同理，诸如“存在”“至少一个”的短语叫做存在量词（特称量词）\index{存在量词}，用记号$\exists$表示。记作
-\[\forall x\in M,P(x).\exists x\in M,P(x).\]
-其含义也可以看做是
-\[\forall x\in M,x\in \{x|P(x)\}.\exists x\in M,x\in \{x|P(x)\}.\]
+\begin{definition}[谓词与开语句]
+\index{谓词}\index{开语句}
+含有变量的语句叫做开语句(open sentence)，也叫做命题函数，通常记作$P(x)$，读作“$x$满足性质$P$”。这里的$x$叫做自由变量。开语句本身不是命题；但当把$x$替换成论域中的具体对象后，它就变成了命题。
+
+在论域$U$中，使$P(x)$为真的所有$x$组成的集合
+\[\{x\in U\mid P(x)\}\]
+叫做$P$在$U$上的真集。判断$P(a)$的真假，就是判断$a$是否属于$P$的真集。
 \end{definition}
-翻译条件
-\begin{example}
-    $\forall x\in A,\exists y\in B : y=x$的等价条件是？
-\end{example}
 
+\begin{example}
+设论域为$\mathbb{R}$，$P(x)$表示“$x^2=1$”。
+\begin{enumerate}
+    \item 指出$P(1)$、$P(2)$的真假；
+    \item 写出$P$的真集。
+\end{enumerate}
+\end{example}
 \begin{jie}
-    \[A\subseteq B\]
+    $(1)$因为$1^2=1$成立，所以$P(1)$是真命题；因为$2^2=4\neq 1$，所以$P(2)$是假命题。
+
+    $(2)$$P$的真集为$\{x\in\mathbb{R}\mid x^2=1\}=\{-1,1\}$。$P(a)$为真当且仅当$a\in\{-1,1\}$。
 \end{jie}
 
+\begin{exercise}
+设论域为$\mathbb{Z}$，$P(x)$表示“$x$是偶数”。指出下列命题的真假，并写出$P$的真集。
+\begin{enumerate}
+    \item $P(4)$；
+    \item $P(7)$；
+    \item $P(-2)$；
+    \item “若$x$是偶数，则$x^2$也是偶数”是否对论域中所有的$x$都成立？
+\end{enumerate}
+\end{exercise}
+\textbf{答案：}$(1)$真；$(2)$假；$(3)$真；$(4)$成立（偶数的平方仍是偶数）。$P$的真集是$\{\ldots,-4,-2,0,2,4,\ldots\}$，即全体偶数。
 
-“你有多大脚，我有多大鞋。”
+\begin{definition}[命题的否定]
+\index{命题的否定}\index{排中律}
+把命题$p$的判断完全取反，得到的命题叫做$p$的否定，记作$\neg p$，读作“非$p$”，有时也把$\neg p$叫做$p$的非命题。由排中律，$p$与$\neg p$有且仅有一个为真：$p$为真时$\neg p$为假，$p$为假时$\neg p$为真。
+\end{definition}
 
+\begin{example}
+写出下列命题的否定，并判断其真假。
+\begin{enumerate}
+    \item $p$：$5$是偶数；
+    \item $p$：对顶角相等；
+    \item $p$：$x>3$（此时约定$x=1$）。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$$\neg p$：$5$不是偶数，是真命题。
 
-练习：借助函数图像，使用最大值与最小值的语言翻译下列叙述。
-\\$\forall x_1 \in D_1,\forall x_2 \in D_2,f(x_1)>g(x_2).\Leftrightarrow$
-\\$\exists x_1 \in D_1,\exists x_2 \in D_2,f(x_1)>g(x_2).\Leftrightarrow$
-\\$\forall x_1 \in D_1,\exists x_2 \in D_2,f(x_1)>g(x_2).\Leftrightarrow$
-\\$\exists x_1 \in D_1,\forall x_2 \in D_2,f(x_1)>g(x_2).\Leftrightarrow$
-\\$\forall x \in D$,使得$f(x)>g(x)$恒成立$\Leftrightarrow$
-\\$\exists x \in D$,使得$f(x)>g(x)$可以成立$\Leftrightarrow$
-\\$\forall x_1 \in D_1,\exists x_2 \in D_2,f(x_1)=g(x_2).\Leftrightarrow$
-\\$\exists x_1 \in D_1,\exists x_2 \in D_2,f(x_1)=g(x_2).\Leftrightarrow$
+    $(2)$$\neg p$：对顶角不相等，是假命题。
 
+    $(3)$$\neg p$：$x\leq 3$，是真命题。注意“$x>3$”的否定是“$x\leq 3$”而不是“$x<3$”——“恰好等于$3$”的情形也要否定掉。
+\end{jie}
 
-首先应当引入一个概念——排中律，即一个命题与它的否定应该有且仅有一个成立，
-有时候我们也成命题的否定为原命题的“非命题”，这写都意味着原命题与命题的否定必然是一对一错的关系。
-而我们主要研究的就是带有量词的。
-\begin{theorem}
-    随着$\neg$划过整个命题，命题中的“$\exists$”和$“\forall$”互换，最终停留在表达式前面。
+数学中很多命题都可以写成“若$p$则$q$”的形式，例如：
+\begin{itemize}
+    \item 若$x=1$，则$x^2=1$；
+    \item 若两个三角形全等，则它们的面积相等；
+    \item 若$x>2$，则$x^2>4$。
+\end{itemize}
+以“若$p$则$q$”为原命题，可以派生三个新的命题。
+
+\begin{definition}[四种命题]
+\index{四种命题}\index{原命题}\index{逆命题}\index{否命题}\index{逆否命题}
+对于命题“若$p$则$q$”（称为原命题）：
+\begin{itemize}
+    \item 逆命题：交换条件与结论，得“若$q$则$p$”；
+    \item 否命题：同时否定条件与结论，得“若非$p$则非$q$”；
+    \item 逆否命题：交换并同时否定条件与结论，得“若非$q$则非$p$”。
+\end{itemize}
+\end{definition}
+
+四种命题之间的关系可以用下面的图表示：
+\[
+\begin{array}{ccc}
+\text{原命题：若}p\text{则}q & \xleftrightarrow{\ \text{互逆}\ } & \text{逆命题：若}q\text{则}p\\[6pt]
+\multicolumn{3}{c}{\updownarrow\quad\text{互否}\quad\updownarrow}\\[6pt]
+\text{否命题：若非}p\text{则非}q & \xleftrightarrow{\ \text{互逆}\ } & \text{逆否命题：若非}q\text{则非}p
+\end{array}
+\]
+其中处于对角线位置的两个命题（原命题与逆否命题、逆命题与否命题）互为逆否命题。
+
+\begin{example}
+写出命题“若$x^2=4$，则$x=2$”的逆命题、否命题、逆否命题，并判断它们的真假。
+\end{example}
+\begin{jie}
+    原命题：若$x^2=4$，则$x=2$，是假命题，因为$x=-2$时$x^2=4$但$x\neq 2$。
+
+    逆命题：若$x=2$，则$x^2=4$，是真命题。
+
+    否命题：若$x^2\neq 4$，则$x\neq 2$，是真命题。由$x^2\neq 4$知$x\neq\pm 2$，当然$x\neq 2$。
+
+    逆否命题：若$x\neq 2$，则$x^2\neq 4$，是假命题，因为$x=-2\neq 2$但$x^2=4$。
+\end{jie}
+
+\begin{zhu}
+这个例子说明：原命题与逆否命题同真同假（本例中同为假），逆命题与否命题同真同假（本例中同为真）；而原命题与逆命题、原命题与否命题之间，真假没有必然的联系。至于为什么会这样，见下面的真值表。
+\end{zhu}
+
+要严格判断“若$p$则$q$”这类命题的真假，需要使用真值表。
+
+\begin{definition}[“若$p$则$q$”的真值表]
+\index{真值表}\index{推出}
+“若$p$则$q$”的真假，完全由下表（真值表）决定：
+\[
+\begin{array}{c|c||c}
+p & q & \text{“若}p\text{则}q\text{”}\\\hline
+\text{真} & \text{真} & \text{真}\\
+\text{真} & \text{假} & \text{假}\\
+\text{假} & \text{真} & \text{真}\\
+\text{假} & \text{假} & \text{真}
+\end{array}
+\]
+当“若$p$则$q$”为真命题时，我们说由$p$可以推出$q$，记作$p\Rightarrow q$；当它为假命题时，记作$p\not\Rightarrow q$。
+\end{definition}
+
+\begin{zhu}
+真值表表明：“若$p$则$q$”只有在$p$真、$q$假时才为假，其余三种情形都为真。特别是，当$p$为假时，无论$q$是真是假，“若$p$则$q$”一律为真，这就是虚真论断（也叫空真论断）。
+
+举两个例子感受一下：
+\begin{itemize}
+    \item “若$2>3$，则$2+1>3+1$”是真命题。虽然前提$2>3$是假的，整个命题仍然被视为真。
+    \item “若$x\in\varnothing$，则$x$是质数”是真命题。因为空集中没有任何元素，这个命题不存在反例。
+\end{itemize}
+直观地说，要否定“若$p$则$q$”，只需找到“$p$真而$q$假”的反例；$p$为假时根本不存在反例，所以命题自动为真。
+\end{zhu}
+
+\begin{theorem}[原命题与逆否命题等价]
+\index{逆否命题}
+原命题“若$p$则$q$”与逆否命题“若非$q$则非$p$”同真同假；逆命题“若$q$则$p$”与否命题“若非$p$则非$q$”也同真同假。
+\end{theorem}
+\begin{proof}
+把两个命题的真值表并排比较：
+\[
+\begin{array}{c|c||c|c}
+p & q & \text{“若}p\text{则}q\text{”} & \text{“若非}q\text{则非}p\text{”}\\\hline
+\text{真} & \text{真} & \text{真} & \text{真}\\
+\text{真} & \text{假} & \text{假} & \text{假}\\
+\text{假} & \text{真} & \text{真} & \text{真}\\
+\text{假} & \text{假} & \text{真} & \text{真}
+\end{array}
+\]
+两列完全相同，故原命题与逆否命题同真同假。把$p,q$互换，就得到逆命题与否命题同真同假。
+\qed
+\end{proof}
+
+\begin{zhu}
+要证明“若$p$则$q$”，除了直接证明（假设$p$成立，推出$q$成立）之外，还有两种常用的间接方法：
+\begin{itemize}
+    \item 证明逆否命题：从“非$q$”出发，一步步推出“非$p$”。由于原命题与逆否命题等价，这就证明了原命题。
+    \item 反证法：从“$p$成立且$q$不成立”出发，推出一个矛盾。矛盾说明“$p$真而$q$假”不可能出现，从而“若$p$则$q$”为真。
+\end{itemize}
+两者的联系与区别：反证法推出的矛盾如果恰好是“$p$不成立”，那么它实际上就是在证明逆否命题；但反证法更加灵活——它不要求矛盾一定是否定$p$，推出任何矛盾（如$0=1$，或与已知定理冲突）都可以。可以认为“证明逆否命题”是“反证法”的一种特殊情形。
+\end{zhu}
+
+\begin{example}
+用反证法证明：若整数$a,b$的乘积$ab$是奇数，则$a,b$都是奇数。
+\end{example}
+\begin{proof}
+假设结论不成立，即$a,b$中至少有一个是偶数。若$a$是偶数，则$ab$能被$2$整除，是偶数；若$b$是偶数同理。总之$ab$是偶数，这与“$ab$是奇数”矛盾。因此假设不成立，$a,b$都是奇数。
+\qed
+\end{proof}
+
+\begin{exercise}
+用反证法证明：若整数$x$的平方$x^2$是偶数，则$x$是偶数。
+\end{exercise}
+\begin{hint}
+假设$x$是奇数，利用“奇数的平方仍是奇数”（可由$(2k+1)^2=4k^2+4k+1$看出）推出矛盾。
+\end{hint}
+
+\begin{exercise}
+写出命题“若两个三角形全等，则它们的面积相等”的逆命题、否命题、逆否命题，并判断它们的真假。
+\end{exercise}
+\textbf{答案：}原命题真；逆命题“若面积相等则全等”假（等底等高的两个不同三角形面积相等但未必全等）；否命题“若不全等则面积不相等”假（同上反例）；逆否命题“若面积不相等则不全等”真。
+
+\clearpage
+\subsection{充分条件、必要条件、充要条件}
+\begin{know}
+    \item 充分条件：$p\Rightarrow q$时，$p$是$q$的充分条件
+    \item 必要条件：$p\Rightarrow q$时，$q$是$p$的必要条件
+    \item 充要条件：$p\Rightarrow q$且$q\Rightarrow p$，记作$p\Leftrightarrow q$
+    \item 与集合的联系：$p\Rightarrow q\iff P\subseteq Q$，小范围推大范围
+    \item 充分不必要、必要不充分、充要、既不充分也不必要
+\end{know}
+
+上一节我们用“推出”刻画了“若$p$则$q$”为真。本节研究“推出”关系中最常用的一对概念：充分条件与必要条件。
+
+\begin{definition}[充分条件与必要条件]
+\index{充分条件}\index{必要条件}
+若“若$p$则$q$”是真命题，即$p\Rightarrow q$，则称$p$是$q$的充分条件，同时称$q$是$p$的必要条件。
+反之，若“若$p$则$q$”是假命题，即$p\not\Rightarrow q$，则称$p$不是$q$的充分条件，$q$也不是$p$的必要条件。
+\end{definition}
+
+\begin{zhu}
+为什么叫“充分”和“必要”？
+\begin{itemize}
+    \item 充分：只要$p$成立，就足以（充分地）保证$q$成立，所以对$q$来说$p$是“充分的”。
+    \item 必要：如果没有$q$，就一定没有$p$（因为$p$成立必有$q$成立）。换句话说，$q$是$p$成立时必不可少的条件。
+\end{itemize}
+例如由“$x>2$”可以推出“$x>1$”，所以“$x>2$”是“$x>1$”的充分条件，而“$x>1$”是“$x>2$”的必要条件。
+\end{zhu}
+
+\begin{definition}[充要条件]
+\index{充要条件}
+若$p\Rightarrow q$且$q\Rightarrow p$，则称$p$与$q$互为充分必要条件，简称充要条件，记作
+\[p\Leftrightarrow q\]
+此时$p$与$q$同真同假，在推理中可以互相替代。
+\end{definition}
+
+一般地，$p$对$q$的关系有且只有以下四种：
+\begin{itemize}
+    \item $p\Rightarrow q$且$q\not\Rightarrow p$：$p$是$q$的充分不必要条件；
+    \item $p\not\Rightarrow q$且$q\Rightarrow p$：$p$是$q$的必要不充分条件；
+    \item $p\Leftrightarrow q$：$p$是$q$的充要条件；
+    \item $p\not\Rightarrow q$且$q\not\Rightarrow p$：$p$是$q$的既不充分也不必要条件。
+\end{itemize}
+
+\begin{exercise}
+请写出“$p$是$q$的充分不必要条件”和“$p$是$q$的必要不充分条件”的等价说法（即以“$q$是$p$的……”的形式表述）。
+\end{exercise}
+\textbf{答案：}“$p$是$q$的充分不必要条件”等价于“$q$是$p$的必要不充分条件”；“$p$是$q$的必要不充分条件”等价于“$q$是$p$的充分不必要条件”。一般地，把$p,q$互换、“充分”“必要”互换，说法仍然成立。
+
+充分条件与必要条件可以很直观地用集合语言来理解。若$p$表示“$x\in P$”，$q$表示“$x\in Q$”，则
+\[p\Rightarrow q \iff P\subseteq Q\]
+即“若$x\in P$则$x\in Q$”对所有$x$成立，当且仅当$P$是$Q$的子集。于是：
+\begin{itemize}
+    \item $P\subsetneqq Q$：$p$是$q$的充分不必要条件；
+    \item $P\supsetneqq Q$：$p$是$q$的必要不充分条件；
+    \item $P=Q$：$p$是$q$的充要条件；
+    \item $P,Q$互不包含：$p$是$q$的既不充分也不必要条件。
+\end{itemize}
+简记口诀：小范围是大范围的充分条件，大范围是小范围的必要条件。
+
+\begin{example}
+已知集合$P=\{x\mid a-4<x<a+4\}$，$Q=\{x\mid 1<x<3\}$，“$x\in P$”是“$x\in Q$”的必要条件，求实数$a$的取值范围。
+\end{example}
+\begin{jie}
+“$x\in P$”是“$x\in Q$”的必要条件，即“$x\in Q$”能推出“$x\in P$”，所以$Q\subseteq P$。由此列出不等式组
+\[
+\left\{\begin{lgathered}
+a-4\leq 1\\
+3\leq a+4
+\end{lgathered}\right.
+\]
+解得$a\in[-1,5]$。
+\end{jie}
+
+\begin{example}
+判断下列各题中$p$是$q$的什么条件：
+\begin{enumerate}
+    \item $p$：$x>2$，$q$：$x>1$；
+    \item $p$：四边形是矩形，$q$：四边形是平行四边形；
+    \item $p$：$\triangle ABC$中$\angle A=\angle B$，$q$：$\triangle ABC$中$AC=BC$。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$由$x>2$可得$x>1$，反之不成立，所以$p$是$q$的充分不必要条件。
+
+    $(2)$矩形一定是平行四边形，平行四边形不一定是矩形，所以$p$是$q$的充分不必要条件。
+
+    $(3)$由等角对等边，$\angle A=\angle B$可推出$AC=BC$；反之由等边对等角，$AC=BC$也可推出$\angle A=\angle B$。所以$p$是$q$的充要条件。
+\end{jie}
+
+\begin{exercise}
+判断下列说法的正误：
+\begin{enumerate}
+    \item $a=b$是$ac=bc$的充分不必要条件；
+    \item $\frac{1}{a}>\frac{1}{b}$是$a<b$的既不充分也不必要条件；
+    \item $a\neq 0$是$ab\neq 0$的必要不充分条件；
+    \item $a>b>0$是$a^n>b^n$（$n\in\mathbb{N}$且$n\leq 2$）的充要条件。
+\end{enumerate}
+\end{exercise}
+\textbf{答案：}$(1)$正确。$a=b\Rightarrow ac=bc$；但由$ac=bc$推不出$a=b$（如$c=0$时$1\cdot 0=2\cdot 0$）。
+$(2)$正确。例如$a=2,b=-1$时$\frac{1}{a}>\frac{1}{b}$成立但$a<b$不成立；又如$a=-1,b=1$时$a<b$成立但$\frac{1}{a}>\frac{1}{b}$不成立，故两边都不能推出。
+$(3)$正确。$ab\neq 0\Rightarrow a\neq 0$；但$a\neq 0$推不出$ab\neq 0$（如$b=0$）。
+$(4)$错误。“$a>b>0$”能推出“$a^n>b^n$”，但反过来不行：例如$n=1$时$a=0,b=-1$满足$a>b$却不满足$a>b>0$。事实上“$a>b>0$”只是“$a^n>b^n$（$n=1,2$）”的充分不必要条件。
+
+\begin{exercise}
+已知条件$p$：$|x-1|\leq 2$，条件$q$：$x>a$，且$q$是$p$的必要不充分条件，求$a$的取值。
+\end{exercise}
+\textbf{答案：}$p$等价于$1-2\leq x\leq 1+2$，即$x\in[-1,3]$；$q$表示$x\in(a,+\infty)$。$q$是$p$的必要不充分条件，即$p\Rightarrow q$而$q\not\Rightarrow p$，所以$[-1,3]\subseteq(a,+\infty)$，解得$a<-1$。
+
+\begin{exercise}
+求证：对实数$x,y$，“$xy=0$”是“$x=0$或$y=0$”的充要条件。
+\end{exercise}
+\textbf{证明：}必要性：若$xy=0$，由初中所学“两数乘积为$0$则至少一个为$0$”，得$x=0$或$y=0$。充分性：若$x=0$或$y=0$，显然$xy=0$。故“$xy=0$”与“$x=0$或$y=0$”互为充要条件。
+
+\clearpage
+\subsection{简单的逻辑联结词——或、且、非}
+\begin{know}
+    \item 且（$\land$）：同真才真；或（$\lor$）：一真即真；非（$\neg$）：真假互换
+    \item 用真值表判断复合命题的真假
+    \item 与集合运算的联系：$\land\iff\cap$、$\lor\iff\cup$、$\neg\iff$补集
+    \item 德摩根律：$\neg(p\land q)\iff\neg p\lor\neg q$ 等
+    \item “若$p$则$q$”的否定是“$p$且非$q$”
+\end{know}
+
+日常生活中我们常用“或”“且”“非”把几个说法连接起来，例如“他既会游泳又会跳舞”“明天下雨或刮风”。数学中把这些词叫做逻辑联结词，由它们连接成的命题叫做复合命题。
+
+\begin{definition}[逻辑联结词]
+\index{逻辑联结词}\index{且}\index{或}\index{非}
+\begin{itemize}
+    \item 且：$p$且$q$，记作$p\land q$，读作“$p$且$q$”；
+    \item 或：$p$或$q$，记作$p\lor q$，读作“$p$或$q$”；
+    \item 非：非$p$，记作$\neg p$，读作“非$p$”，也常记作$\bar{p}$。
+\end{itemize}
+\end{definition}
+
+复合命题的真假由组成它的简单命题的真假决定，可以用真值表完整地列出。
+
+\begin{definition}[且、或、非的真值表]
+\index{真值表}
+\[
+\begin{array}{c|c||c|c||c}
+p & q & p\land q & p\lor q & \neg p\\\hline
+\text{真} & \text{真} & \text{真} & \text{真} & \text{假}\\
+\text{真} & \text{假} & \text{假} & \text{真} & \text{假}\\
+\text{假} & \text{真} & \text{假} & \text{真} & \text{真}\\
+\text{假} & \text{假} & \text{假} & \text{假} & \text{真}
+\end{array}
+\]
+即：$p\land q$当且仅当$p,q$都为真时为真（同真才真）；$p\lor q$当且仅当$p,q$至少一个为真时为真（一真即真）；$\neg p$与$p$真假相反。
+\end{definition}
+
+\begin{zhu}
+数学中的“或”是相容的“或”：$p\lor q$为真允许$p,q$同时为真。这与日常语言中“要么……要么……”（排斥的“或”）不同，后者在数学中要专门说明，例如“$p$或$q$，但$p,q$不同时成立”。例如命题“$x>1$或$x<3$”对任意实数$x$都为真。
+\end{zhu}
+
+\begin{example}
+判断下列复合命题的真假：
+\begin{enumerate}
+    \item $3>2$且$3$是奇数；
+    \item $3<2$或$3$是奇数；
+    \item 非（$3<2$）；
+    \item $x^2=1$或$x^2=4$，其中$x=1$。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$两个简单命题都真，“同真才真”，故为真命题。
+
+    $(2)$“$3<2$”假，“$3$是奇数”真，“一真即真”，故为真命题。
+
+    $(3)$“$3<2$”是假命题，所以它的否定是真命题。
+
+    $(4)$$x=1$时“$x^2=1$”真、“$x^2=4$”假，“一真即真”，故为真命题。
+\end{jie}
+
+逻辑联结词与集合运算有着漂亮的对应。设论域为$U$，$A,B\subseteq U$，则对任意$x\in U$：
+\begin{align*}
+    x\in A\text{且}x\in B&\iff x\in A\cap B\\
+    x\in A\text{或}x\in B&\iff x\in A\cup B\\
+    \neg(x\in A)&\iff x\in \complement_{U}A
+\end{align*}
+也就是说，把“且”换成交集、把“或”换成并集、把“非”换成补集，逻辑语言就变成了集合语言。反过来，前面学过的“推出”对应“子集”，“充要条件”对应“集合相等”，在这一对应下完全吻合。
+
+\begin{example}
+用区间表示下列语句中$x$的范围，并说明用到了哪些逻辑联结词。
+\begin{enumerate}
+    \item $x\geq -1$且$x\leq 3$；
+    \item $x<-1$或$x>3$；
+    \item 非（$x\geq -1$）。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$“且”对应交集，$x\in[-1,3]$。
+
+    $(2)$“或”对应并集，$x\in(-\infty,-1)\cup(3,+\infty)$。
+
+    $(3)$“非”对应补集：非（$x\geq -1$）即$x<-1$，$x\in(-\infty,-1)$。
+\end{jie}
+
+\begin{theorem}[德摩根律]
+\index{德摩根律}
+对任意命题$p,q$：
+\[\neg(p\land q)\iff\neg p\lor\neg q,\qquad \neg(p\lor q)\iff\neg p\land\neg q\]
+\end{theorem}
+\begin{proof}
+用真值表验证第一条：
+\[
+\begin{array}{c|c||c|c|c}
+p & q & p\land q & \neg(p\land q) & \neg p\lor\neg q\\\hline
+\text{真} & \text{真} & \text{真} & \text{假} & \text{假}\\
+\text{真} & \text{假} & \text{假} & \text{真} & \text{真}\\
+\text{假} & \text{真} & \text{假} & \text{真} & \text{真}\\
+\text{假} & \text{假} & \text{假} & \text{真} & \text{真}
+\end{array}
+\]
+最后两列完全相同，故$\neg(p\land q)\iff\neg p\lor\neg q$。第二条同理可证。
+\qed
+\end{proof}
+
+用自然语言说，德摩根律就是：
+\begin{itemize}
+    \item “并非（$p$且$q$）”等于“非$p$或非$q$”。例如“他既会游泳又会跳舞”的否定是“他不会游泳或不会跳舞”。
+    \item “并非（$p$或$q$）”等于“非$p$且非$q$”。例如“明天下雨或刮风”的否定是“明天不下雨且不刮风”。
+\end{itemize}
+
+类似地，用真值表还可以验证下面这些常用结论（可作为练习）：
+\begin{itemize}
+    \item 双重否定律：$\neg(\neg p)\iff p$；
+    \item 分配律：$p\land(q\lor r)\iff(p\land q)\lor(p\land r)$，$p\lor(q\land r)\iff(p\lor q)\land(p\lor r)$。
+\end{itemize}
+它们分别对应集合中的$\complement_{U}(\complement_{U}A)=A$与$A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$等公式——逻辑的“形状”和集合完全一致。
+
+\begin{exercise}
+用真值表验证双重否定律$\neg(\neg p)\iff p$，并写出“$x>3$”的否定的否定。
+\end{exercise}
+\textbf{答案：}“$x>3$”的否定是“$x\leq 3$”，再否定一次又回到“$x>3$”。
+
+在四种命题一节中我们已经认识了“若$p$则$q$”的真值表。利用“或”“非”，可以把“若$p$则$q$”改写为更简单的形式。
+
+\begin{theorem}[“若$p$则$q$”的改写]
+\index{推出}
+\[
+\text{“若}p\text{则}q\text{”}\iff \neg p\lor q
+\]
+\end{theorem}
+\begin{proof}
+用真值表验证：
+\[
+\begin{array}{c|c||c|c}
+p & q & \text{“若}p\text{则}q\text{”} & \neg p\lor q\\\hline
+\text{真} & \text{真} & \text{真} & \text{真}\\
+\text{真} & \text{假} & \text{假} & \text{假}\\
+\text{假} & \text{真} & \text{真} & \text{真}\\
+\text{假} & \text{假} & \text{真} & \text{真}
+\end{array}
+\]
+两列完全相同。
+\qed
+\end{proof}
+
+由此立刻得到“若$p$则$q$”的否定。
+
+\begin{corollary}[“若$p$则$q$”的否定]
+\index{命题的否定}
+\[
+\text{“若}p\text{则}q\text{”的否定是}\ p\land\neg q
+\]
+即“若$p$则$q$”为假，当且仅当“$p$真而$q$假”。
+\end{corollary}
+\begin{proof}
+由“若$p$则$q$”$\iff\neg p\lor q$，两边同时取否定，再用德摩根律：
+\[\neg(\text{“若}p\text{则}q\text{”})\iff\neg(\neg p\lor q)\iff p\land\neg q\]
+\qed
+\end{proof}
+
+这是最容易出错的地方，请务必注意：“若$p$则$q$”的否定是“$p$且非$q$”，而不是“若非$p$则非$q$”（那是否命题），也不是“若$p$则非$q$”（那仍是条件命题）。
+
+\begin{example}
+写出下列命题的否定：
+\begin{enumerate}
+    \item 若$x>2$，则$x^2>4$；
+    \item 若$a=b$，则$ac=bc$。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$否定：$x>2$且$x^2\leq 4$。
+
+    $(2)$否定：$a=b$且$ac\neq bc$。
+\end{jie}
+
+\begin{exercise}
+写出下列命题的否定：
+\begin{enumerate}
+    \item 若$x$是奇数，则$x^2$是奇数；
+    \item $x\geq 2$且$x\leq 5$；
+    \item $x=1$或$x=-1$。
+\end{enumerate}
+\end{exercise}
+\textbf{答案：}$(1)$“$x$是奇数且$x^2$不是奇数”；$(2)$由德摩根律，“$x<2$或$x>5$”；$(3)$由德摩根律，“$x\neq 1$且$x\neq -1$”。
+
+\clearpage
+\subsection{含有量词的命题的否定}
+\begin{know}
+    \item 全称量词$\forall$与存在量词$\exists$
+    \item 全称命题、存在命题（特称命题）
+    \item 自然语言与数学语言的互译
+    \item 含量词命题的否定：$\forall$与$\exists$互换、结论取否定、论域不变
+    \item 含量词的“若$p$则$q$”的否定为“$p$且非$q$”
+\end{know}
+
+有些命题需要对某个范围内的所有对象作出判断，例如“所有的质数都是奇数”“任意实数的平方都不小于$0$”；有些命题只需要指出某个对象的存在，例如“存在一个有理数，它的平方等于$2$”“有些整数是偶数”。为了简洁地表达这两类命题，我们引入量词。
+
+\begin{definition}[全称量词与存在量词]
+\index{全称量词}\index{存在量词}\index{全称命题}\index{存在命题}
+诸如“所有的”“任意一个”“每一个”等表示全体的短语叫做全称量词，用符号$\forall$表示；诸如“存在”“有一个”“至少有一个”等表示存在性的短语叫做存在量词（也叫特称量词），用符号$\exists$表示。
+
+含全称量词的命题叫做全称命题，形如
+\[\forall x\in M,\ P(x)\]
+表示“对$M$中任意一个$x$，$P(x)$都成立”。含存在量词的命题叫做存在命题（特称命题），形如
+\[\exists x\in M,\ P(x)\]
+表示“$M$中存在一个$x$，使得$P(x)$成立”。
+\end{definition}
+
+与集合的联系：记$P$在论域上的真集为$\{x\mid P(x)\}$，则
+\[\forall x\in M,\ P(x)\iff M\subseteq\{x\mid P(x)\},\qquad
+\exists x\in M,\ P(x)\iff M\cap\{x\mid P(x)\}\neq\varnothing\]
+即：全称命题为真，当且仅当$M$被包含在$P$的真集中；存在命题为真，当且仅当$M$与$P$的真集有公共元素。
+
+\begin{example}
+把下列自然语言改写为带量词的数学语言，并判断真假。
+\begin{enumerate}
+    \item 所有的质数都是奇数；
+    \item 有些有理数不是整数；
+    \item 任意实数的平方都是非负数；
+    \item 存在两个整数，它们的乘积等于$12$。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$$\forall x\in\{\text{质数}\}$，$x$是奇数。假命题，反例是$2$。
+
+    $(2)$$\exists x\in\mathbb{Q}$，$x\notin\mathbb{Z}$。真命题，例如$x=\frac{1}{2}$。
+
+    $(3)$$\forall x\in\mathbb{R}$，$x^2\geq 0$。真命题。
+
+    $(4)$$\exists a,b\in\mathbb{Z}$，$ab=12$。真命题，例如$a=3,b=4$。
+\end{jie}
+
+利用命题的否定，我们可以研究带量词命题的否定。看两个例子：
+\begin{itemize}
+    \item “所有的质数都是奇数”为假，要否定它，只需指出“存在一个质数不是奇数”（$2$）即可；
+    \item “存在一个实数$x$，使得$x^2=-1$”为假，要否定它，需要说明“对任意实数$x$，都有$x^2\neq -1$”。
+\end{itemize}
+由此得到：
+
+\begin{theorem}[含量词命题的否定]
+\index{命题的否定}
+\[\neg\big(\forall x\in M,\ P(x)\big)\iff\exists x\in M,\ \neg P(x)\]
+\[\neg\big(\exists x\in M,\ P(x)\big)\iff\forall x\in M,\ \neg P(x)\]
+即全称命题的否定是存在命题，存在命题的否定是全称命题，同时把结论$P(x)$改成$\neg P(x)$，而量词的范围$M$（论域）保持不变。
 \end{theorem}
 
+口诀：全称变存在，存在变全称，结论取否定，范围（论域）不能变。
+
 \begin{example}
-    \[\forall x\in M,P(x).\exists x\in M,P(x).\]
-对应的否定是
-\[\exists x\in M,\neg P(x).\forall x\in M,\neg P(x).\]
+写出下列命题的否定，并判断原命题与否定命题的真假。
+\begin{enumerate}
+    \item 所有的正方形都是平行四边形；
+    \item $\forall x\in\mathbb{R}$，$x^2>0$；
+    \item $\exists x\in\mathbb{Q}$，$x^2=2$；
+    \item $\forall x\in\mathbb{R}$，$x^2+x+1>0$。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$否定：存在一个正方形不是平行四边形。原命题真，否定假。
+
+    $(2)$否定：$\exists x\in\mathbb{R}$，$x^2\leq 0$。原命题假（$x=0$是反例），否定真。
+
+    $(3)$否定：$\forall x\in\mathbb{Q}$，$x^2\neq 2$。原命题假（$x^2=2$没有有理数解），否定真。
+
+    $(4)$否定：$\exists x\in\mathbb{R}$，$x^2+x+1\leq 0$。由配方法$x^2+x+1=\left(x+\frac{1}{2}\right)^2+\frac{3}{4}>0$，原命题真，否定假。
+\end{jie}
+
+\begin{zhu}
+注意自然语言中“都是”的否定是“不都是”（即至少有一个不是），而不是“都不是”。例如：
+\begin{itemize}
+    \item “我们班同学都是男生”的否定是“我们班同学不都是男生”（至少有一个不是男生），而不是“我们班同学都不是男生”；
+    \item “这些三角形都是等腰三角形”的否定是“这些三角形不都是等腰三角形”（至少有一个不是）。
+\end{itemize}
+写成量词形式，“$M$中所有元素都具有性质$P$”的否定是“$M$中存在一个元素不具有性质$P$”，与上面的理解完全一致。
+\end{zhu}
+
+数学中很多“若$p$则$q$”的命题其实省略了全称量词。例如“若$x>0$，则$x^2>0$”完整地写是
+\[\forall x\in\mathbb{R},\ \big(x>0\Rightarrow x^2>0\big)\]
+利用上一节的结论——“若$p$则$q$”的否定是“$p$且非$q$”——可以写出它的否定：
+\[\exists x\in\mathbb{R},\ \big(x>0\text{且}x^2\leq 0\big)\]
+即：要说明“若$x>0$则$x^2>0$”不成立，只需找到一个正数$x$，使$x^2\leq 0$。
+
+\begin{example}
+写出下列命题的否定：
+\begin{enumerate}
+    \item 若$x>1$，则$x^2>1$；
+    \item 对任意实数$x$，若$x$是整数，则$x$是有理数。
+\end{enumerate}
+\end{example}
+\begin{jie}
+    $(1)$补全量词后为$\forall x\in\mathbb{R}$，若$x>1$则$x^2>1$，否定为$\exists x\in\mathbb{R}$，$x>1$且$x^2\leq 1$。
+
+    $(2)$否定：存在实数$x$，$x$是整数且$x$不是有理数。
+\end{jie}
+
+命题中可以有多个量词。否定时按照“从外到内”的顺序，逐个把$\forall$换成$\exists$、把$\exists$换成$\forall$，最后结论取否定，例如
+\[\neg\big(\forall x\in M,\ \exists y\in N,\ P(x,y)\big)\iff\exists x\in M,\ \forall y\in N,\ \neg P(x,y)\]
+
+\begin{example}
+写出命题“$\forall x\in\mathbb{R},\ \exists y\in\mathbb{R},\ x+y=0$”的否定，并判断原命题的真假。
+\end{example}
+\begin{jie}
+否定为$\exists x\in\mathbb{R},\ \forall y\in\mathbb{R},\ x+y\neq 0$。原命题为真：对任意实数$x$，取$y=-x$就有$x+y=0$。因此它的否定为假。
+\end{jie}
+
+\begin{example}
+“你有多大脚，我有多大鞋。”若用$A$表示你所有可能的脚码组成的集合，$B$表示店里所有鞋的尺码组成的集合，这句话可以写成
+\[\forall x\in A,\ \exists y\in B,\ y=x\]
+它等价于“$A\subseteq B$”，即店里的鞋码覆盖了你所有的脚码。
 \end{example}
 
+\begin{zhu}
+写含量词命题的否定时，量词的范围（论域）绝对不能改变。例如：
+\begin{itemize}
+    \item “$\forall x>0,\ \sqrt{x}>0$”的否定是“$\exists x>0,\ \sqrt{x}\leq 0$”，而不是“$\exists x\leq 0,\ \sqrt{x}\leq 0$”——后者连$\sqrt{x}$都没有意义；
+    \item “所有的质数都是奇数”的否定是“存在一个质数不是奇数”，而不是“存在一个奇数不是质数”（这是另外一回事）。
+\end{itemize}
+先写清楚论域，再谈否定。
+\end{zhu}
 
-多个量词自然也不难，应用上一节的练习验证这个结论。
+\begin{exercise}
+设函数$f(x),g(x)$的定义域分别为$D_1,D_2$（例如初中学习过的一次函数、二次函数）。借助函数图像，用最大值、最小值或值域的语言翻译下列叙述：
+\begin{enumerate}
+    \item $\forall x_1\in D_1,\ \forall x_2\in D_2,\ f(x_1)>g(x_2)$；
+    \item $\exists x_1\in D_1,\ \exists x_2\in D_2,\ f(x_1)>g(x_2)$；
+    \item $\forall x_1\in D_1,\ \exists x_2\in D_2,\ f(x_1)>g(x_2)$；
+    \item $\exists x_1\in D_1,\ \forall x_2\in D_2,\ f(x_1)>g(x_2)$。
+\end{enumerate}
+\end{exercise}
+\textbf{答案：}$(1)$“$f$的最小值大于$g$的最大值”。当$D_1=D_2=D$时，这正是“$f(x)>g(x)$在$D$上恒成立”。
+$(2)$“$f$的最大值大于$g$的最小值”。当$D_1=D_2=D$时，这正是“$f(x)>g(x)$在$D$上能成立”。
+$(3)$“$f$的最小值大于$g$的最小值”。因为$\forall x_1$要取遍$D_1$，最难满足的是$f$取最小值时；只要$f$的最小值大于$g$的某个值即可。
+$(4)$“$f$的最大值大于$g$的最大值”。因为$\forall x_2$要取遍$D_2$，最难满足的是$g$取最大值时；只要$f$的某个值大于$g$的最大值即可。
 
-思考：全程量词和存在量词的否定的结果是彼此互换的逻辑是什么？是否可以帮助我们证明或否定一些含有量词的命题？
-
-前面量词部分的转换是容易的，重点还是后面从$P(X)$到$\neg P(x)$的做法。
-\\在前文我们提到过，逻辑用语的最本质形式是$x \in \mathbb{X} $，
-而我们要做的就是把$\in$改为$\notin$即可。相应的，也就是将$=$改为$\neq$,$>$改为$\leq$
-
-思考：若p，则q的形式的命题如何改成否定形式呢？
+\begin{exercise}
+写出下列命题的否定，并判断真假：
+\begin{enumerate}
+    \item 任意一个偶数都能表示成两个整数的和；
+    \item $\exists x\in\mathbb{R}$，$x^2-2x+3<0$；
+    \item 所有的三角形都不是直角三角形；
+    \item 存在两个无理数，它们的和是有理数。
+\end{enumerate}
+\end{exercise}
+\textbf{答案：}$(1)$否定：存在一个偶数不能表示成两个整数的和，假命题（任意整数$n=n+0$均可），故原命题为真。
+$(2)$否定：$\forall x\in\mathbb{R}$，$x^2-2x+3\geq 0$，真命题（$x^2-2x+3=(x-1)^2+2>0$），故原命题为假。
+$(3)$否定：存在一个三角形是直角三角形，真命题，故原命题为假。
+$(4)$否定：任意两个无理数之和都不是有理数，假命题（如$\sqrt{2}$与$-\sqrt{2}$之和为$0$），故原命题为真。
 
 \clearpage
-
+\hw
+\begin{homework}
+\ 
+\begin{enumerate}
+    \item 判断下列语句是否为命题；若是命题，指出真假：
+    \begin{enumerate}
+        \item $2$是最小的质数；
+        \item $x^2-1=0$；
+        \item 明天会下雨吗？
+        \item 两个奇数的和是偶数。
+    \end{enumerate}
+    \item 写出命题“若$x>1$，则$x^2>1$”的逆命题、否命题、逆否命题，并判断它们的真假。
+    \item 用反证法证明：若两个整数的和是偶数，则这两个整数的奇偶性相同。
+    \item 设$p$：$|x-1|<3$，$q$：$x^2-4x-5<0$。判断$p$是$q$的什么条件。
+    \item 写出下列命题的否定：
+    \begin{enumerate}
+        \item 若$x$是有理数，则$x$是实数；
+        \item $\forall x\in\mathbb{R}$，$|x|\geq 0$；
+        \item 存在一个整数，它既不是奇数也不是偶数；
+        \item $x>0$或$x<-1$。
+    \end{enumerate}
+    \item 已知命题$p$：$\forall x\in[1,2]$，$x^2-a\geq 0$；命题$q$：$\exists x\in\mathbb{R}$，$x^2+2ax+2-a=0$。
+    \begin{enumerate}
+        \item 写出$\neg p$、$\neg q$；
+        \item 分别求使$p$、$q$为真时$a$的取值范围。
+    \end{enumerate}
+\end{enumerate}
+\end{homework}
