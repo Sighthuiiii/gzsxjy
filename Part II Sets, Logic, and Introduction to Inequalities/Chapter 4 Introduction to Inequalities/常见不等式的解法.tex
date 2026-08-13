@@ -112,6 +112,34 @@
     总之最小值为 \(\min\{a,b\}(n-m)\)。
   \end{enumerate}
 \end{jie}
+含参数的绝对值不等式，关键是先判断参数对“右侧符号”或“零点大小关系”的影响，再分段讨论。
+\begin{example}[含参数的绝对值不等式]
+  解关于 \(x\) 的不等式：
+  \[
+  (1)\quad |x-a|<2a;\qquad
+  (2)\quad |x+1|+|x-2|\le a.
+  \]
+\end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 当 \(a\le0\) 时，左侧非负而右侧非正，不等式无解；当 \(a>0\) 时，由 \(|x-a|<2a\) 得
+    \[
+    -2a<x-a<2a,
+    \]
+    即 \(a<x<3a\)。
+    \item \(|x+1|+|x-2|\) 表示点 \(x\) 到 \(-1\) 与 \(2\) 的距离之和，其最小值为 \(3\)，在 \(-1\le x\le2\) 时取得。因此：
+    当 \(a<3\) 时无解；当 \(a=3\) 时解集为 \([-1,2]\)；当 \(a>3\) 时，由图象对称性得
+    \[
+    \frac{1-a}{2}\le x\le\frac{a+1}{2}.
+    \]
+  \end{enumerate}
+\end{jie}
+\begin{exercise}
+  解关于 \(x\) 的不等式 \(|x+2|-|x-1|\le a\)。
+\end{exercise}
+\begin{hint}
+  令 \(h(x)=|x+2|-|x-1|\)，其值域为 \([-3,3]\)。当 \(a<-3\) 时无解；当 \(-3\le a<3\) 时解集为 \((-\infty,\frac{a-1}{2}]\)；当 \(a\ge3\) 时解集为 \(\mathbb R\)。
+\end{hint}
 
 \begin{proposition}[绝对值之和的最小值]\label{prop:绝对值和最小值}
   设 \(a_1\le a_2\le\cdots\le a_n\)，记
@@ -207,9 +235,50 @@
     \item 三角不等式：\(d(x,y)\le d(x,z)+d(z,y)\)。
   \end{enumerate}
 \end{axiom}
+这三条公理来自我们对“距离”最朴素的期待：距离不能是负数，从甲到乙与从乙到甲一样远，以及“三角形任意两边之和大于第三边”。在实数轴上，取
+\[
+d(x,y)=|x-y|
+\]
+就是最自然的距离；在平面 \(\mathbb R^2\) 上，两点 \(P=(x_1,y_1),Q=(x_2,y_2)\) 的通常距离是欧氏距离
+\[
+d_2(P,Q)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.
+\]
+欧氏距离的非负性、对称性是显然的；其三角不等式正是平面上“两边之和大于第三边”的解析表达。
 \begin{corollary}
-  在 \(\mathbb R\) 上定义 \(d(x,y)=|x-y|\)，则 \(d\) 满足上述三条，因而 \((\mathbb R,d)\) 是距离空间。
+  在 \(\mathbb R\) 上定义 \(d(x,y)=|x-y|\)，则 \(d\) 满足上述三条，因而 \((\mathbb R,d)\) 是距离空间。在 \(\mathbb R^2\) 上定义 \(d_2\)，同样得到距离空间。
 \end{corollary}
+同一集合上可以定义不同的距离。例如在 \(\mathbb R^2\) 上，除欧氏距离外还可以有
+\[
+d_1(P,Q)=|x_1-x_2|+|y_1-y_2|,
+\qquad
+d_\infty(P,Q)=\max\{|x_1-x_2|,|y_1-y_2|\}.
+\]
+\(d_1\) 常称为“曼哈顿距离”或“出租车距离”，\(d_\infty\) 称为“切比雪夫距离”。
+\begin{example}
+  证明 \(\mathbb R^2\) 上的 \(d_1\) 与 \(d_\infty\) 都满足距离公理。
+\end{example}
+\begin{proof}
+  非负性与对称性显然。设 \(R=(z_1,z_2)\)。对于 \(d_1\)，由实数绝对值的三角不等式
+  \[
+  \begin{aligned}
+  d_1(P,Q)&=|x_1-x_2|+|y_1-y_2|\\
+  &\le |x_1-z_1|+|z_1-x_2|+|y_1-z_2|+|z_2-y_2|\\
+  &=d_1(P,R)+d_1(R,Q).
+  \end{aligned}
+  \]
+  对于 \(d_\infty\)，因为
+  \[
+  |x_1-x_2|\le |x_1-z_1|+|z_1-x_2|\le d_\infty(P,R)+d_\infty(R,Q),
+  \]
+  且对 \(y\) 也有同样不等式，故两者最大值也满足
+  \[
+  d_\infty(P,Q)\le d_\infty(P,R)+d_\infty(R,Q).
+  \]
+  因此 \(d_1,d_\infty\) 都是 \(\mathbb R^2\) 上的距离。
+\end{proof}
+\begin{zhu}
+  把“距离”抽象为公理系统的做法由法国数学家 Fréchet 在 1906 年前后系统提出。这样的抽象使收敛、连续、完备性等概念不再依赖具体图形，而是可以在函数空间、序列空间等对象上统一处理。
+\end{zhu}
 
 \subsection{零点分段法}
 当不等式中同时出现多个绝对值时，通常先求出各绝对值内表达式的零点。这些零点把数轴分成若干区间；在每一个区间上，各绝对值的符号固定，于是可以分段去掉绝对值，把原不等式化为不含绝对值的不等式，最后把各区间内得到的解合并。
@@ -313,6 +382,34 @@
 \begin{hint}
   答案：\((-\infty,-2)\cup(3,+\infty)\)；\([-\frac12,1]\)；无解。
 \end{hint}
+当不等式形如 \(|f(x)|>|g(x)|\) 时，两边都非负，平方不会产生增根方向的错误：
+\[
+|f(x)|>|g(x)|\iff [f(x)]^2>[g(x)]^2\iff [f(x)-g(x)][f(x)+g(x)]>0.
+\]
+\begin{example}[二次绝对值与一次绝对值的大小比较]
+  解不等式
+  \[
+  |x^2-2x|>|x|.
+  \]
+\end{example}
+\begin{jie}
+  两边平方得
+  \[
+  (x^2-2x)^2>x^2
+  \iff (x^2-3x)(x^2-x)>0
+  \iff x^2(x-1)(x-3)>0.
+  \]
+  当 \(x=0,1,3\) 时取等号，其余区间由数轴标根法判定。解集为
+  \[
+  (-\infty,0)\cup(0,1)\cup(3,+\infty).
+  \]
+\end{jie}
+\begin{exercise}
+  解不等式 \(|x^2-3x+2|>|x-1|\)。
+\end{exercise}
+\begin{hint}
+  两边平方并分解，可得 \((x-1)^3(x-3)>0\)，注意 \(x=1\) 不满足。解集为 \((-\infty,1)\cup(3,+\infty)\)。
+\end{hint}
 
 解分式不等式的关键步骤是“移项通分”，把一侧化为 \(0\)，再把商的正负转化为分子、分母乘积的正负。
 \begin{definition}[分式不等式]\index{不等式!分式不等式}
@@ -382,7 +479,13 @@
   (x-x_1)^{r_1}(x-x_2)^{r_2}\cdots(x-x_n)^{r_n}>0.
   \]
 \end{definition}
-高次不等式常用“数轴标根法”（又称穿根法）求解，其步骤为：
+高次不等式常用“数轴标根法”（又称穿根法）求解。
+其原理是：设
+\[
+F(x)=(x-x_1)^{r_1}(x-x_2)^{r_2}\cdots(x-x_n)^{r_n}
+\]
+的最高次项系数为正。当 \(x\) 大于最大根 \(x_n\) 时，每个因式 \(x-x_i\) 都为正，故 \(F(x)>0\)。当 \(x\) 从右向左跨过某个奇重根 \(x_i\) 时，只有因式 \((x-x_i)^{r_i}\) 改变符号，其余因式在 \(x_i\) 附近保持不变号，所以 \(F(x)\) 的符号改变；跨过偶重根时，\((x-x_i)^{r_i}\) 不变号，所以 \(F(x)\) 的符号不变。这就是“奇穿偶不穿”的根据。
+其步骤为：
 \begin{enumerate}
   \item 把不等式化为最高次项系数为正的因式乘积与 \(0\) 比较；
   \item 在数轴上标出所有根 \(x_1,x_2,\dots,x_n\)；
@@ -482,28 +585,69 @@
   \end{enumerate}
 \end{jie}
 
-\begin{exercise}
-  解下列不等式：
-  \begin{enumerate}
-    \item \(\sqrt{x+1}+\sqrt{x-2}\ge 3\)；
-    \item \(\sqrt{2x-1}+\sqrt{x+1}\ge 3\)；
-    \item \(\sqrt{3-x}+\sqrt{x+1}\ge 2\)；
-    \item \(\sqrt{x^2-1}+\sqrt{x-1}\ge 2\)。
-  \end{enumerate}
-\end{exercise}
-\begin{hint}
-  前三题答案依次为：\([3,+\infty)\)；\([29-6\sqrt{21},+\infty)\)；\([-1,3]\)。第 \((4)\) 题可令 \(t=\sqrt{x-1}\ge 0\)，化为 \(t(\sqrt{t^2+2}+1)\ge 2\)，由左侧随 \(t\) 单调递增可确定唯一临界点。
-\end{hint}
+\begin{example}
+  解不等式
+  \[
+  \sqrt{x^2-1}+\sqrt{x-1}\ge 2.
+  \]
+\end{example}
+\begin{analyse}
+  根号内出现二次项时，先由两个根式同时有意义确定定义域，再通过换元或平方化为一元问题。本题换元后左侧单调递增，可用“单调函数”观点处理。
+\end{analyse}
+\begin{jie}
+  定义域为 \(x\ge 1\)。令 \(t=\sqrt{x-1}\ge 0\)，则 \(x=t^2+1\)，且
+  \[
+  \sqrt{x^2-1}=\sqrt{(t^2+1)^2-1}=\sqrt{t^2(t^2+2)}=t\sqrt{t^2+2}.
+  \]
+  原不等式化为
+  \[
+  t(\sqrt{t^2+2}+1)\ge 2.
+  \]
+  设 \(g(t)=t(\sqrt{t^2+2}+1)\)。当 \(0\le s<t\) 时，\(\sqrt{t^2+2}>\sqrt{s^2+2}\)，故
+  \[
+  g(t)-g(s)=(t-s)(\sqrt{t^2+2}+1)+s(\sqrt{t^2+2}-\sqrt{s^2+2})>0,
+  \]
+  所以 \(g(t)\) 在 \([0,+\infty)\) 上严格递增。又 \(g(0)=0<2\)，\(g(1)=\sqrt3+1>2\)，故方程 \(g(t)=2\) 在 \((0,1)\) 内有唯一实根 \(t_0\)。于是原不等式等价于 \(t\ge t_0\)，即
+  \[
+  x=t^2+1\ge t_0^2+1.
+  \]
+  数值上 \(t_0\approx0.767\)，故解集约为 \([1.588,+\infty)\)。
+\end{jie}
+\begin{zhu}
+  本题若直接把两边平方，会得到四次不等式，根并不容易显式写出；换元后利用单调性只需说明“唯一临界点”的存在即可。
+\end{zhu}
 
-\begin{exercise}
+\begin{example}
   讨论关于 \(x\) 的不等式
   \[
   \sqrt{x-a}+\sqrt{x+2}\ge 3
   \]
   的解集。
-\end{exercise}
-\begin{hint}
-  先由定义域和两边平方讨论。答案为
+\end{example}
+\begin{analyse}
+  定义域为 \(x\ge\max\{a,-2\}\)。平方一次后会出现 \(\sqrt{(x-a)(x+2)}\ge c-x\)，需按 \(c-x\) 的符号分类；最后再与定义域取交。
+\end{analyse}
+\begin{jie}
+  令 \(c=\dfrac{a+7}{2}\)，\(\beta=\dfrac{a^2+22a+49}{36}\)，定义域为 \(x\ge\alpha=\max\{a,-2\}\)。
+  两边平方一次得
+  \[
+  \sqrt{(x-a)(x+2)}\ge c-x.
+  \]
+  当 \(x>c\) 时，右边为负，不等式自动成立；当 \(x\le c\) 时，两边再平方得
+  \[
+  (x-a)(x+2)\ge(c-x)^2.
+  \]
+  展开整理后 \(x^2\) 项相消，得 \(9x\ge 2a+c^2\)，即 \(x\ge\beta\)。
+  注意到
+  \[
+  \beta-c=\frac{(a+11)(a-7)}{36}.
+  \]
+  \begin{enumerate}
+    \item 当 \(a<-11\) 时，\(c<\alpha=-2\)，定义域整体落在 \(x>c\)，解集为 \([-2,+\infty)\)；
+    \item 当 \(-11\le a<7\) 时，\(\beta\le c\) 且 \(\beta\ge\alpha\)，解集为 \([\beta,+\infty)\)；
+    \item 当 \(a\ge 7\) 时，\(\beta\ge c\) 且 \(c<\alpha=a\)，定义域整体落在 \(x>c\)，解集为 \([a,+\infty)\)。
+  \end{enumerate}
+  综合得
   \[
   \begin{cases}
     x\ge -2,& a\le -11,\\[2pt]
@@ -511,6 +655,18 @@
     x\ge a,& a\ge 7.
   \end{cases}
   \]
+\end{jie}
+
+\begin{exercise}
+  解下列不等式：
+  \[
+  (1)\quad \sqrt{x+1}+\sqrt{x-2}\ge 3;\qquad
+  (2)\quad \sqrt{2x-1}+\sqrt{x+1}\ge 3;\qquad
+  (3)\quad \sqrt{3-x}+\sqrt{x+1}\ge 2.
+  \]
+\end{exercise}
+\begin{hint}
+  答案依次为：\([3,+\infty)\)；\([29-6\sqrt{21},+\infty)\)；\([-1,3]\)。
 \end{hint}
 
 \clearpage
