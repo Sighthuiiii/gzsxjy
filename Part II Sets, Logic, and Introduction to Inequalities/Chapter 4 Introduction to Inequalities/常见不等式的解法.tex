@@ -1,41 +1,516 @@
 \section{常见不等式的解法}
-\subsection{解绝对值不等式}
-零点分段法
-\begin{example}
-    用零点分段法解下列绝对值不等式。
+\begin{know}
+  \item \textbf{绝对值不等式的性质与零点分段法}
+  \item \textbf{一元二次不等式的图象解法}
+  \item \textbf{分式不等式的移项通分}
+  \item \textbf{高次不等式的数轴标根法}
+  \item \textbf{无理不等式的定义域与平方法}
+\end{know}
 
-    $(1)\quad|2x+1|\leq 3$
+\subsection{绝对值不等式}
+绝对值是初中已经接触过的概念，这里先给出精确的定义。
+\begin{definition}[绝对值]\label{def:绝对值}\index{绝对值}
+  设 \(a\in\mathbb R\)，规定
+  \[
+  |a|=
+  \begin{cases}
+    a,&a\ge 0,\\
+    -a,&a<0.
+  \end{cases}
+  \]
+\end{definition}
+由定义立得：\(|a|\ge 0\)，且 \(|a|=0\) 当且仅当 \(a=0\)。在数轴上，\(|x-a|\) 表示点 \(x\) 与点 \(a\) 之间的距离。
 
-    $(2)\quad|x-1|+|x+1|>4$
+\begin{theorem}[绝对值不等式]\index{不等式!绝对值不等式}
+  设 \(a,b,a_1,a_2,\dots,a_n\in\mathbb R\)，则
+  \[
+  \left||a|-|b|\right|\le |a\pm b|\le |a|+|b|,
+  \]
+  并且
+  \[
+  \left|\sum_{i=1}^{n}a_i\right|\le\sum_{i=1}^{n}|a_i|.
+  \]
+\end{theorem}
+\begin{proof}
+  由定义有 \(-|a|\le a\le |a|\)，\(-|b|\le b\le |b|\)。两式相加得
+  \[
+  -(|a|+|b|)\le a+b\le |a|+|b|,
+  \]
+  即 \(|a+b|\le |a|+|b|\)。用 \(-b\) 代替 \(b\)，得 \(|a-b|\le |a|+|b|\)。
+  另一方面，
+  \[
+  |a|=|(a+b)+(-b)|\le |a+b|+|b|,
+  \]
+  故 \(|a|-|b|\le |a+b|\)；交换 \(a,b\) 又得 \(|b|-|a|\le |a+b|\)。因此
+  \(\left||a|-|b|\right|\le |a+b|\)。同理可证 \(|a-b|\) 的情形。
+  对于一般有限和，用数学归纳法：\(n=1\) 时显然；假设 \(n\) 时成立，则
+  \[
+  \left|\sum_{i=1}^{n+1}a_i\right|
+  \le \left|\sum_{i=1}^{n}a_i\right|+|a_{n+1}|
+  \le \sum_{i=1}^{n}|a_i|+|a_{n+1}|,
+  \]
+  归纳完成。
+\end{proof}
 
-    $(3)\quad|x+3|-|2x+1|>-4$
+\begin{corollary}
+  \begin{enumerate}
+    \item \(|a+b|=|a|+|b|\) 当且仅当 \(ab\ge 0\)；\(|a-b|=|a|+|b|\) 当且仅当 \(ab\le 0\)。
+    \item 若 \(a>0\)，则
+    \[
+    |x|<a\iff -a<x<a,\qquad |x|>a\iff x>a\ \text{或}\ x<-a.
+    \]
+  \end{enumerate}
+\end{corollary}
+
+下面的例子把绝对值看成“数轴上的距离”，这是处理 \(|x-m|\)、\(|x-n|\) 型问题的关键。
+\begin{example}[绝对值表达式的几何意义]
+  设 \(m<n\)。讨论：
+  \[
+  (1)\quad |x-m|+|x-n|;\qquad
+  (2)\quad |x-m|-|x-n|;\qquad
+  (3)\quad a|x-m|+b|x-n|\quad(a,b>0).
+  \]
 \end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 当 \(x\le m\) 时，
+    \[
+    |x-m|+|x-n|=(m-x)+(n-x)=m+n-2x;
+    \]
+    当 \(m\le x\le n\) 时，
+    \[
+    |x-m|+|x-n|=(x-m)+(n-x)=n-m;
+    \]
+    当 \(x\ge n\) 时，
+    \[
+    |x-m|+|x-n|=(x-m)+(x-n)=2x-m-n.
+    \]
+    所以最小值为 \(n-m\)，取得最小值的范围是 \(m\le x\le n\)。
+    \item 同理可得
+    \[
+    |x-m|-|x-n|=
+    \begin{cases}
+      m-n,&x\le m,\\
+      2x-m-n,&m\le x\le n,\\
+      n-m,&x\ge n.
+    \end{cases}
+    \]
+    因此其取值范围为 \([-(n-m),n-m]\)；当 \(x\le m\) 时取最小值，当 \(x\ge n\) 时取最大值。
+    \item 令 \(f(x)=a|x-m|+b|x-n|\)，则
+    \[
+    f(x)=
+    \begin{cases}
+      am+bn-(a+b)x,&x\le m,\\
+      (a-b)x-am+bn,&m\le x\le n,\\
+      (a+b)x-am-bn,&x\ge n.
+    \end{cases}
+    \]
+    左段斜率为 \(-(a+b)<0\)，右段斜率为 \(a+b>0\)，因此最小值只可能在中段端点或中段为常数时取得。中段斜率为 \(a-b\)：
+    当 \(a>b\) 时，\(f\) 在 \(x=m\) 处取最小值 \(b(n-m)\)；
+    当 \(a<b\) 时，\(f\) 在 \(x=n\) 处取最小值 \(a(n-m)\)；
+    当 \(a=b\) 时，\(f\) 在 \([m,n]\) 上恒为 \(a(n-m)\)。
+    总之最小值为 \(\min\{a,b\}(n-m)\)。
+  \end{enumerate}
+\end{jie}
+
+\begin{proposition}[绝对值之和的最小值]\label{prop:绝对值和最小值}
+  设 \(a_1\le a_2\le\cdots\le a_n\)，记
+  \[
+  f(x)=\sum_{i=1}^{n}|x-a_i|.
+  \]
+  \begin{enumerate}
+    \item 当 \(n=2k-1\)（\(k\in\mathbb N^*\)）时，\(f(x)\) 在 \(x=a_k\) 处取得最小值；
+    \item 当 \(n=2k\)（\(k\in\mathbb N^*\)）时，\(f(x)\) 在区间 \([a_k,a_{k+1}]\) 上处处取得最小值。
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  对每一对 \(a_i\) 与 \(a_{n+1-i}\)，由三角不等式
+  \[
+  |x-a_i|+|x-a_{n+1-i}|\ge a_{n+1-i}-a_i,
+  \]
+  并且当 \(x\in[a_i,a_{n+1-i}]\) 时取等号。
+  当 \(n=2k-1\) 时，把中间项 \(a_k\) 单独留下，其余 \(k-1\) 对不等式相加得
+  \[
+  f(x)\ge \sum_{i=1}^{k-1}(a_{n+1-i}-a_i)+|x-a_k|.
+  \]
+  要使右边最小，只需 \(|x-a_k|=0\)，即 \(x=a_k\)，此时每对不等式的取等条件同时满足。
+  当 \(n=2k\) 时，恰好配成 \(k\) 对，所有不等式相加得
+  \[
+  f(x)\ge \sum_{i=1}^{k}(a_{n+1-i}-a_i),
+  \]
+  且当 \(x\in[a_k,a_{k+1}]\) 时每对都取等号，故该区间上 \(f\) 恒等于右侧常数。
+\end{proof}
+
 \begin{example}
-    求下列不等式
+  求函数 \(f(x)=|x-1|+|x-2|+|x-4|\) 的最小值及取得最小值时 \(x\) 的取值。
 \end{example}
+\begin{jie}
+  这里 \(n=3\)，按升序排列为 \(a_1=1,a_2=2,a_3=4\)。由命题\ref{prop:绝对值和最小值}，当 \(x=a_2=2\) 时取得最小值：
+  \[
+  f(2)=|2-1|+|2-2|+|2-4|=3.
+  \]
+\end{jie}
+
+\begin{exercise}
+  求 \(g(x)=|x+3|+|x-1|+|x-5|+|x-9|\) 的最小值。
+\end{exercise}
+\begin{hint}
+  四个零点为 \(-3,1,5,9\)，这里 \(n=4\)。最小值为 \(16\)，取等范围是 \(1\le x\le 5\)。
+\end{hint}
+
+\begin{example}
+  已知实数 \(x,y\) 满足
+  \[
+  |x+y|+|x|+|y|=2,
+  \]
+  求 \(x,y,x+y,x-y\) 的取值范围。
+\end{example}
+\begin{analyse}
+  先按 \(x,y\) 的符号分段去掉绝对值，再在每一段内化为直线上的线段。
+\end{analyse}
+\begin{jie}
+  分四类讨论。
+  \begin{enumerate}
+    \item 当 \(x\ge 0,y\ge 0\) 时，原式化为 \(x+y+x+y=2\)，即 \(x+y=1\)，且 \(0\le x\le 1\)。此时
+    \[
+    x\in[0,1],\quad y\in[0,1],\quad x+y=1,\quad x-y=2x-1\in[-1,1].
+    \]
+    \item 当 \(x\le 0,y\le 0\) 时，原式化为 \(-(x+y)-x-y=2\)，即 \(x+y=-1\)，且 \(-1\le x\le 0\)。此时
+    \[
+    x\in[-1,0],\quad y\in[-1,0],\quad x+y=-1,\quad x-y\in[-1,1].
+    \]
+    \item 当 \(x\ge 0,y\le 0\) 时，若 \(x+y\ge 0\)，则 \(x+y+x-y=2\)，得 \(x=1\)，且 \(-1\le y\le 0\)；
+    若 \(x+y<0\)，则 \(-(x+y)+x-y=2\)，得 \(y=-1\)，且 \(0\le x\le 1\)。
+    于是此段内
+    \[
+    x\in[0,1],\quad y\in[-1,0],\quad x+y\in[-1,1],\quad x-y\in[1,2].
+    \]
+    \item 当 \(x\le 0,y\ge 0\) 时，由对称性
+    \[
+    x\in[-1,0],\quad y\in[0,1],\quad x+y\in[-1,1],\quad x-y\in[-2,-1].
+    \]
+  \end{enumerate}
+  把四类范围取并集，得
+  \[
+  x\in[-1,1],\qquad y\in[-1,1],\qquad x+y\in[-1,1],\qquad x-y\in[-2,2].
+  \]
+\end{jie}
+
+\begin{definition}[距离空间]\label{def:距离空间}\index{距离空间}
+  设 \(X\) 为非空集合，\(d:X\times X\to\mathbb R\) 为映射。若对任意 \(x,y,z\in X\)，\(d\) 满足下面的距离公理，则称 \(d\) 为 \(X\) 上的距离，\((X,d)\) 为距离空间。
+\end{definition}
+\begin{axiom}[距离公理]
+  对任意 \(x,y,z\in X\)：
+  \begin{enumerate}
+    \item 非负性：\(d(x,y)\ge 0\)，且 \(d(x,y)=0\) 当且仅当 \(x=y\)；
+    \item 对称性：\(d(x,y)=d(y,x)\)；
+    \item 三角不等式：\(d(x,y)\le d(x,z)+d(z,y)\)。
+  \end{enumerate}
+\end{axiom}
+\begin{corollary}
+  在 \(\mathbb R\) 上定义 \(d(x,y)=|x-y|\)，则 \(d\) 满足上述三条，因而 \((\mathbb R,d)\) 是距离空间。
+\end{corollary}
+
+\subsection{零点分段法}
+当不等式中同时出现多个绝对值时，通常先求出各绝对值内表达式的零点。这些零点把数轴分成若干区间；在每一个区间上，各绝对值的符号固定，于是可以分段去掉绝对值，把原不等式化为不含绝对值的不等式，最后把各区间内得到的解合并。
+\begin{example}
+  用零点分段法解下列不等式：
+  \[
+  (1)\quad |2x+1|\le 3;\qquad
+  (2)\quad |x-1|+|x+1|>4;\qquad
+  (3)\quad |x+3|-|2x+1|>-4.
+  \]
+\end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 由 \(|2x+1|\le 3\) 得 \(-3\le 2x+1\le 3\)，即 \(-4\le 2x\le 2\)，所以 \(-2\le x\le 1\)。
+    \item 零点为 \(-1,1\)。当 \(x<-1\) 时，原式化为 \((1-x)+(-x-1)>4\)，得 \(x<-2\)，与 \(x<-1\) 取交得 \(x<-2\)；
+    当 \(-1\le x\le 1\) 时，原式化为 \((1-x)+(x+1)>4\)，即 \(2>4\)，无解；
+    当 \(x>1\) 时，原式化为 \((x-1)+(x+1)>4\)，得 \(x>2\)。
+    故解集为 \((-\infty,-2)\cup(2,+\infty)\)。
+    \item 零点为 \(-3,-\frac12\)。当 \(x<-3\) 时，\((-x-3)-(-2x-1)>-4\)，得 \(x>-2\)，与 \(x<-3\) 无交；
+    当 \(-3\le x\le-\frac12\) 时，\((x+3)-(-2x-1)>-4\)，得 \(x>-\frac83\)，取交得 \(-\frac83<x\le-\frac12\)；
+    当 \(x>-\frac12\) 时，\((x+3)-(2x+1)>-4\)，得 \(x<6\)，取交得 \(-\frac12<x<6\)。
+    合并得解集为 \((-\frac83,6)\)。
+  \end{enumerate}
+\end{jie}
+
+\begin{exercise}
+  解下列绝对值不等式：
+  \begin{enumerate}
+    \item \(|2x-1|<|x+3|\)；
+    \item \(|x+1|+|x-2|\le 5\)；
+    \item \(\left||x|-1\right|\ge 2\)。
+  \end{enumerate}
+\end{exercise}
+\begin{hint}
+  答案依次为：\((-\frac23,4)\)；\([-2,3]\)；\((-\infty,-3]\cup[3,+\infty)\)。
+\end{hint}
+
 \clearpage
+
 \subsection{解一元二次不等式、分式不等式与特殊的高次不等式}
-很正常的解方程：画图
-\\带绝对值的；翻折
-\\双向不等式：多画一条线
-\begin{example}解一元二次不等式\index{不等式!一元二次不等式}
-    \[0 \leq x^2-2x-3<5\]
-\[|x^2-5x+6|<1\]
+一次不等式的解法在初中已经熟悉；这一小节把解法推广到二次、分式以及能因式分解的高次不等式。
+\begin{definition}[一元二次不等式]\index{不等式!一元二次不等式}
+  只含有一个未知数，且未知数的最高次数为 \(2\) 的整式不等式称为一元二次不等式，其标准形式为
+  \[
+  ax^2+bx+c>0\quad(\text{或 }\ge 0,<0,\le 0),\qquad a\ne 0.
+  \]
+\end{definition}
+解一元二次不等式最直接的方法是“画图”：先求二次方程 \(ax^2+bx+c=0\) 的根，再根据 \(a\) 的正负确定抛物线开口方向，最后由图象写出 \(y=ax^2+bx+c\) 位于 \(x\) 轴上方或下方时 \(x\) 的范围。
+\begin{experience}
+  解二次型不等式时有三个常用动作：
+  \begin{enumerate}
+    \item 普通一元二次不等式：画抛物线，根为分界点，开口决定正负；
+    \item 含绝对值的二次不等式：先脱绝对值（翻折图象或分类讨论），再化为一元二次不等式；
+    \item 双向不等式 \(m\le f(x)<M\)：在图象上“多画一条线”，等价于解不等式组 \(f(x)\ge m\) 且 \(f(x)<M\)。
+  \end{enumerate}
+\end{experience}
+
+\begin{example}
+  解下列不等式：
+  \[
+  (1)\quad 0\le x^2-2x-3<5;\qquad
+  (2)\quad |x^2-5x+6|<1.
+  \]
 \end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 原双向不等式等价于不等式组
+    \[
+    \begin{cases}
+      x^2-2x-3\ge 0,\\
+      x^2-2x-3<5.
+    \end{cases}
+    \]
+    第一个不等式即 \((x-3)(x+1)\ge 0\)，得 \(x\le -1\) 或 \(x\ge 3\)；
+    第二个不等式即 \(x^2-2x-8<0\)，也就是 \((x-4)(x+2)<0\)，得 \(-2<x<4\)。
+    取交集得 \((-2,-1]\cup[3,4)\)。
+    \item 由绝对值的定义，
+    \[
+    |x^2-5x+6|<1\iff -1<x^2-5x+6<1.
+    \]
+    左边 \(x^2-5x+7>0\) 恒成立（其判别式 \(\Delta=25-28=-3<0\)），右边
+    \[
+    x^2-5x+5<0
+    \]
+    的解为
+    \[
+    \frac{5-\sqrt5}{2}<x<\frac{5+\sqrt5}{2}.
+    \]
+    故解集为 \(\left(\frac{5-\sqrt5}{2},\frac{5+\sqrt5}{2}\right)\)。
+  \end{enumerate}
+\end{jie}
 
+\begin{exercise}
+  解下列不等式：
+  \begin{enumerate}
+    \item \(x^2-x-6>0\)；
+    \item \(-2x^2+x+1\ge 0\)；
+    \item \(x^2-2x+3<0\)。
+  \end{enumerate}
+\end{exercise}
+\begin{hint}
+  答案：\((-\infty,-2)\cup(3,+\infty)\)；\([-\frac12,1]\)；无解。
+\end{hint}
 
-步骤：移项通分
-\begin{example}解分式不等式\index{不等式!分式不等式}
-    \[\frac{x-1}{x+2} \leq 0\]
-\[\frac{x-1}{2x+2} \leq 2\]
+解分式不等式的关键步骤是“移项通分”，把一侧化为 \(0\)，再把商的正负转化为分子、分母乘积的正负。
+\begin{definition}[分式不等式]\index{不等式!分式不等式}
+  分母中含有未知数的不等式称为分式不等式。
+\end{definition}
+设 \(f(x),g(x)\) 为整式，则
+\[
+\frac{f(x)}{g(x)}>0\iff f(x)g(x)>0,
+\]
+而
+\[
+\frac{f(x)}{g(x)}\ge 0\iff
+\begin{cases}
+  f(x)g(x)\ge 0,\\
+  g(x)\ne 0.
+\end{cases}
+\]
+注意：不能随意用 \(g(x)\) 去乘两边，因为 \(g(x)\) 的符号未知。等价转化的依据是“乘以正数 \(g^2(x)\)”，或直接讨论分子、分母的符号。
+
+\begin{example}
+  解下列分式不等式：
+  \[
+  (1)\quad \frac{x-1}{x+2}\le 0;\qquad
+  (2)\quad \frac{x-1}{2x+2}\le 2.
+  \]
 \end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 原不等式等价于
+    \[
+    \begin{cases}
+      (x-1)(x+2)\le 0,\\
+      x+2\ne 0,
+    \end{cases}
+    \]
+    即 \(-2<x\le 1\)。
+    \item 先移项通分：
+    \[
+    \frac{x-1}{2x+2}-2\le 0
+    \iff \frac{x-1-(4x+4)}{2x+2}\le 0
+    \iff \frac{-3x-5}{2x+2}\le 0.
+    \]
+    上式等价于
+    \[
+    \begin{cases}
+      (-3x-5)(2x+2)\le 0,\\
+      2x+2\ne 0.
+    \end{cases}
+    \]
+    即 \((3x+5)(x+1)\ge 0\) 且 \(x\ne -1\)，解得
+    \[
+    x\le -\frac53\quad\text{或}\quad x>-1.
+    \]
+  \end{enumerate}
+\end{jie}
 
+\begin{exercise}
+  解不等式 \(\dfrac{x^2-3x+2}{x-1}\ge 0\)。
+\end{exercise}
+\begin{hint}
+  分子分解为 \((x-1)(x-2)\)，注意 \(x\ne 1\)。解集为 \((-\infty,1)\cup[2,+\infty)\)。
+\end{hint}
 
-画图，数轴标根，奇穿偶不穿
+\begin{definition}[高次不等式]\index{不等式!高次不等式}
+  未知数最高次数大于 \(2\) 的整式不等式称为高次不等式。我们主要处理已经分解因式的情形：
+  \[
+  (x-x_1)^{r_1}(x-x_2)^{r_2}\cdots(x-x_n)^{r_n}>0.
+  \]
+\end{definition}
+高次不等式常用“数轴标根法”（又称穿根法）求解，其步骤为：
+\begin{enumerate}
+  \item 把不等式化为最高次项系数为正的因式乘积与 \(0\) 比较；
+  \item 在数轴上标出所有根 \(x_1,x_2,\dots,x_n\)；
+  \item 从最右根的上方开始画波浪线：遇到奇数次因式对应的根，曲线穿过数轴；遇到偶数次因式对应的根，曲线不穿过数轴（“奇穿偶不穿”）；
+  \item 曲线在数轴上方对应函数值为正，在数轴下方对应函数值为负，再结合不等号写出解集。
+\end{enumerate}
+
 \begin{example}\index{不等式!高次不等式}
-    \[(x-1)^2(x-5)^3(x+1)(x+7)^4 \geq 0\]
+  解不等式
+  \[
+  (x-1)^2(x-5)^3(x+1)(x+7)^4\ge 0.
+  \]
 \end{example}
+\begin{jie}
+  最高次项系数为正。根从小到大依次为
+  \[
+  x_1=-7\ (4\text{ 重}),\quad x_2=-1\ (1\text{ 重}),\quad x_3=1\ (2\text{ 重}),\quad x_4=5\ (3\text{ 重}).
+  \]
+  从右向左穿根：在 \(x=5\) 处穿过，在 \(x=1\) 处不穿，在 \(x=-1\) 处穿过，在 \(x=-7\) 处不穿。
+  于是 \((-\infty,-7)\) 与 \((-7,-1)\) 为正，\((-1,1)\) 与 \((1,5)\) 为负，\((5,+\infty)\) 为正；根 \(-7,-1,1,5\) 处均为零。
+  原不等式要求符号非负，故解集为
+  \[
+  (-\infty,-1]\cup\{1\}\cup[5,+\infty).
+  \]
+\end{jie}
 
+\begin{exercise}
+  解不等式 \((x+2)(x-1)^2(x-3)^3<0\)。
+\end{exercise}
+\begin{hint}
+  根为 \(-2,1,3\)，重数分别为 \(1,2,3\)。解集为 \((-2,1)\cup(1,3)\)。
+\end{hint}
 
+\clearpage
+
+\subsection{含有根号的不等式}
+根号内含有未知数的不等式称为无理不等式。解无理不等式的首要步骤是保证根式有意义（确定定义域），其次才是通过两边平方或分类讨论去掉根号。
+\begin{definition}[无理不等式]\index{不等式!无理不等式}
+  根号内含有未知数的不等式称为无理不等式。
+\end{definition}
+\begin{experience}
+  两类基本形式的处理：
+  \begin{enumerate}
+    \item \(\sqrt{f(x)}\ge g(x)\)：先有 \(f(x)\ge 0\)。若 \(g(x)<0\)，则不等式在定义域内恒成立；若 \(g(x)\ge 0\)，两边平方得 \(f(x)\ge [g(x)]^2\)。
+    \item \(\sqrt{f(x)}\le g(x)\)：要求 \(f(x)\ge 0\) 且 \(g(x)\ge 0\)，再两边平方得 \(f(x)\le [g(x)]^2\)。
+  \end{enumerate}
+  多个根号时，先观察两侧符号，再决定是否可以直接平方；必要时移项使一侧非负。
+\end{experience}
+
+\begin{example}
+  解不等式 \(\sqrt{x}\ge 3\)。
+\end{example}
+\begin{jie}
+  定义域为 \(x\ge 0\)，且两边均非负，平方得 \(x\ge 9\)。解集为 \([9,+\infty)\)。
+\end{jie}
+
+\begin{example}
+  解下列不等式：
+  \[
+  (1)\quad \sqrt{x-1}+\sqrt{x+2}\ge 3;\qquad
+  (2)\quad \sqrt{x+3}-\sqrt{x-1}\le 1.
+  \]
+\end{example}
+\begin{jie}
+  \begin{enumerate}
+    \item 定义域为 \(x\ge 1\)。此时两边非负，平方得
+    \[
+    (x-1)+(x+2)+2\sqrt{(x-1)(x+2)}\ge 9,
+    \]
+    即
+    \[
+    \sqrt{(x-1)(x+2)}\ge 4-x.
+    \]
+    当 \(4-x<0\)，即 \(x>4\) 时，上式显然成立；当 \(1\le x\le 4\) 时，两边再平方得
+    \[
+    (x-1)(x+2)\ge (4-x)^2,
+    \]
+    即 \(x^2+x-2\ge x^2-8x+16\)，解得 \(x\ge 2\)。与 \(1\le x\le 4\) 取交得 \(2\le x\le 4\)。
+    综上，解集为 \([2,+\infty)\)。
+    \item 定义域为 \(x\ge 1\)。因为 \(\sqrt{x+3}\ge \sqrt{x-1}\)，左边非负，平方得
+    \[
+    (x+3)+(x-1)-2\sqrt{(x+3)(x-1)}\le 1,
+    \]
+    即
+    \[
+    2\sqrt{(x+3)(x-1)}\ge 2x+1.
+    \]
+    由于 \(x\ge 1\)，右边为正，两边再平方：
+    \[
+    4(x+3)(x-1)\ge (2x+1)^2.
+    \]
+    展开整理得
+    \[
+    4x^2+8x-12\ge 4x^2+4x+1,
+    \]
+    即 \(4x\ge 13\)，故 \(x\ge \frac{13}{4}\)。解集为 \([\frac{13}{4},+\infty)\)。
+  \end{enumerate}
+\end{jie}
+
+\begin{exercise}
+  解下列不等式：
+  \begin{enumerate}
+    \item \(\sqrt{x+1}+\sqrt{x-2}\ge 3\)；
+    \item \(\sqrt{2x-1}+\sqrt{x+1}\ge 3\)；
+    \item \(\sqrt{3-x}+\sqrt{x+1}\ge 2\)；
+    \item \(\sqrt{x^2-1}+\sqrt{x-1}\ge 2\)。
+  \end{enumerate}
+\end{exercise}
+\begin{hint}
+  前三题答案依次为：\([3,+\infty)\)；\([29-6\sqrt{21},+\infty)\)；\([-1,3]\)。第 \((4)\) 题可令 \(t=\sqrt{x-1}\ge 0\)，化为 \(t(\sqrt{t^2+2}+1)\ge 2\)，由左侧随 \(t\) 单调递增可确定唯一临界点。
+\end{hint}
+
+\begin{exercise}
+  讨论关于 \(x\) 的不等式
+  \[
+  \sqrt{x-a}+\sqrt{x+2}\ge 3
+  \]
+  的解集。
+\end{exercise}
+\begin{hint}
+  先由定义域和两边平方讨论。答案为
+  \[
+  \begin{cases}
+    x\ge -2,& a\le -11,\\[2pt]
+    x\ge \dfrac{a^2+22a+49}{36},& -11<a<7,\\[2pt]
+    x\ge a,& a\ge 7.
+  \end{cases}
+  \]
+\end{hint}
 
 \clearpage
